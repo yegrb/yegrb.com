@@ -3,6 +3,7 @@ require 'test_helper'
 class PostsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @post = posts(:one)
+    @user = users(:one)
   end
 
   test "should get index" do
@@ -17,7 +18,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create post" do
     assert_difference('Post.count') do
-      post posts_url, params: { post: { additional_information: @post.additional_information, content: @post.content, location: @post.location, meetup_description: @post.meetup_description, signup_link: @post.signup_link, thank_you: @post.thank_you, time: @post.time, title: @post.title, user_id: @post.user_id } }
+      post posts_url, params: { post: { additional_information: @post.additional_information, content: @post.content, location: @post.location, meetup_description: @post.meetup_description, signup_link: @post.signup_link, thank_you: @post.thank_you, time: @post.time, title: @post.title, user_id: @user.id } }
     end
 
     assert_redirected_to post_url(Post.last)
@@ -34,7 +35,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update post" do
-    patch post_url(@post), params: { post: { additional_information: @post.additional_information, content: @post.content, location: @post.location, meetup_description: @post.meetup_description, signup_link: @post.signup_link, thank_you: @post.thank_you, time: @post.time, title: @post.title, user_id: @post.user_id } }
+    patch post_url(@post), params: { post: { additional_information: @post.additional_information, content: @post.content, location: @post.location, meetup_description: @post.meetup_description, signup_link: @post.signup_link, thank_you: @post.thank_you, time: @post.time, title: @post.title, user_id: @user.id } }
     assert_redirected_to post_url(@post)
   end
 
