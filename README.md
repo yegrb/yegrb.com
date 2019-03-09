@@ -11,9 +11,7 @@ Mac OSX
 
   First, you need to remove previous versions of PostgreSQL
   
-  <code>
-  brew uninstall --force postgresql
-  </code>
+  <code>brew uninstall --force postgresql</code>
   
   Next up, delete all Postgres files
   
@@ -24,9 +22,11 @@ Mac OSX
   <code>brew install postgres</code>
   
   Fire up new PostgreSQL server 
+  
   <code>pg_ctl -D /usr/local/var/postgres start</code>
   
   Create Database 
+  
   <code>initdb /usr/local/var/postgres</code>
   
   And that should do it. Any issues can be forwarded to alan@alanvardy.com 
