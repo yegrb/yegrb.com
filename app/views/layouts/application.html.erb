@@ -10,9 +10,11 @@
   </head>
 
   <body>
-  <%= render 'layouts/navbar' %>
-  <%= render 'layouts/alerts' %>
-    <%= yield %>
-  <%= render 'layouts/footer'%>
+    <%= render 'layouts/navbar' %>
+    <%= render 'layouts/alerts' %>
+    <div class="container">
+      <%= yield %>
+    </div>
+    <%= render 'layouts/footer'%>
   </body>
 </html>

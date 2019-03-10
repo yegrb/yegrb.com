@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :posts
-  devise_for :users
-  
+  devise_for :users, controllers: { sessions: 'users/sessions' }
+
   root 'pages#index'
   get '/meetup' , to: 'pages#meetup'
   get '/contact' , to: 'pages#contact'
