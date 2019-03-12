@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   get '/meetup' , to: 'pages#meetup'
   get '/contact' , to: 'pages#contact'
   get '/about' , to: 'pages#about'
+  get '/opportunities' , to: 'pages#opportunities'
+  get '/slack' , to: 'pages#slack'
 end

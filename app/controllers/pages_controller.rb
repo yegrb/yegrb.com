@@ -10,4 +10,10 @@ class PagesController < ApplicationController
 
   def contact
   end
+
+  def opportunities
+  end
+
+  def slack
+  end 
 end
