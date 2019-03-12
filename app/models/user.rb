@@ -2,9 +2,9 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+    :recoverable, :rememberable, :validatable
 
-         has_many :posts
+  has_many :posts
 
   ROLES = ['admin', 'user']
 
@@ -24,4 +24,6 @@ class User < ApplicationRecord
   # created_at, updated_at: datetime
 
   def admin?
+    role == 'admin'
+  end
 end
