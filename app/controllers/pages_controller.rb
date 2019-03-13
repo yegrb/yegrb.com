@@ -17,9 +17,6 @@ class PagesController < ApplicationController
   def slack
   end
 
-  def gs
-  end
-
-  def learn_ror
+  def resources
   end
 end

@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   get '/about' , to: 'pages#about'
   get '/opportunities' , to: 'pages#opportunities'
   get '/slack' , to: 'pages#slack'
-  get '/gs' , to: 'pages#gs'
-  get '/learn_ror' , to: 'pages#learn_ror'
+  get '/resources' , to: 'pages#resources'
 end
+
