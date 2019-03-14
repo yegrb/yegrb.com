@@ -3,6 +3,7 @@ addons:
 before_script:
   - gem update --system
   - gem install bundler
+  - bundle update --bundler
   - rails db:setup
 dist: trusty
 language: ruby
