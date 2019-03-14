@@ -43,7 +43,7 @@ class Ability
 
       # admins have god access MUAHAHA!
       if user.admin?
-        can :manage, Event
+        can :manage, :all
       end
     end
   end
