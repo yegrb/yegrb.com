@@ -1,33 +1,50 @@
-# README
+# YEGRB - Edmonton's Ruby Meetup
 
-YEGRB - Edmonton's Ruby Meetup
+This site is dedicated to all things ruby in the Edmonton area.
+Future features will include user accounts, a mailing list, and a job board.
 
-This site will be dedicated to all things ruby in the Edmonton area. 
-Future features will include user accounts, a mailing list, and a job board. 
+## Getting Started
 
-First thing's first, and that involves installing Postgres: 
+1. Clone this repository with `git clone git@github.com:yegrb/yegrb.com.git`
+2. Use rbenv or RVM to install correct version of Ruby (see .ruby-version)
+3. Make sure to have Postgres installed and configured on system (See below for Mac OSX instructions)
+4. Rename .env.example to .env and fill in the environment variables
+5. Run `bundle install` to install gems
+6. Run `bin/rails db:setup` to create databases
+7. Run `bin/rails db:seed` to create administrator account
+8. Create a new branch with `git checkout -b new_branch`
+9. Make modifications and push code with:
 
-Mac OSX
+```bash
+git add .
+git commit -m 'Describe your changes'
+git push
+```
 
-  First, you need to remove previous versions of PostgreSQL
-  
-  <code>brew uninstall --force postgresql</code>
-  
-  Next up, delete all Postgres files
-  
-  <code>rm -rf /usr/local/var/postgres</code>
-  
-  Install Postgres with homebrew 
-  
-  <code>brew install postgres</code>
-  
-  Fire up new PostgreSQL server 
-  
-  <code>pg_ctl -D /usr/local/var/postgres start</code>
-  
-  Create Database 
-  
-  <code>initdb /usr/local/var/postgres</code>
-  
-  And that should do it. Any issues can be forwarded to alan@alanvardy.com 
+10. And open up a pull request on GitHub!
 
+## Installing Postgresql on Mac OSX
+
+First, you need to remove previous versions of PostgreSQL
+
+`brew uninstall --force postgresql`
+
+Next up, delete all Postgres files
+
+`rm -rf /usr/local/var/postgres`
+
+Install Postgres with homebrew
+
+`brew install postgres`
+
+Fire up new PostgreSQL server
+
+`pg_ctl -D /usr/local/var/postgres start`
+
+Create Database
+
+`initdb /usr/local/var/postgres`
+
+## Contact
+
+Drop me a line at: alan@alanvardy.com
