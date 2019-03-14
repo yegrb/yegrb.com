@@ -1,6 +1,8 @@
 addons:
   postgresql: 9.6
 before_script:
+  - gem update --system
+  - gem install bundler
   - rails db:setup
 dist: trusty
 language: ruby
