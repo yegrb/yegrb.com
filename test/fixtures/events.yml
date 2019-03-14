@@ -3,21 +3,15 @@
 one:
   user_id: 1
   title: MyString
-  time: 2019-03-08 09:46:31
+  time: 2019-03-12 10:42:37
   location: MyString
   signup_link: MyString
-  meetup_description: MyText
   content: MyText
-  additional_information: MyText
-  thank_you: MyText
 
 two:
   user_id: 1
   title: MyString
-  time: 2019-03-08 09:46:31
+  time: 2019-03-12 10:42:37
   location: MyString
   signup_link: MyString
-  meetup_description: MyText
   content: MyText
-  additional_information: MyText
-  thank_you: MyText

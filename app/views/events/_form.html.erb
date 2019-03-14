@@ -1,5 +1,5 @@
 
-<%= simple_form_for(@post) do |f| %>
+<%= simple_form_for(@event) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
@@ -9,10 +9,7 @@
     <%= f.input :time %>
     <%= f.input :location %>
     <%= f.input :signup_link %>
-    <%= f.input :meetup_description %>
     <%= f.input :content %>
-    <%= f.input :additional_information %>
-    <%= f.input :thank_you %>
   </div>
 
   <div class="form-actions">
