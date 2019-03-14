@@ -9,8 +9,9 @@ class User < ApplicationRecord
   ROLES = ['admin', 'user']
 
   validates :first_name, presence: true
+  validates :last_name, presence: true
   validates :email, presence: true
-  validates :role, presence: true, inclusion: { in: ROLES, message: "%{value} is not a valid role"}
+  validates :role, presence: true, inclusion: { in: ROLES, message: '%{value} is not a valid role' }
 
   # set role to user if blank
   before_validation do |user|
@@ -18,10 +19,11 @@ class User < ApplicationRecord
   end
 
   # Attributes:
-  # email:                  string
-  # first_name:             string
+  # email:                   string
+  # first_name:              string
+  # last_name:               string
   # role:                    string
-  # created_at, updated_at: datetime
+  # created_at, updated_at:  datetime
 
   def admin?
     role == 'admin'
