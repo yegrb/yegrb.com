@@ -28,5 +28,23 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
+
+    user ||= User.new
+    # Everyone can read events
+    can :read, Event
+
+    if user.present?
+      # can :read, Event
+
+      if user.editor?
+        # editors can manage all events
+        can :manage, Event
+      end
+
+      # admins have god access MUAHAHA!
+      if user.admin?
+        can :manage, Event
+      end
+    end
   end
 end
