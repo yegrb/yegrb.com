@@ -25,7 +25,7 @@
       <li class="nav-item">
       <% if user_signed_in? %>
       <span class="mr-2">
-        <%= "Logged in as #{current_user.first_name}" %>
+        <%= link_to "Logged in as #{current_user.first_name}", edit_user_registration_path %>
       </span>
         <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'btn btn-primary' %>
       <% else %>
