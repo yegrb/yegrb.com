@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
-  before_action :set_show_event, only: [:show]
-  before_action :set_edit_event, only: [:edit, :update, :destroy]
+  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_edit, only: [:edit, :update, :destroy]
+  before_action :authorize_read, only: [:show]
 
   # GET /events
   # GET /events.json
@@ -68,13 +69,15 @@ class EventsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_edit_event
+    def set_event
       @event = Event.find(params[:id])
-      authorize! :create, @event
     end
 
-    def set_show_event
-      @event = Event.find(params[:id])
+    def authorize_edit
+      authorize! :edit, @event
+    end
+
+    def authorize_read
       authorize! :read, @event
     end
 
