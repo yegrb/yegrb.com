@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  title: MyString
+  company: MyString
+  contact: MyString
+  email: MyString
+  paid_position: false
+  content: MyText
+  good_until: 2019-03-14 13:25:35
+
+two:
+  user_id: 1
+  title: MyString
+  company: MyString
+  contact: MyString
+  email: MyString
+  paid_position: false
+  content: MyText
+  good_until: 2019-03-14 13:25:35
