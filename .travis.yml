@@ -1,10 +1,10 @@
 addons:
   postgresql: 9.6
-before_script:
-  # - gem update --system
-  # - gem install bundler:2.0.1
-  - rails db:setup
+before_install:
+  - gem update --system
+  - gem install bundler:2.0.1
 language: ruby
 script:
+  - rails db:setup
   - bundle exec rails db:migrate RAILS_ENV=test
   - bundle exec rails test
