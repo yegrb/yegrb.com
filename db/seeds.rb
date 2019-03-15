@@ -10,4 +10,4 @@
 User.all.delete_all
 
 # Create admin
-User.create!(email: ENV["ADMIN_EMAIL"], password: ENV["ADMIN_PASS"], password_confirmation: ENV["ADMIN_PASS"], role: "admin", first_name: ENV["ADMIN_NAME"])
+User.create!(email: ENV['ADMIN_EMAIL'], password: ENV['ADMIN_PASS'], password_confirmation: ENV['ADMIN_PASS'], role: 'admin', first_name: ENV['ADMIN_FIRST'], last_name: ENV['ADMIN_LAST'])
