@@ -1,5 +1,7 @@
 class OpportunitiesController < ApplicationController
   before_action :set_opportunity, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_edit, only: [:edit, :update, :destroy]
+  before_action :authorize_read, only: [:show]
 
   # GET /opportunities
   # GET /opportunities.json
@@ -15,6 +17,7 @@ class OpportunitiesController < ApplicationController
   # GET /opportunities/new
   def new
     @opportunity = Opportunity.new
+    authorize! :edit, Opportunity
   end
 
   # GET /opportunities/1/edit
@@ -25,7 +28,7 @@ class OpportunitiesController < ApplicationController
   # POST /opportunities.json
   def create
     @opportunity = Opportunity.new(opportunity_params)
-
+    authorize! :edit, @opportunity
     respond_to do |format|
       if @opportunity.save
         format.html { redirect_to @opportunity, notice: 'Opportunity was successfully created.' }
@@ -63,6 +66,14 @@ class OpportunitiesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def authorize_edit
+      authorize! :edit, @opportunity
+    end
+
+    def authorize_read
+      authorize! :read, @opportunity
+    end
+
     def set_opportunity
       @opportunity = Opportunity.find(params[:id])
     end
