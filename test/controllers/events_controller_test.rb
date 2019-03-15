@@ -2,7 +2,7 @@ require 'test_helper'
 
 class EventsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @event = events(:one)
+    @event = create(:event)
   end
 
   test "should get index when not logged in" do
