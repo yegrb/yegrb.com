@@ -10,7 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 2019_03_14_192535) do
 
   # These are extensions that must be enabled in order to support this database
@@ -36,20 +35,6 @@ ActiveRecord::Schema.define(version: 2019_03_14_192535) do
     t.boolean "paid_position"
     t.text "content"
     t.datetime "good_until"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "posts", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "title"
-    t.datetime "time"
-    t.string "location"
-    t.string "signup_link"
-    t.text "meetup_description"
-    t.text "content"
-    t.text "additional_information"
-    t.text "thank_you"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
