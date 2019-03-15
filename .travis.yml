@@ -1,8 +1,8 @@
 addons:
   postgresql: 9.6
 before_install:
-  - gem update --system
-  - gem install bundler:2.0.1
+  - gem update --system --no-rdoc --no-ri
+  - gem install bundler:2.0.1 --no-rdoc --no-ri
 language: ruby
 script:
   - rails db:setup
