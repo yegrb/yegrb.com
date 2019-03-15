@@ -32,6 +32,7 @@ class Ability
     user ||= User.new
     # Everyone can read events
     can :read, Event
+    can :read, Opportunity
 
     if user.present?
       # can :read, Event
@@ -39,6 +40,7 @@ class Ability
       if user.editor?
         # editors can manage all events
         can :manage, Event
+        can :manage, Opportunity
       end
 
       # admins have god access MUAHAHA!
