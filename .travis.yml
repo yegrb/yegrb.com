@@ -3,8 +3,9 @@ addons:
 before_install:
   - gem update --system --no-rdoc --no-ri
   - gem install bundler:2.0.1 --no-rdoc --no-ri
+before_script:
+  - bundle exec rails db:create
 language: ruby
 script:
-  - rails db:setup
   - bundle exec rails db:migrate RAILS_ENV=test
   - bundle exec rails test
