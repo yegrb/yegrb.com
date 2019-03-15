@@ -73,5 +73,8 @@ gem 'cancancan', '~> 2.0'
 gem 'devise'
 gem 'dotenv-rails', groups: %i[development test]
 
+# Testing
+gem 'factory_bot_rails', groups: %i[development test]
+
 # Tools
 gem 'rubocop', groups: %i[development test]

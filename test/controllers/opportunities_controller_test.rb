@@ -2,7 +2,7 @@ require 'test_helper'
 
 class OpportunitiesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @opportunity = opportunities(:one)
+    @opportunity = create(:opportunity)
   end
 
   test "should get index when not logged in" do
