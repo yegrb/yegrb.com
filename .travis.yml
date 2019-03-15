@@ -4,7 +4,6 @@ before_script:
   - gem update --system
   - gem install bundler:2.0.1
   - rails db:setup
-dist: trusty
 language: ruby
 script:
   - bundle exec rails db:migrate RAILS_ENV=test
