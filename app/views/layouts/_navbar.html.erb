@@ -9,10 +9,13 @@
         <%= link_to 'Home', root_path, class: 'nav-link' %>
       </li>
       <li class="nav-item">
-        <%= link_to 'About', about_path, class: 'nav-link' %>
+        <%= link_to 'Events', events_path, class: 'nav-link' %>
       </li>
       <li class="nav-item">
-        <%= link_to 'Meetup', meetup_path, class: 'nav-link' %>
+        <%= link_to 'Opportunities', opportunities_path, class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'About', about_path, class: 'nav-link' %>
       </li>
       <li class="nav-item">
         <%= link_to 'Contact', contact_path, class: 'nav-link' %>
@@ -31,7 +34,7 @@
       <li class="nav-item">
       <% if user_signed_in? %>
       <span class="mr-2">
-        <%= "Logged in as #{current_user.first_name}" %>
+        <%= link_to "Logged in as #{current_user.first_name}", edit_user_registration_path %>
       </span>
         <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'btn btn-primary' %>
       <% else %>

@@ -5,9 +5,6 @@ class PagesController < ApplicationController
   def about
   end
 
-  def meetup
-  end
-
   def contact
   end
 

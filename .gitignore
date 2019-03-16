@@ -28,3 +28,4 @@
 .env
 package-lock.json
 config/credentials.yml.enc
+coverage
