@@ -16,4 +16,14 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should get opportunities" do
+    get opportunities_path
+    assert_response :success
+  end
+
+  test "should get resources" do
+    get resources_path
+    assert_response :success
+  end
+
 end

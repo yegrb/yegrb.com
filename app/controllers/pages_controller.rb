@@ -7,4 +7,13 @@ class PagesController < ApplicationController
 
   def contact
   end
+
+  def opportunities
+  end
+
+  def slack
+  end
+
+  def resources
+  end
 end

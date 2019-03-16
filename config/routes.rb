@@ -6,4 +6,8 @@ Rails.application.routes.draw do
   root 'pages#index'
   get '/contact' , to: 'pages#contact'
   get '/about' , to: 'pages#about'
+  get '/opportunities' , to: 'pages#opportunities'
+  get '/slack' , to: 'pages#slack'
+  get '/resources' , to: 'pages#resources'
 end
+
