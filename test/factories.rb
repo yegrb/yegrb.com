@@ -5,6 +5,18 @@ FactoryBot.define do
     role  { "admin" }
     email { "#{first_name}.#{last_name}@example.com".downcase }
     encrypted_password { Devise::Encryptor.digest(User, 'password') }
+    password { "password" }
+    password_confirmation { "password" }
+  end
+
+  factory :editor, class: User do
+    first_name { "Awesome" }
+    last_name  { "Editor" }
+    role  { "editor" }
+    email { "#{first_name}.#{last_name}@example.com".downcase }
+    encrypted_password { Devise::Encryptor.digest(User, 'password') }
+    password { "password" }
+    password_confirmation { "password" }
   end
 
   factory :user, class: User do
