@@ -9,5 +9,6 @@ class Event < ApplicationRecord
   # signup_link:            string
   # content:                text
   # created_at, updated_at: datetime
-  
+
+  validates :user_id, :content, :title, presence: true
 end
