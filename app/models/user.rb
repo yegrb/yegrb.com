@@ -26,6 +26,10 @@ class User < ApplicationRecord
   # role:                    string
   # created_at, updated_at:  datetime
 
+  def to_s
+    "#{first_name} #{last_name}"
+  end
+
   def admin?
     role == 'admin'
   end
