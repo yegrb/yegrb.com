@@ -19,6 +19,7 @@ class EventsController < ApplicationController
   def new
     @event = Event.new
     authorize! :create, @event
+    @event.user_id = current_user.id
   end
 
   # GET /events/1/edit
