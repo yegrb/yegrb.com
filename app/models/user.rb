@@ -1,66 +1,31 @@
-# == Schema Information
-#
-# Table name: users
-#
-#  id                     :bigint(8)        not null, primary key
-#  email                  :string           default(""), not null
-#  encrypted_password     :string           default(""), not null
-#  first_name             :string
-#  last_name              :string
-#  remember_created_at    :datetime
-#  reset_password_sent_at :datetime
-#  reset_password_token   :string
-#  role                   :string
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
-#
-# Indexes
-#
-#  index_users_on_email                 (email) UNIQUE
-#  index_users_on_reset_password_token  (reset_password_token) UNIQUE
-#
-
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
-
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  STATUSES = ['user', 'editor', 'admin']
   has_many :events
   has_many :opportunities
+  has_secure_password
 
-  ROLES = ['admin', 'editor', 'user']
+  before_save { self.email = email.downcase }
+  validates :first_name, presence: true, length: { maximum: 50 }
+  validates :last_name, presence: true, length: { maximum: 50 }
+  validates :role, presence: true, inclusion: {in: STATUSES}
+  validates :email, presence: true, length: { maximum: 255 },
+                    format: { with: VALID_EMAIL_REGEX },
+                    uniqueness: { case_sensitive: false }
 
-  validates :first_name, presence: true
-  validates :last_name, presence: true
-  validates :email, presence: true
-  validates :role, presence: true, inclusion: { in: ROLES, message: '%{value} is not a valid role' }
-
-  # set role to user if blank
-  before_validation do |user|
-    user.role ||= 'user'
-  end
-
-  # Attributes:
-  # email:                   string
-  # first_name:              string
-  # last_name:               string
-  # role:                    string
-  # created_at, updated_at:  datetime
-
-  def to_s
-    "#{first_name} #{last_name}"
+  def editor?
+    role == 'editor'
   end
 
   def admin?
     role == 'admin'
   end
 
-  def editor?
-    role == 'editor'
+  # Returns the hash digest of the given string.
+  def User.digest(string)
+    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
+    BCrypt::Engine.cost
+    BCrypt::Password.create(string, cost: cost)
   end
 
-  def user?
-    role == 'user'
-  end
 end
