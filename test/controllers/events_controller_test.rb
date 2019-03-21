@@ -1,8 +1,12 @@
 require 'test_helper'
 
 class EventsControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+
   setup do
     @event = create(:event)
+    @admin = create(:admin)
+    @editor = create(:editor)
   end
 
   test "should get index when not logged in" do
@@ -15,6 +19,18 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_path
   end
 
+  test "should get new when logged in as editor" do
+    login_as @editor
+    get new_event_url
+    assert_response :success
+  end
+
+  test "should get new when logged in as admin" do
+    login_as @admin
+    get new_event_url
+    assert_response :success
+  end
+
   test "shouldn't create event when not logged in" do
     assert_no_difference('Event.count') do
       post events_url, params: { event: { content: @event.content, location: @event.location, signup_link: @event.signup_link, time: @event.time, title: @event.title, user_id: @event.user_id } }
@@ -22,6 +38,24 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
 
     # assert_redirected_to event_url(Event.last)
     assert_redirected_to root_path
+  end
+
+  test "should create event when logged in as editor" do
+    login_as @editor
+    assert_difference('Event.count') do
+      post events_url, params: { event: { content: @event.content, location: @event.location, signup_link: @event.signup_link, time: @event.time, title: @event.title, user_id: @event.user_id } }
+    end
+
+    assert_redirected_to event_url(Event.last)
+  end
+
+  test "should create event when logged in as admin" do
+    login_as @admin
+    assert_difference('Event.count') do
+      post events_url, params: { event: { content: @event.content, location: @event.location, signup_link: @event.signup_link, time: @event.time, title: @event.title, user_id: @event.user_id } }
+    end
+
+    assert_redirected_to event_url(Event.last)
   end
 
   test "should show event when not logged in" do
@@ -34,10 +68,34 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_path
   end
 
+  test "should get edit when logged in as editor" do
+    login_as @editor
+    get edit_event_url(@event)
+    assert_response :success
+  end
+
+  test "should get edit when logged in as admin" do
+    login_as @admin
+    get edit_event_url(@event)
+    assert_response :success
+  end
+
   test "shouldn't update event when not logged in" do
     patch event_url(@event), params: { event: { content: @event.content, location: @event.location, signup_link: @event.signup_link, time: @event.time, title: @event.title, user_id: @event.user_id } }
     # assert_redirected_to event_url(@event)
     assert_redirected_to root_path
+  end
+
+  test "should update event when logged in as editor" do
+    login_as @editor
+    patch event_url(@event), params: { event: { content: @event.content, location: @event.location, signup_link: @event.signup_link, time: @event.time, title: @event.title, user_id: @event.user_id } }
+    assert_redirected_to event_url(@event)
+  end
+
+  test "should update event when logged in as admin" do
+    login_as @admin
+    patch event_url(@event), params: { event: { content: @event.content, location: @event.location, signup_link: @event.signup_link, time: @event.time, title: @event.title, user_id: @event.user_id } }
+    assert_redirected_to event_url(@event)
   end
 
   test "shouldn't destroy event when not logged in" do
@@ -47,5 +105,23 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to root_path
     # assert_redirected_to events_url
+  end
+
+  test "should destroy event when logged in as editor" do
+    login_as @editor
+    assert_difference('Event.count', -1) do
+      delete event_url(@event)
+    end
+
+    assert_redirected_to events_url
+  end
+
+  test "should destroy event when logged in as admin" do
+    login_as @admin
+    assert_difference('Event.count', -1) do
+      delete event_url(@event)
+    end
+
+    assert_redirected_to events_url
   end
 end
