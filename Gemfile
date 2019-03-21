@@ -70,6 +70,7 @@ gem 'simple_form'
 
 # Authentication and Authorization
 gem 'cancancan', '~> 2.0'
+gem 'bcrypt'
 gem 'dotenv-rails', groups: %i[development test]
 
 # Testing
