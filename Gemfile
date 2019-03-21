@@ -79,3 +79,4 @@ gem 'simplecov', require: false, group: :test
 
 # Tools
 gem 'rubocop', groups: %i[development test]
+gem 'annotate', group: :development
