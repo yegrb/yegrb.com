@@ -1,9 +1,12 @@
  FactoryBot.define do
-  factory :user do
-    email { "MyString" }
-    first_name { "MyString" }
-    last_name { "" }
-    role { "MyString" }
+  factory :user, class: User do
+    first_name { "Awesome" }
+    last_name  { "User" }
+    role  { "user" }
+    email { "#{first_name}.#{last_name}@example.com".downcase }
+    password_digest { User.digest('password') }
+    password { "password" }
+    password_confirmation { "password" }
   end
 
   factory :editor, class: User do
@@ -11,17 +14,17 @@
     last_name  { "Editor" }
     role  { "editor" }
     email { "#{first_name}.#{last_name}@example.com".downcase }
-    encrypted_password { Devise::Encryptor.digest(User, 'password') }
+    password_digest { User.digest('password') }
     password { "password" }
     password_confirmation { "password" }
   end
 
-  factory :user, class: User do
-    first_name { "Regular" }
-    last_name  { "guy" }
-    role  { "user" }
+  factory :admin, class: User do
+    first_name { "Awesome" }
+    last_name  { "Admin" }
+    role  { "admin" }
     email { "#{first_name}.#{last_name}@example.com".downcase }
-    encrypted_password { Devise::Encryptor.digest(User, 'password') }
+    password_digest { User.digest('password') }
     password { "password" }
     password_confirmation { "password" }
   end
