@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :bigint(8)        not null, primary key
+#  email           :string
+#  first_name      :string
+#  last_name       :string
+#  password_digest :string
+#  role            :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
 class User < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   STATUSES = ['user', 'editor', 'admin']
@@ -27,5 +41,4 @@ class User < ApplicationRecord
     BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)
   end
-
 end
