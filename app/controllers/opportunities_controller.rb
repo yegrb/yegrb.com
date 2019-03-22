@@ -29,28 +29,24 @@ class OpportunitiesController < ApplicationController
   def create
     @opportunity = Opportunity.new(opportunity_params)
     authorize! :edit, @opportunity
-    respond_to do |format|
-      if @opportunity.save
-        format.html { redirect_to @opportunity, notice: 'Opportunity was successfully created.' }
-        format.json { render :show, status: :created, location: @opportunity }
-      else
-        format.html { render :new }
-        format.json { render json: @opportunity.errors, status: :unprocessable_entity }
-      end
+    if @opportunity.save
+      flash[:success] = 'Opportunity was successfully created.'
+      redirect_to @opportunity
+    else
+      flash.now[:danger] = 'Unable to create opportunity.'
+      render :new
     end
   end
 
   # PATCH/PUT /opportunities/1
   # PATCH/PUT /opportunities/1.json
   def update
-    respond_to do |format|
-      if @opportunity.update(opportunity_params)
-        format.html { redirect_to @opportunity, notice: 'Opportunity was successfully updated.' }
-        format.json { render :show, status: :ok, location: @opportunity }
-      else
-        format.html { render :edit }
-        format.json { render json: @opportunity.errors, status: :unprocessable_entity }
-      end
+    if @opportunity.update(opportunity_params)
+      flash[:success] = 'Opportunity was successfully updated.'
+      redirect_to @opportunity, notice: 'Opportunity was successfully updated.'
+    else
+      flash.now[:danger] = 'Unable to update opportunity'
+      render :edit
     end
   end
 
@@ -58,28 +54,27 @@ class OpportunitiesController < ApplicationController
   # DELETE /opportunities/1.json
   def destroy
     @opportunity.destroy
-    respond_to do |format|
-      format.html { redirect_to opportunities_url, notice: 'Opportunity was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    flash[:success] = 'Opportunity was successfully destroyed.'
+    redirect_to opportunities_url
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def authorize_edit
-      authorize! :edit, @opportunity
-    end
 
-    def authorize_read
-      authorize! :read, @opportunity
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def authorize_edit
+    authorize! :edit, @opportunity
+  end
 
-    def set_opportunity
-      @opportunity = Opportunity.find(params[:id])
-    end
+  def authorize_read
+    authorize! :read, @opportunity
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def opportunity_params
-      params.require(:opportunity).permit(:user_id, :title, :company, :contact, :email, :paid_position, :content, :good_until)
-    end
+  def set_opportunity
+    @opportunity = Opportunity.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def opportunity_params
+    params.require(:opportunity).permit(:user_id, :title, :company, :contact, :email, :paid_position, :content, :good_until)
+  end
 end

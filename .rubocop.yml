@@ -3938,7 +3938,6 @@ Style/SafeNavigation:
     - presence
     - try
     - try!
-  VersionChanged: '0.56'
 
 Style/SelfAssignment:
   Description: >-
