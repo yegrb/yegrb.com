@@ -35,18 +35,21 @@ class Ability
     can :read, Opportunity
 
     if user.present?
-      # can :read, Event
+      can :read, User, id: user.id
+      can :edit, User, id: user.id
 
       if user.editor?
         # editors can manage all events
         can :manage, Event
         can :manage, Opportunity
+        can :read, User
+        can :read_all, User
+        can :read, Invite
       end
 
       # admins have god access MUAHAHA!
-      if user.admin?
-        can :manage, :all
-      end
+
+      can :manage, :all if user.admin?
     end
   end
 end
