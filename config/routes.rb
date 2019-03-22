@@ -1,6 +1,14 @@
 # == Route Map
 #
 #                                Prefix Verb   URI Pattern                                                                              Controller#Action
+#                               invites GET    /invites(.:format)                                                                       invites#index
+#                                       POST   /invites(.:format)                                                                       invites#create
+#                            new_invite GET    /invites/new(.:format)                                                                   invites#new
+#                           edit_invite GET    /invites/:id/edit(.:format)                                                              invites#edit
+#                                invite GET    /invites/:id(.:format)                                                                   invites#show
+#                                       PATCH  /invites/:id(.:format)                                                                   invites#update
+#                                       PUT    /invites/:id(.:format)                                                                   invites#update
+#                                       DELETE /invites/:id(.:format)                                                                   invites#destroy
 #                          sessions_new GET    /sessions/new(.:format)                                                                  sessions#new
 #                                 users GET    /users(.:format)                                                                         users#index
 #                                       POST   /users(.:format)                                                                         users#create
@@ -36,7 +44,7 @@
 #                                       GET    /opportunities(.:format)                                                                 pages#opportunities
 #                                 slack GET    /slack(.:format)                                                                         pages#slack
 #                             resources GET    /resources(.:format)                                                                     pages#resources
-#                                       GET    /check.txt(.:format)                                                                     #<Proc:0x0000561acd8bbd50@/home/vardy/coding/yegrb.com/config/routes.rb:79>
+#                                       GET    /check.txt(.:format)                                                                     #<Proc:0x000055d353a1bb30@/home/vardy/coding/yegrb.com/config/routes.rb:80>
 #           rails_amazon_inbound_emails POST   /rails/action_mailbox/amazon/inbound_emails(.:format)                                    action_mailbox/ingresses/amazon/inbound_emails#create
 #         rails_mandrill_inbound_emails POST   /rails/action_mailbox/mandrill/inbound_emails(.:format)                                  action_mailbox/ingresses/mandrill/inbound_emails#create
 #         rails_postmark_inbound_emails POST   /rails/action_mailbox/postmark/inbound_emails(.:format)                                  action_mailbox/ingresses/postmark/inbound_emails#create
@@ -59,6 +67,7 @@
 #                  rails_direct_uploads POST   /rails/active_storage/direct_uploads(.:format)                                           active_storage/direct_uploads#create
 
 Rails.application.routes.draw do
+  resources :invites
   get 'sessions/new'
   resources :users
   resources :opportunities

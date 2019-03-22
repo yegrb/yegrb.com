@@ -1,4 +1,12 @@
  FactoryBot.define do
+  factory :invite do
+    name { "MyString" }
+    email { "MyString" }
+    code { "MyString" }
+    expiry { "2019-03-22 14:19:19" }
+    user_id { 1 }
+  end
+
   factory :user, class: User do
     first_name { "Awesome" }
     last_name  { "User" }
