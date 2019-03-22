@@ -44,7 +44,7 @@
 #                                       GET    /opportunities(.:format)                                                                 pages#opportunities
 #                                 slack GET    /slack(.:format)                                                                         pages#slack
 #                             resources GET    /resources(.:format)                                                                     pages#resources
-#                                       GET    /check.txt(.:format)                                                                     #<Proc:0x000055d353a1bb30@/home/vardy/coding/yegrb.com/config/routes.rb:80>
+#                                       GET    /check.txt(.:format)                                                                     #<Proc:0x000055dd227ffc38@/home/vardy/coding/yegrb.com/config/routes.rb:88>
 #           rails_amazon_inbound_emails POST   /rails/action_mailbox/amazon/inbound_emails(.:format)                                    action_mailbox/ingresses/amazon/inbound_emails#create
 #         rails_mandrill_inbound_emails POST   /rails/action_mailbox/mandrill/inbound_emails(.:format)                                  action_mailbox/ingresses/mandrill/inbound_emails#create
 #         rails_postmark_inbound_emails POST   /rails/action_mailbox/postmark/inbound_emails(.:format)                                  action_mailbox/ingresses/postmark/inbound_emails#create
