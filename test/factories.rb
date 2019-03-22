@@ -1,14 +1,35 @@
  FactoryBot.define do
   factory :invite do
     name { "MyString" }
-    email { "MyString" }
+    email { "somebody@email.com" }
     code { "MyString" }
+    role { "editor" }
     expiry { "2019-03-22 14:19:19" }
-    user_id { 1 }
+    association :third_user, factory: :user
   end
 
   factory :user, class: User do
     first_name { "Awesome" }
+    last_name  { "User" }
+    role  { "user" }
+    email { "#{first_name}.#{last_name}@example.com".downcase }
+    password_digest { User.digest('password') }
+    password { "password" }
+    password_confirmation { "password" }
+  end
+
+  factory :other_user, class: User do
+    first_name { "NotSoAwesome" }
+    last_name  { "User" }
+    role  { "user" }
+    email { "#{first_name}.#{last_name}@example.com".downcase }
+    password_digest { User.digest('password') }
+    password { "password" }
+    password_confirmation { "password" }
+  end
+
+  factory :third_user, class: User do
+    first_name { "NotEvenCloseToBeingAwesome" }
     last_name  { "User" }
     role  { "user" }
     email { "#{first_name}.#{last_name}@example.com".downcase }
