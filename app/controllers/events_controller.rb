@@ -4,14 +4,12 @@ class EventsController < ApplicationController
   before_action :authorize_read, only: [:show]
 
   # GET /events
-  # GET /events.json
   def index
     @events = Event.all
     authorize! :read, Event
   end
 
   # GET /events/1
-  # GET /events/1.json
   def show
   end
 
@@ -27,7 +25,6 @@ class EventsController < ApplicationController
   end
 
   # POST /events
-  # POST /events.json
   def create
     @event = Event.new(event_params)
     authorize! :create, @event
@@ -41,7 +38,6 @@ class EventsController < ApplicationController
   end
 
   # PATCH/PUT /events/1
-  # PATCH/PUT /events/1.json
   def update
     if @event.update(event_params)
       flash[:success] = 'Event was successfully updated.'
@@ -53,7 +49,6 @@ class EventsController < ApplicationController
   end
 
   # DELETE /events/1
-  # DELETE /events/1.json
   def destroy
     @event.destroy
     flash[:success] = 'Event was successfully destroyed.'
