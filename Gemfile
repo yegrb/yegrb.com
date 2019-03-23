@@ -70,7 +70,7 @@ gem 'simple_form'
 
 # Authentication and Authorization
 gem 'cancancan', '~> 2.0'
-gem 'devise'
+gem 'bcrypt'
 gem 'dotenv-rails', groups: %i[development test]
 
 # Testing
@@ -79,3 +79,4 @@ gem 'simplecov', require: false, group: :test
 
 # Tools
 gem 'rubocop', groups: %i[development test]
+gem 'annotate', group: :development
