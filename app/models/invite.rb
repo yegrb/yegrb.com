@@ -22,6 +22,13 @@ class Invite < ApplicationRecord
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: User::VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
+  validate :only_admin_can_create_editors_and_admins
+
+  def only_admin_can_create_editors_and_admins
+    return true unless ['editor', 'admin'].include? role
+
+    user.admin?
+  end
 
   def set_attributes
     self.code ||= Digest::SHA1.hexdigest(email)

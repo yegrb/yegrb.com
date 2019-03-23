@@ -97,7 +97,7 @@ class InvitesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to invites_path
   end
 
-  test "editor cannot invite editors" do
+  test "editor cannot invite admins" do
     log_in @editor
     assert_no_difference('Invite.count') do
       post invites_url, params: { invite: {
