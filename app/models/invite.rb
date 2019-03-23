@@ -38,4 +38,8 @@ class Invite < ApplicationRecord
   def expired?
     expiry < Time.now
   end
+
+  def nice_expiry
+    expiry.strftime("%m/%d/%Y %I:%M%p UTC")
+  end
 end

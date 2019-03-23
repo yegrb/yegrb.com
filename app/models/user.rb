@@ -30,7 +30,7 @@ class User < ApplicationRecord
   uniqueness: { case_sensitive: false }
 
   before_save { self.email = email.downcase }
-  
+
   def editor?
     role == 'editor'
   end

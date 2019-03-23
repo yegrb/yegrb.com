@@ -1,33 +1,32 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Invites</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Code</th>
-      <th>Expiry</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @invites.each do |invite| %>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
       <tr>
-        <td><%= invite.name %></td>
-        <td><%= invite.email %></td>
-        <td><%= invite.code %></td>
-        <td><%= invite.expiry %></td>
-        <td><%= invite.user_id %></td>
-        <td><%= link_to 'Show', invite %></td>
-        <td><%= link_to 'Destroy', invite, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Expiry</th>
+        <th scope="col">Invited by</th>
+        <th scope="col" colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @invites.each do |invite| %>
+        <tr>
+          <th scope="row"><%= invite.name %></th>
+          <td><%= invite.email %></td>
+          <td><%= invite.nice_expiry %></td>
+          <td><%= invite.user&.full_name || 'Removed' %></td>
+          <td>
+            <%= link_to "Sign up link", signup_path(code: invite.code), class: 'btn btn-sm btn-outline-primary' %>
+            <%= link_to 'Destroy', invite, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger ml-1' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <br>
 
