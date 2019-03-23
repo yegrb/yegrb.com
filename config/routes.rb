@@ -63,7 +63,7 @@
 #                  rails_direct_uploads POST   /rails/active_storage/direct_uploads(.:format)                                           active_storage/direct_uploads#create
 
 Rails.application.routes.draw do
-  resources :invites, except: [:edit, :update]
+  resources :invites, except: [:edit, :update, :show]
   resources :opportunities
   resources :events
 
