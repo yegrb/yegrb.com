@@ -3,7 +3,7 @@ require 'test_helper'
 class UsersControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = create(:user)
-    @other_user = create(:other_user)
+    @user2 = create(:user)
     @admin = create(:admin)
     @editor = create(:editor)
     @invite = create(:invite)
@@ -26,23 +26,43 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get new" do
-    get new_user_url
+  test "should get new with invite code" do
+    get new_user_url(code: @invite.code)
     assert_response :success
   end
 
-  # test "should create user" do
-  #   assert_difference('User.count') do
-  #     post users_url, params: { user: { email: 'anotheruser@example.com',
-  #                                       first_name: @user.first_name,
-  #                                       last_name: @user.last_name,
-  #                                       role: @user.role,
-  #                                       password: 'password',
-  #                                       password_confirmation: 'password' } }
-  #   end
+  test "shouldn't get new without invite code" do
+    get new_user_url
+    assert_redirected_to root_path
+  end
 
-  #   assert_redirected_to user_url(User.last)
-  # end
+  test "should create user if email and code match invite" do
+    assert_difference('User.count') do
+      post users_url, params: { user: { email: @invite.email,
+                                        code: @invite.code,
+                                        first_name: @user.first_name,
+                                        last_name: @user.last_name,
+                                        role: @invite.role,
+                                        password: 'password',
+                                        password_confirmation: 'password' } }
+    end
+
+    assert_redirected_to user_url(User.last)
+  end
+
+  test "shouldn't create user if code doesn't match" do
+    assert_no_difference('User.count') do
+      post users_url, params: { user: { email: @invite.email,
+                                        code: Faker::Crypto.unique.md5,
+                                        first_name: @user.first_name,
+                                        last_name: @user.last_name,
+                                        role: @invite.role,
+                                        password: 'password',
+                                        password_confirmation: 'password' } }
+    end
+
+    assert_redirected_to root_path
+  end
 
   test "shouldn't show user if not logged in" do
     get user_url(@user)
@@ -50,7 +70,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "shouldn't show user if different user" do
-    log_in @other_user
+    log_in @user2
     get user_url(@user)
     assert_redirected_to root_path
   end
@@ -67,7 +87,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "shouldn't get edit when different user" do
-    log_in @other_user
+    log_in @user2
     get edit_user_url(@user)
     assert_redirected_to root_path
   end
@@ -102,7 +122,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "shouldn't update user when different user" do
-    log_in @other_user
+    log_in @user2
     patch user_url(@user), params: { user:
     {
       email: @user.email,
@@ -114,7 +134,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "shouldn't update user when editor" do
-    log_in @other_user
+    log_in @user2
     patch user_url(@user), params: { user:
     {
       email: @user.email,
@@ -159,7 +179,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "shouldn't destroy user when other user" do
-    log_in @other_user
+    log_in @user2
     assert_no_difference('User.count') do
       delete user_url(@user)
     end

@@ -1,27 +1,67 @@
 require 'test_helper'
 
 class InvitesControllerTest < ActionDispatch::IntegrationTest
-  # setup do
-  #   @invite = invites(:one)
-  # end
+  setup do
+    @invite = create(:invite)
+    @user = create(:user)
+    @editor = create(:editor)
+    @admin = create(:admin)
+  end
 
-  # test "should get index" do
-  #   get invites_url
-  #   assert_response :success
-  # end
+  test "shouldn't get index when not logged in" do
+    get invites_url
+    assert_redirected_to root_path
+  end
 
-  # test "should get new" do
-  #   get new_invite_url
-  #   assert_response :success
-  # end
+  test "shouldn't get index when user" do
+    log_in @user
+    get invites_url
+    assert_redirected_to root_path
+  end
 
-  # test "should create invite" do
-  #   assert_difference('Invite.count') do
-  #     post invites_url, params: { invite: { code: @invite.code, email: @invite.email, expiry: @invite.expiry, name: @invite.name, user_id: @invite.user_id } }
-  #   end
+  test "should get index when editor" do
+    log_in @editor
+    get invites_url
+    assert_response :success
+  end
 
-  #   assert_redirected_to invite_url(Invite.last)
-  # end
+  test "should get index when admin" do
+    log_in @admin
+    get invites_url
+    assert_response :success
+  end
+
+  test "shouldn't get new when not logged in" do
+    get new_invite_url
+    assert_redirected_to root_path
+  end
+
+  test "shouldn't get new when user" do
+    log_in @user
+    get new_invite_url
+    assert_redirected_to root_path
+  end
+
+  test "should get new when editor" do
+    log_in @editor
+    get new_invite_url
+    assert_response :success
+  end
+
+  test "should get new when admin" do
+    log_in @admin
+    get new_invite_url
+    assert_response :success
+  end
+
+  test "shouldn't create invite when not logged in" do
+    assert_no_difference('Invite.count') do
+      post invites_url, params: { invite: { code: @invite.code, email: @invite.email, expiry: @invite.expiry, name: @invite.name, user_id: @invite.user_id } }
+    end
+
+    # assert_redirected_to invite_url(Invite.last)
+    assert_redirected_to root_path
+  end
 
   # test "should show invite" do
   #   get invite_url(@invite)
