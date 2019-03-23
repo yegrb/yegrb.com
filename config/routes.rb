@@ -36,7 +36,7 @@
 #                                       GET    /opportunities(.:format)                                                                 pages#opportunities
 #                                 slack GET    /slack(.:format)                                                                         pages#slack
 #                             resources GET    /resources(.:format)                                                                     pages#resources
-#                                       GET    /check.txt(.:format)                                                                     #<Proc:0x0000561acd8bbd50@/home/vardy/coding/yegrb.com/config/routes.rb:79>
+#                                       GET    /check.txt(.:format)                                                                     #<Proc:0x00007f9c1467a220@/Users/joshmacsween/Desktop/yeg/yegrb.com/config/routes.rb:79>
 #           rails_amazon_inbound_emails POST   /rails/action_mailbox/amazon/inbound_emails(.:format)                                    action_mailbox/ingresses/amazon/inbound_emails#create
 #         rails_mandrill_inbound_emails POST   /rails/action_mailbox/mandrill/inbound_emails(.:format)                                  action_mailbox/ingresses/mandrill/inbound_emails#create
 #         rails_postmark_inbound_emails POST   /rails/action_mailbox/postmark/inbound_emails(.:format)                                  action_mailbox/ingresses/postmark/inbound_emails#create
@@ -75,6 +75,8 @@ Rails.application.routes.draw do
   get '/opportunities' , to: 'pages#opportunities'
   get '/slack' , to: 'pages#slack'
   get '/resources' , to: 'pages#resources'
+  get '/lror' , to: 'pages#lror'
+  get '/ourstory' , to: 'pages#ourstory'
 
   get '/check.txt', to: proc {[200, {}, ['it_works']]}
 end

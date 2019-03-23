@@ -16,4 +16,10 @@ class PagesController < ApplicationController
 
   def resources
   end
+
+  def lror
+  end
+
+  def ourstory
+  end
 end

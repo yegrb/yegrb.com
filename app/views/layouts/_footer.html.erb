@@ -5,10 +5,10 @@
         <h5 class="font-weight-bold text-uppercase mt-2 mb-2">Connect</h5>
       <ul class="list-unstyled">
         <li>
-          <a href="#!">Opportunities</a>
+          <%= link_to "Opportunities", opportunities_path, class: 'nav-link' %>
         </li>
         <li>
-          <a href="#!">Slack</a>
+          <% link_to "About", about_path, class: 'nav-link' %>
         </li>
       </div>
       <hr class="clearfix w-100 d-md-none">
@@ -16,10 +16,7 @@
           <h5 class="font-weight-bold text-uppercase mt-2 mb-2">Inspire</h5>
           <ul class="list-unstyled">
             <li>
-              <a href="#!">Learn Ruby On Rails</a>
-            </li>
-            <li>
-              <a href="#!">Wiki</a>
+            <%= link_to "Learn Ruby On Rails", lror_path, class: 'nav-link' %>
             </li>
           </ul>
         </div>
@@ -28,13 +25,7 @@
           <h5 class="font-weight-bold text-uppercase mt-2 mb-2">Share</h5>
             <ul class="list-unstyled">
             <li>
-              <a href="#!">News</a>
-            </li>
-            <li>
-              <a href="#!">Events</a>
-            </li>
-            <li>
-              <a href="#!">Our Story</a>
+              <%= link_to "Our Story", ourstory_path, class: 'nav-link' %>
             </li>
           </ul>
         </div>
