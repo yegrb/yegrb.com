@@ -73,13 +73,40 @@ class InvitesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_path
   end
 
-  test "should create invite when editor" do
+  test "editor can invite users" do
     log_in @editor
     assert_difference('Invite.count') do
-      post invites_url, params: { invite: { email: Faker::Internet.unique.email, name: @invite.name, role: 'user' } }
+      post invites_url, params: { invite: {
+        email: Faker::Internet.unique.email,
+        name: @invite.name,
+        role: 'user' } }
     end
 
     assert_redirected_to invite_url(Invite.last)
+  end
+
+  test "editor cannot invite editors" do
+    log_in @editor
+    assert_no_difference('Invite.count') do
+      post invites_url, params: { invite: {
+        email: Faker::Internet.unique.email,
+        name: @invite.name,
+        role: 'editor' } }
+    end
+
+    assert_redirected_to invites_path
+  end
+
+  test "editor cannot invite editors" do
+    log_in @editor
+    assert_no_difference('Invite.count') do
+      post invites_url, params: { invite: {
+        email: Faker::Internet.unique.email,
+        name: @invite.name,
+        role: 'admin' } }
+    end
+
+    assert_redirected_to invites_path
   end
 
   test "should create invite when admin" do
