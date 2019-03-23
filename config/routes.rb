@@ -67,23 +67,24 @@
 #                  rails_direct_uploads POST   /rails/active_storage/direct_uploads(.:format)                                           active_storage/direct_uploads#create
 
 Rails.application.routes.draw do
-  resources :invites
-  get 'sessions/new'
-  resources :users
+  resources :invites, except: [:edit, :update]
   resources :opportunities
   resources :events
+
+  # users
+  resources :users
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   get '/signup', to: 'users#new'
 
-
+  # static pages
   root 'pages#index'
-  get '/contact' , to: 'pages#contact'
-  get '/about' , to: 'pages#about'
-  get '/opportunities' , to: 'pages#opportunities'
-  get '/slack' , to: 'pages#slack'
-  get '/resources' , to: 'pages#resources'
+  get '/contact', to: 'pages#contact'
+  get '/about', to: 'pages#about'
+  get '/opportunities', to: 'pages#opportunities'
+  get '/slack', to: 'pages#slack'
+  get '/resources', to: 'pages#resources'
 
   get '/check.txt', to: proc {[200, {}, ['it_works']]}
 end

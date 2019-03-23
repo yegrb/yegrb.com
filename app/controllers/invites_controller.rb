@@ -1,6 +1,6 @@
 class InvitesController < ApplicationController
   before_action :set_invite, only: [:show, :edit, :update, :destroy]
-  before_action :authorize_edit, only: [:edit, :update, :destroy]
+  before_action :authorize_edit, only: [:destroy]
   before_action :authorize_read, only: [:show]
 
   # GET /invites
@@ -19,29 +19,17 @@ class InvitesController < ApplicationController
     authorize! :edit, @invite
   end
 
-  # GET /invites/1/edit
-  def edit
-  end
-
   # POST /invites
   def create
+    authorize! :edit, Invite
     @invite = Invite.new(invite_params)
     @invite.user_id = current_user.id
     if @invite.save
       flash[:success] = 'Invite was successfully created.'
       redirect_to @invite
     else
+      flash.now[:danger] = 'Invite could not be created.'
       render :new
-    end
-  end
-
-  # PATCH/PUT /invites/1
-  def update
-    if @invite.update(invite_params)
-      flash[:success] = 'Invite was successfully updated.'
-      redirect_to @invite
-    else
-      render :edit
     end
   end
 
