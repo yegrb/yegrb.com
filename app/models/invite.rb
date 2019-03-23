@@ -18,6 +18,9 @@ class Invite < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 50 }
   validates :role, presence: true, inclusion: { in: User::ROLES }
+  validates :expiry, presence: true
+  validates :code, presence: true
+  validates :user_id, presence: true
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: User::VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
@@ -28,6 +31,6 @@ class Invite < ApplicationRecord
   end
 
   def expired?
-    expiry > Time.now
+    expiry < Time.now
   end
 end
