@@ -4,20 +4,8 @@
 #                               invites GET    /invites(.:format)                                                                       invites#index
 #                                       POST   /invites(.:format)                                                                       invites#create
 #                            new_invite GET    /invites/new(.:format)                                                                   invites#new
-#                           edit_invite GET    /invites/:id/edit(.:format)                                                              invites#edit
 #                                invite GET    /invites/:id(.:format)                                                                   invites#show
-#                                       PATCH  /invites/:id(.:format)                                                                   invites#update
-#                                       PUT    /invites/:id(.:format)                                                                   invites#update
 #                                       DELETE /invites/:id(.:format)                                                                   invites#destroy
-#                          sessions_new GET    /sessions/new(.:format)                                                                  sessions#new
-#                                 users GET    /users(.:format)                                                                         users#index
-#                                       POST   /users(.:format)                                                                         users#create
-#                              new_user GET    /users/new(.:format)                                                                     users#new
-#                             edit_user GET    /users/:id/edit(.:format)                                                                users#edit
-#                                  user GET    /users/:id(.:format)                                                                     users#show
-#                                       PATCH  /users/:id(.:format)                                                                     users#update
-#                                       PUT    /users/:id(.:format)                                                                     users#update
-#                                       DELETE /users/:id(.:format)                                                                     users#destroy
 #                         opportunities GET    /opportunities(.:format)                                                                 opportunities#index
 #                                       POST   /opportunities(.:format)                                                                 opportunities#create
 #                       new_opportunity GET    /opportunities/new(.:format)                                                             opportunities#new
@@ -34,6 +22,14 @@
 #                                       PATCH  /events/:id(.:format)                                                                    events#update
 #                                       PUT    /events/:id(.:format)                                                                    events#update
 #                                       DELETE /events/:id(.:format)                                                                    events#destroy
+#                                 users GET    /users(.:format)                                                                         users#index
+#                                       POST   /users(.:format)                                                                         users#create
+#                              new_user GET    /users/new(.:format)                                                                     users#new
+#                             edit_user GET    /users/:id/edit(.:format)                                                                users#edit
+#                                  user GET    /users/:id(.:format)                                                                     users#show
+#                                       PATCH  /users/:id(.:format)                                                                     users#update
+#                                       PUT    /users/:id(.:format)                                                                     users#update
+#                                       DELETE /users/:id(.:format)                                                                     users#destroy
 #                                 login GET    /login(.:format)                                                                         sessions#new
 #                                       POST   /login(.:format)                                                                         sessions#create
 #                                logout DELETE /logout(.:format)                                                                        sessions#destroy
@@ -44,7 +40,7 @@
 #                                       GET    /opportunities(.:format)                                                                 pages#opportunities
 #                                 slack GET    /slack(.:format)                                                                         pages#slack
 #                             resources GET    /resources(.:format)                                                                     pages#resources
-#                                       GET    /check.txt(.:format)                                                                     #<Proc:0x000055dd227ffc38@/home/vardy/coding/yegrb.com/config/routes.rb:88>
+#                                       GET    /check.txt(.:format)                                                                     #<Proc:0x000055a376269e30@/home/vardy/coding/yegrb.com/config/routes.rb:89>
 #           rails_amazon_inbound_emails POST   /rails/action_mailbox/amazon/inbound_emails(.:format)                                    action_mailbox/ingresses/amazon/inbound_emails#create
 #         rails_mandrill_inbound_emails POST   /rails/action_mailbox/mandrill/inbound_emails(.:format)                                  action_mailbox/ingresses/mandrill/inbound_emails#create
 #         rails_postmark_inbound_emails POST   /rails/action_mailbox/postmark/inbound_emails(.:format)                                  action_mailbox/ingresses/postmark/inbound_emails#create
