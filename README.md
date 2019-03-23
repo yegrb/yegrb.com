@@ -8,12 +8,13 @@ Future features will include user accounts, a mailing list, and a job board.
 1. Clone this repository with `git clone git@github.com:yegrb/yegrb.com.git`
 2. Use rbenv or RVM to install correct version of Ruby (see .ruby-version)
 3. Make sure to have Postgres installed and configured on system (See below for Mac OSX instructions)
-4. Rename .env.example to .env and fill in the environment variables
-5. Run `bundle install` to install gems
-6. Run `bin/rails db:setup` to create databases
-7. Run `bin/rails db:seed` to create administrator account
-8. Create a new branch with `git checkout -b new_branch`
-9. Make modifications and push code with:
+4. Copy `.env.example` and rename it `.env`.
+5. Fill `.env` environment variables with the administrator details.
+6. Run `bundle install` to install gems
+7. Run `bin/rails db:setup` to create databases
+8. Run `bin/rails db:seed` to create administrator account
+9. Create a new branch with `git checkout -b new_branch`
+10. Make modifications and push code with:
 
 ```bash
 git add .
@@ -21,7 +22,7 @@ git commit -m 'Describe your changes'
 git push
 ```
 
-10. And open up a pull request on GitHub!
+11. And open up a pull request on GitHub!
 
 ## Installing Postgresql on Mac OSX
 
