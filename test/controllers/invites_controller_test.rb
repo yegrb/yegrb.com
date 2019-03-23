@@ -117,28 +117,6 @@ class InvitesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to invite_url(last_invite)
   end
 
-  test "shouldn't show invite when not logged in" do
-    get invite_url(@invite)
-    assert_redirected_to root_path
-  end
-
-  test "shouldn't show invite when logged in as user" do
-    log_in @user
-    get invite_url(@invite)
-    assert_redirected_to root_path
-  end
-
-  test "should show invite when logged in as editor" do
-    log_in @editor
-    get invite_url(@invite)
-    assert_response :success
-  end
-  test "should show invite when logged in as admin" do
-    log_in @admin
-    get invite_url(@invite)
-    assert_response :success
-  end
-
   test "shouldn't destroy invite when not logged in" do
     assert_no_difference('Invite.count') do
       delete invite_url(@invite)
