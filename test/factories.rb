@@ -1,80 +1,48 @@
  FactoryBot.define do
   factory :invite do
-    name { "MyString" }
-    email { "somebody@email.com" }
-    code { "MyString" }
+    name { Faker::Name.unique.name }
+    email { Faker::Internet.unique.email }
+    code { Faker::Crypto.unique.md5 }
     role { "editor" }
-    expiry { "2019-03-22 14:19:19" }
-    association :third_user, factory: :user
+    expiry { Time.now + 3600 }
+    user
   end
 
   factory :user, class: User do
-    first_name { "Awesome" }
-    last_name  { "User" }
+    first_name { Faker::Name.unique.first_name }
+    last_name  { Faker::Name.unique.last_name }
     role  { "user" }
-    email { "#{first_name}.#{last_name}@example.com".downcase }
-    password_digest { User.digest('password') }
-    password { "password" }
-    password_confirmation { "password" }
+    email { Faker::Internet.unique.email }
+    password { Faker::Internet.password(10, 20) }
+    password_confirmation { password }
+    password_digest { User.digest(password) }
   end
 
-  factory :other_user, class: User do
-    first_name { "NotSoAwesome" }
-    last_name  { "User" }
-    role  { "user" }
-    email { "#{first_name}.#{last_name}@example.com".downcase }
-    password_digest { User.digest('password') }
-    password { "password" }
-    password_confirmation { "password" }
-  end
-
-  factory :third_user, class: User do
-    first_name { "NotEvenCloseToBeingAwesome" }
-    last_name  { "User" }
-    role  { "user" }
-    email { "#{first_name}.#{last_name}@example.com".downcase }
-    password_digest { User.digest('password') }
-    password { "password" }
-    password_confirmation { "password" }
-  end
-
-  factory :editor, class: User do
-    first_name { "Awesome" }
-    last_name  { "Editor" }
+  factory :editor, parent: :user do
     role  { "editor" }
-    email { "#{first_name}.#{last_name}@example.com".downcase }
-    password_digest { User.digest('password') }
-    password { "password" }
-    password_confirmation { "password" }
   end
 
-  factory :admin, class: User do
-    first_name { "Awesome" }
-    last_name  { "Admin" }
+  factory :admin, parent: :user do
     role  { "admin" }
-    email { "#{first_name}.#{last_name}@example.com".downcase }
-    password_digest { User.digest('password') }
-    password { "password" }
-    password_confirmation { "password" }
   end
 
   factory :opportunity, class: Opportunity do
     user
-    title { "Awesome" }
-    company { "Awesome" }
-    contact { "Awesome" }
-    email { "example@email.com" }
+    title { Faker::Job.title }
+    company { Faker::Company.unique.name }
+    contact { Faker::Name.unique.name }
+    email { Faker::Internet.unique.email }
     paid_position { true }
-    content { "Awesome" }
+    content { Faker::Restaurant.review }
     good_until { Time.now + 3600 }
   end
 
   factory :event, class: Event do
     user
-    title { "Awesome" }
+    title { Faker::Restaurant.unique.name }
     time { Time.now + 3600 }
-    location { "Awesome" }
-    signup_link { "Awesome" }
-    content { "example@email.com" }
+    location { Faker::Address.full_address }
+    signup_link { Faker::Internet.url }
+    content { Faker::Restaurant.review }
   end
 end
