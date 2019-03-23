@@ -33,6 +33,8 @@ class Ability
     # Everyone can read events
     can :read, Event
     can :read, Opportunity
+    can :signup, User
+    can :use, Invite
 
     if user.present?
       can :read, User, id: user.id
@@ -44,7 +46,7 @@ class Ability
         can :manage, Opportunity
         can :read, User
         can :read_all, User
-        can :read, Invite
+        can :manage, Invite
       end
 
       # admins have god access MUAHAHA!
