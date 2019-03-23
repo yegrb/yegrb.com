@@ -14,20 +14,18 @@
 
 class Invite < ApplicationRecord
   belongs_to :user
-  before_create :set_attributes
+  before_save :set_attributes
 
   validates :name, presence: true, length: { maximum: 50 }
   validates :role, presence: true, inclusion: { in: User::ROLES }
-  validates :expiry, presence: true
-  validates :code, presence: true
   validates :user_id, presence: true
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: User::VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
 
   def set_attributes
-    self.code = Digest::SHA1.hexdigest(email)
-    self.expiry = Time.now + 1.week
+    self.code ||= Digest::SHA1.hexdigest(email)
+    self.expiry ||= Time.now + 1.week
   end
 
   def expired?

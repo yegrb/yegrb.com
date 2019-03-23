@@ -76,7 +76,7 @@ class InvitesControllerTest < ActionDispatch::IntegrationTest
   test "should create invite when editor" do
     log_in @editor
     assert_difference('Invite.count') do
-      post invites_url, params: { invite: { email: Faker::Internet.unique.email, name: @invite.name, role: 'user', user_id: @editor.id } }
+      post invites_url, params: { invite: { email: Faker::Internet.unique.email, name: @invite.name, role: 'user' } }
     end
 
     assert_redirected_to invite_url(Invite.last)
@@ -85,32 +85,71 @@ class InvitesControllerTest < ActionDispatch::IntegrationTest
   test "should create invite when admin" do
     log_in @admin
     assert_difference('Invite.count') do
-      post invites_url, params: { invite: { email: Faker::Internet.unique.email, name: @invite.name, role: 'admin', user_id: @admin.id } }
+      post invites_url, params: { invite: { email: Faker::Internet.unique.email, name: @invite.name, role: 'admin' } }
     end
 
-    assert_redirected_to invite_url(Invite.last)
+    last_invite = Invite.last
+    assert_not_nil last_invite.code
+    assert_not_nil last_invite.expiry
+    assert_redirected_to invite_url(last_invite)
   end
 
-  # test "should show invite" do
-  #   get invite_url(@invite)
-  #   assert_response :success
-  # end
+  test "shouldn't show invite when not logged in" do
+    get invite_url(@invite)
+    assert_redirected_to root_path
+  end
 
-  # test "should get edit" do
-  #   get edit_invite_url(@invite)
-  #   assert_response :success
-  # end
+  test "shouldn't show invite when logged in as user" do
+    log_in @user
+    get invite_url(@invite)
+    assert_redirected_to root_path
+  end
 
-  # test "should update invite" do
-  #   patch invite_url(@invite), params: { invite: { code: @invite.code, email: @invite.email, expiry: @invite.expiry, name: @invite.name, user_id: @invite.user_id } }
-  #   assert_redirected_to invite_url(@invite)
-  # end
+  test "should show invite when logged in as editor" do
+    log_in @editor
+    get invite_url(@invite)
+    assert_response :success
+  end
+  test "should show invite when logged in as admin" do
+    log_in @admin
+    get invite_url(@invite)
+    assert_response :success
+  end
 
-  # test "should destroy invite" do
-  #   assert_difference('Invite.count', -1) do
-  #     delete invite_url(@invite)
-  #   end
+  test "shouldn't destroy invite when not logged in" do
+    assert_no_difference('Invite.count') do
+      delete invite_url(@invite)
+    end
 
-  #   assert_redirected_to invites_url
-  # end
+    # assert_redirected_to invites_url
+    assert_redirected_to root_path
+  end
+
+  test "shouldn't destroy invite when logged in as user" do
+    log_in @user
+    assert_no_difference('Invite.count') do
+      delete invite_url(@invite)
+    end
+
+    # assert_redirected_to invites_url
+    assert_redirected_to root_path
+  end
+
+  test "should destroy invite when logged in as editor" do
+    log_in @editor
+    assert_difference('Invite.count', -1) do
+      delete invite_url(@invite)
+    end
+
+    assert_redirected_to invites_url
+  end
+
+  test "should destroy invite when logged in as admin" do
+    log_in @admin
+    assert_difference('Invite.count', -1) do
+      delete invite_url(@invite)
+    end
+
+    assert_redirected_to invites_url
+  end
 end

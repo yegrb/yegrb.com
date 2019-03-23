@@ -21,10 +21,10 @@ class InvitesController < ApplicationController
 
   # POST /invites
   def create
-    authorize! :edit, Invite
     @invite = Invite.new(invite_params)
+    authorize! :edit, @invite
     @invite.user_id = current_user.id
-    if @invite.save
+    if @invite.save!
       flash[:success] = 'Invite was successfully created.'
       redirect_to @invite
     else
