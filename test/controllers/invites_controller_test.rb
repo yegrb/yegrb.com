@@ -63,6 +63,34 @@ class InvitesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_path
   end
 
+  test "shouldn't create invite when user" do
+    log_in @user
+    assert_no_difference('Invite.count') do
+      post invites_url, params: { invite: { code: @invite.code, email: @invite.email, expiry: @invite.expiry, name: @invite.name, user_id: @invite.user_id } }
+    end
+
+    # assert_redirected_to invite_url(Invite.last)
+    assert_redirected_to root_path
+  end
+
+  test "should create invite when editor" do
+    log_in @editor
+    assert_difference('Invite.count') do
+      post invites_url, params: { invite: { email: Faker::Internet.unique.email, name: @invite.name, role: 'user', user_id: @editor.id } }
+    end
+
+    assert_redirected_to invite_url(Invite.last)
+  end
+
+  test "should create invite when admin" do
+    log_in @admin
+    assert_difference('Invite.count') do
+      post invites_url, params: { invite: { email: Faker::Internet.unique.email, name: @invite.name, role: 'admin', user_id: @admin.id } }
+    end
+
+    assert_redirected_to invite_url(Invite.last)
+  end
+
   # test "should show invite" do
   #   get invite_url(@invite)
   #   assert_response :success
