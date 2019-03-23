@@ -25,9 +25,9 @@ class Invite < ApplicationRecord
   validate :only_admin_can_create_editors_and_admins
 
   def only_admin_can_create_editors_and_admins
-    return true unless ['editor', 'admin'].include? role
+    return unless ['editor', 'admin'].include? role
 
-    user.admin?
+    errors.add(:role, 'must be Admin to grant') unless user.admin?
   end
 
   def set_attributes

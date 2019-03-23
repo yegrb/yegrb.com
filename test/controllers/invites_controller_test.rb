@@ -93,8 +93,6 @@ class InvitesControllerTest < ActionDispatch::IntegrationTest
         name: @invite.name,
         role: 'editor' } }
     end
-
-    assert_redirected_to invites_path
   end
 
   test "editor cannot invite admins" do
@@ -105,8 +103,6 @@ class InvitesControllerTest < ActionDispatch::IntegrationTest
         name: @invite.name,
         role: 'admin' } }
     end
-
-    assert_redirected_to invites_path
   end
 
   test "should create invite when admin" do

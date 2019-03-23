@@ -3,9 +3,9 @@
     name { Faker::Name.unique.name }
     email { Faker::Internet.unique.email }
     code { Faker::Crypto.unique.md5 }
-    role { "editor" }
+    role { "user" }
     expiry { Time.now + 3600 }
-    user
+    association :user, factory: :user, role: "editor"
   end
 
   factory :user, class: User do
