@@ -35,9 +35,11 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     @invite = Invite.find_by(code: params[:user][:code])
-    @user.email = @invite.email
-    @user.role = @invite.role
-    if invite.expired?
+    @user.email = @invite&.email
+    @user.role = @invite&.role
+    authorize! :use, @invite
+    authorize! :signup, @user
+    if @invite.expired?
       flash.now[:danger] = 'Sorry, this invitation has expired.'
       redirect_to root_path
     elsif @invite && @user.save
