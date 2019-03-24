@@ -43,6 +43,7 @@ $theme-colors: ("blue": #375a7f,
 "danger": #E74C3C,
 "light": #303030,
 "dark": #adb5bd,
+"black": #0f0f0f,
 );
 
 @import "bootstrap";
@@ -61,4 +62,13 @@ h1,
 h2,
 .navbar-brand {
   font-family: $title-font;
+}
+
+footer {
+  a {
+    color: map_get($theme-colors, 'dark');
+    &:hover {
+      color: map_get($theme-colors, 'gray');
+    }
+  }
 }
