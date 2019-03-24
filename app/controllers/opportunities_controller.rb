@@ -4,13 +4,11 @@ class OpportunitiesController < ApplicationController
   before_action :authorize_read, only: [:show]
 
   # GET /opportunities
-  # GET /opportunities.json
   def index
     @opportunities = Opportunity.all
   end
 
   # GET /opportunities/1
-  # GET /opportunities/1.json
   def show
   end
 
@@ -25,7 +23,6 @@ class OpportunitiesController < ApplicationController
   end
 
   # POST /opportunities
-  # POST /opportunities.json
   def create
     @opportunity = Opportunity.new(opportunity_params)
     authorize! :edit, @opportunity
@@ -39,7 +36,6 @@ class OpportunitiesController < ApplicationController
   end
 
   # PATCH/PUT /opportunities/1
-  # PATCH/PUT /opportunities/1.json
   def update
     if @opportunity.update(opportunity_params)
       flash[:success] = 'Opportunity was successfully updated.'
@@ -51,7 +47,6 @@ class OpportunitiesController < ApplicationController
   end
 
   # DELETE /opportunities/1
-  # DELETE /opportunities/1.json
   def destroy
     @opportunity.destroy
     flash[:success] = 'Opportunity was successfully destroyed.'

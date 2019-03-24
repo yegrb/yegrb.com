@@ -1,15 +1,11 @@
 # == Route Map
 #
 #                                Prefix Verb   URI Pattern                                                                              Controller#Action
-#                          sessions_new GET    /sessions/new(.:format)                                                                  sessions#new
-#                                 users GET    /users(.:format)                                                                         users#index
-#                                       POST   /users(.:format)                                                                         users#create
-#                              new_user GET    /users/new(.:format)                                                                     users#new
-#                             edit_user GET    /users/:id/edit(.:format)                                                                users#edit
-#                                  user GET    /users/:id(.:format)                                                                     users#show
-#                                       PATCH  /users/:id(.:format)                                                                     users#update
-#                                       PUT    /users/:id(.:format)                                                                     users#update
-#                                       DELETE /users/:id(.:format)                                                                     users#destroy
+#                               invites GET    /invites(.:format)                                                                       invites#index
+#                                       POST   /invites(.:format)                                                                       invites#create
+#                            new_invite GET    /invites/new(.:format)                                                                   invites#new
+#                                invite GET    /invites/:id(.:format)                                                                   invites#show
+#                                       DELETE /invites/:id(.:format)                                                                   invites#destroy
 #                         opportunities GET    /opportunities(.:format)                                                                 opportunities#index
 #                                       POST   /opportunities(.:format)                                                                 opportunities#create
 #                       new_opportunity GET    /opportunities/new(.:format)                                                             opportunities#new
@@ -26,6 +22,14 @@
 #                                       PATCH  /events/:id(.:format)                                                                    events#update
 #                                       PUT    /events/:id(.:format)                                                                    events#update
 #                                       DELETE /events/:id(.:format)                                                                    events#destroy
+#                                 users GET    /users(.:format)                                                                         users#index
+#                                       POST   /users(.:format)                                                                         users#create
+#                              new_user GET    /users/new(.:format)                                                                     users#new
+#                             edit_user GET    /users/:id/edit(.:format)                                                                users#edit
+#                                  user GET    /users/:id(.:format)                                                                     users#show
+#                                       PATCH  /users/:id(.:format)                                                                     users#update
+#                                       PUT    /users/:id(.:format)                                                                     users#update
+#                                       DELETE /users/:id(.:format)                                                                     users#destroy
 #                                 login GET    /login(.:format)                                                                         sessions#new
 #                                       POST   /login(.:format)                                                                         sessions#create
 #                                logout DELETE /logout(.:format)                                                                        sessions#destroy
@@ -36,7 +40,7 @@
 #                                       GET    /opportunities(.:format)                                                                 pages#opportunities
 #                                 slack GET    /slack(.:format)                                                                         pages#slack
 #                             resources GET    /resources(.:format)                                                                     pages#resources
-#                                       GET    /check.txt(.:format)                                                                     #<Proc:0x0000561acd8bbd50@/home/vardy/coding/yegrb.com/config/routes.rb:79>
+#                                       GET    /check.txt(.:format)                                                                     #<Proc:0x000055a376269e30@/home/vardy/coding/yegrb.com/config/routes.rb:89>
 #           rails_amazon_inbound_emails POST   /rails/action_mailbox/amazon/inbound_emails(.:format)                                    action_mailbox/ingresses/amazon/inbound_emails#create
 #         rails_mandrill_inbound_emails POST   /rails/action_mailbox/mandrill/inbound_emails(.:format)                                  action_mailbox/ingresses/mandrill/inbound_emails#create
 #         rails_postmark_inbound_emails POST   /rails/action_mailbox/postmark/inbound_emails(.:format)                                  action_mailbox/ingresses/postmark/inbound_emails#create
@@ -59,22 +63,24 @@
 #                  rails_direct_uploads POST   /rails/active_storage/direct_uploads(.:format)                                           active_storage/direct_uploads#create
 
 Rails.application.routes.draw do
-  get 'sessions/new'
-  resources :users
+  resources :invites, except: [:edit, :update, :show]
   resources :opportunities
   resources :events
+
+  # users
+  resources :users
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   get '/signup', to: 'users#new'
 
-
+  # static pages
   root 'pages#index'
-  get '/contact' , to: 'pages#contact'
-  get '/about' , to: 'pages#about'
-  get '/opportunities' , to: 'pages#opportunities'
-  get '/slack' , to: 'pages#slack'
-  get '/resources' , to: 'pages#resources'
+  get '/contact', to: 'pages#contact'
+  get '/about', to: 'pages#about'
+  get '/opportunities', to: 'pages#opportunities'
+  get '/slack', to: 'pages#slack'
+  get '/resources', to: 'pages#resources'
 
   get '/check.txt', to: proc {[200, {}, ['it_works']]}
 end

@@ -1,0 +1,14 @@
+<h1>New Invite</h1>
+
+<%= simple_form_for(@invite) do |f| %>
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :email %>
+    <%= f.input :role, collection: User::ROLES, as: :radio_buttons %>
+  </div>
+
+  <div class="form-actions">
+    <%= link_to 'Back', invites_path, class: 'btn btn-secondary' %>
+    <%= f.button :submit, class: 'btn btn-primary' %>
+  </div>
+<% end %>

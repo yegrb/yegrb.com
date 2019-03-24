@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(email: params[:session][:email].downcase)
-    if user && user.authenticate(params[:session][:password]) || Rails.env.development?
+    if user && (user.authenticate(params[:session][:password]) || Rails.env.development?)
       log_in user
       flash[:success] = "Welcome #{user.first_name}"
       redirect_to user
