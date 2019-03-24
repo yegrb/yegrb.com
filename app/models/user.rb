@@ -13,19 +13,23 @@
 #
 
 class User < ApplicationRecord
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  STATUSES = ['user', 'editor', 'admin']
+
   has_many :events
   has_many :opportunities
+  has_many :invites
   has_secure_password
 
-  before_save { self.email = email.downcase }
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  ROLES = ['user', 'editor', 'admin']
+
   validates :first_name, presence: true, length: { maximum: 50 }
   validates :last_name, presence: true, length: { maximum: 50 }
-  validates :role, presence: true, inclusion: {in: STATUSES}
+  validates :role, presence: true, inclusion: { in: ROLES }
   validates :email, presence: true, length: { maximum: 255 },
-                    format: { with: VALID_EMAIL_REGEX },
-                    uniqueness: { case_sensitive: false }
+  format: { with: VALID_EMAIL_REGEX },
+  uniqueness: { case_sensitive: false }
+
+  before_save { self.email = email.downcase }
 
   def editor?
     role == 'editor'
@@ -33,6 +37,10 @@ class User < ApplicationRecord
 
   def admin?
     role == 'admin'
+  end
+
+  def full_name
+    "#{first_name} #{last_name}"
   end
 
   # Returns the hash digest of the given string.
