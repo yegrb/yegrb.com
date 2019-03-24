@@ -1,0 +1,33 @@
+<h1>Invites</h1>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Expiry</th>
+        <th scope="col">Invited by</th>
+        <th scope="col" colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @invites.each do |invite| %>
+        <tr>
+          <th scope="row"><%= invite.name %></th>
+          <td><%= invite.email %></td>
+          <td><%= invite.nice_expiry %></td>
+          <td><%= invite.user&.full_name || 'Removed' %></td>
+          <td>
+            <%= link_to "Sign up link", signup_path(code: invite.code), class: 'btn btn-sm btn-outline-primary' %>
+            <%= link_to 'Destroy', invite, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger ml-1' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<br>
+
+<%= link_to 'New Invite', new_invite_path, class: 'btn btn-sm btn-outline-primary' %>

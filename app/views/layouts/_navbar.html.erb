@@ -25,21 +25,25 @@
       </li>
     </ul>
     <ul class="navbar-nav">
-        <% if user_signed_in? %>
-          <li class="nav-item">
-              <%= link_to "Logged in as #{current_user.first_name}", edit_user_registration_path, class: 'nav-link' %>
-          </li>
-          <li class="nav-item">
-              <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'btn btn-secondary' %>
-          </li>
-        <% else %>
-          <li class="nav-item">
-            <%= link_to 'Log in', new_user_session_path, class: 'btn btn-primary' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'Sign up', new_user_registration_path, class: 'btn btn-primary' %>
-          </li>
-        <% end %>
+      <li class="nav-item">
+      <% if current_user&.admin? %>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Manage Users
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <%= link_to 'All users', users_path, class: 'dropdown-item' %>
+          <%= link_to 'Invites', invites_path, class: 'dropdown-item' %>
+          </div>
+        </li>
+      <% end %>
+      <% if current_user %>
+        <%= link_to "Logged in as #{current_user.first_name}", edit_user_path(current_user), class: 'nav-link mr-2' %>
+        <%= link_to 'Log out', logout_path, method: :delete, class: 'btn btn-primary' %>
+      <% else %>
+        <%= link_to 'Log in', login_path, class: 'btn btn-primary' %>
+      <% end %>
+      </li>
     </ul>
   </div>
 </nav>

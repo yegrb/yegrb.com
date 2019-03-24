@@ -1,51 +1,48 @@
-FactoryBot.define do
-  factory :admin, class: User do
-    first_name { "Awesome" }
-    last_name  { "Admin" }
-    role  { "admin" }
-    email { "#{first_name}.#{last_name}@example.com".downcase }
-    encrypted_password { Devise::Encryptor.digest(User, 'password') }
-    password { "password" }
-    password_confirmation { "password" }
-  end
-
-  factory :editor, class: User do
-    first_name { "Awesome" }
-    last_name  { "Editor" }
-    role  { "editor" }
-    email { "#{first_name}.#{last_name}@example.com".downcase }
-    encrypted_password { Devise::Encryptor.digest(User, 'password') }
-    password { "password" }
-    password_confirmation { "password" }
+ FactoryBot.define do
+  factory :invite do
+    name { Faker::Name.unique.name }
+    email { Faker::Internet.unique.email }
+    code { Faker::Crypto.unique.md5 }
+    role { "user" }
+    expiry { Time.now + 3600 }
+    association :user, factory: :user, role: "editor"
   end
 
   factory :user, class: User do
-    first_name { "Regular" }
-    last_name  { "guy" }
+    first_name { Faker::Name.unique.first_name }
+    last_name  { Faker::Name.unique.last_name }
     role  { "user" }
-    email { "#{first_name}.#{last_name}@example.com".downcase }
-    encrypted_password { Devise::Encryptor.digest(User, 'password') }
-    password { "password" }
-    password_confirmation { "password" }
+    email { Faker::Internet.unique.email }
+    password { Faker::Internet.password(10, 20) }
+    password_confirmation { password }
+    password_digest { User.digest(password) }
+  end
+
+  factory :editor, parent: :user do
+    role  { "editor" }
+  end
+
+  factory :admin, parent: :user do
+    role  { "admin" }
   end
 
   factory :opportunity, class: Opportunity do
     user
-    title { "Awesome" }
-    company { "Awesome" }
-    contact { "Awesome" }
-    email { "example@email.com" }
+    title { Faker::Job.title }
+    company { Faker::Company.unique.name }
+    contact { Faker::Name.unique.name }
+    email { Faker::Internet.unique.email }
     paid_position { true }
-    content { "Awesome" }
+    content { Faker::Restaurant.review }
     good_until { Time.now + 3600 }
   end
 
   factory :event, class: Event do
     user
-    title { "Awesome" }
+    title { Faker::Restaurant.unique.name }
     time { Time.now + 3600 }
-    location { "Awesome" }
-    signup_link { "Awesome" }
-    content { "example@email.com" }
+    location { Faker::Address.full_address }
+    signup_link { Faker::Internet.url }
+    content { Faker::Restaurant.review }
   end
 end

@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class EventsControllerTest < ActionDispatch::IntegrationTest
-  include Devise::Test::IntegrationHelpers
 
   setup do
     @event = create(:event)
@@ -20,13 +19,13 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get new when logged in as editor" do
-    login_as @editor
+    log_in @editor
     get new_event_url
     assert_response :success
   end
 
   test "should get new when logged in as admin" do
-    login_as @admin
+    log_in @admin
     get new_event_url
     assert_response :success
   end
@@ -41,7 +40,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create event when logged in as editor" do
-    login_as @editor
+    log_in @editor
     assert_difference('Event.count') do
       post events_url, params: { event: { content: @event.content, location: @event.location, signup_link: @event.signup_link, time: @event.time, title: @event.title, user_id: @event.user_id } }
     end
@@ -50,7 +49,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create event when logged in as admin" do
-    login_as @admin
+    log_in @admin
     assert_difference('Event.count') do
       post events_url, params: { event: { content: @event.content, location: @event.location, signup_link: @event.signup_link, time: @event.time, title: @event.title, user_id: @event.user_id } }
     end
@@ -69,13 +68,13 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get edit when logged in as editor" do
-    login_as @editor
+    log_in @editor
     get edit_event_url(@event)
     assert_response :success
   end
 
   test "should get edit when logged in as admin" do
-    login_as @admin
+    log_in @admin
     get edit_event_url(@event)
     assert_response :success
   end
@@ -87,13 +86,13 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update event when logged in as editor" do
-    login_as @editor
+    log_in @editor
     patch event_url(@event), params: { event: { content: @event.content, location: @event.location, signup_link: @event.signup_link, time: @event.time, title: @event.title, user_id: @event.user_id } }
     assert_redirected_to event_url(@event)
   end
 
   test "should update event when logged in as admin" do
-    login_as @admin
+    log_in @admin
     patch event_url(@event), params: { event: { content: @event.content, location: @event.location, signup_link: @event.signup_link, time: @event.time, title: @event.title, user_id: @event.user_id } }
     assert_redirected_to event_url(@event)
   end
@@ -108,7 +107,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy event when logged in as editor" do
-    login_as @editor
+    log_in @editor
     assert_difference('Event.count', -1) do
       delete event_url(@event)
     end
@@ -117,7 +116,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy event when logged in as admin" do
-    login_as @admin
+    log_in @admin
     assert_difference('Event.count', -1) do
       delete event_url(@event)
     end

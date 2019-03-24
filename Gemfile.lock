@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 6b5130720eee785b45dfc0fc5044224cdc2b6c98
+  revision: 56723964ce087990ba5e17e42a29d08a935eb37b
   specs:
     actioncable (6.0.0.beta3)
       actionpack (= 6.0.0.beta3)
@@ -78,11 +78,27 @@ GIT
       rake (>= 0.8.7)
       thor (>= 0.20.3, < 2.0)
 
+GIT
+  remote: https://github.com/stympy/faker.git
+  revision: 32bac72d67d275bfb26ee7049efe5f3489fff3d0
+  branch: master
+  specs:
+    faker (1.9.3)
+      i18n (>= 0.7)
+      pastel (~> 0.7.2)
+      thor (~> 0.20.0)
+      tty-pager (~> 0.12.0)
+      tty-screen (~> 0.6.5)
+      tty-tree (~> 0.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
     addressable (2.6.0)
       public_suffix (>= 2.0.2, < 4.0)
+    annotate (2.7.4)
+      activerecord (>= 3.2, < 6.0)
+      rake (>= 10.4, < 13.0)
     archive-zip (0.12.0)
       io-like (~> 0.3.0)
     ast (2.4.0)
@@ -121,17 +137,12 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.5)
     crass (1.0.4)
-    devise (4.6.1)
-      bcrypt (~> 3.0)
-      orm_adapter (~> 0.1)
-      railties (>= 4.1.0, < 6.0)
-      responders
-      warden (~> 1.2.3)
     docile (1.3.1)
     dotenv (2.7.1)
     dotenv-rails (2.7.1)
       dotenv (= 2.7.1)
       railties (>= 3.2, < 6.1)
+    equatable (0.5.0)
     erubi (1.8.0)
     execjs (2.7.0)
     factory_bot (5.0.2)
@@ -175,10 +186,12 @@ GEM
     nio4r (2.3.1)
     nokogiri (1.10.1)
       mini_portile2 (~> 2.4.0)
-    orm_adapter (0.5.0)
     parallel (1.14.0)
-    parser (2.6.0.0)
+    parser (2.6.2.0)
       ast (~> 2.4.0)
+    pastel (0.7.2)
+      equatable (~> 0.5.0)
+      tty-color (~> 0.4.0)
     pg (1.1.4)
     popper_js (1.14.5)
     psych (3.1.0)
@@ -198,9 +211,6 @@ GEM
     rb-inotify (0.10.0)
       ffi (~> 1.0)
     regexp_parser (1.3.0)
-    responders (2.4.1)
-      actionpack (>= 4.2.0, < 6.0)
-      railties (>= 4.2.0, < 6.0)
     rubocop (0.66.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
@@ -255,9 +265,22 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    strings (0.1.4)
+      strings-ansi (~> 0.1.0)
+      unicode-display_width (~> 1.4.0)
+      unicode_utils (~> 1.4.0)
+    strings-ansi (0.1.0)
     thor (0.20.3)
     thread_safe (0.3.6)
     tilt (2.0.9)
+    tty-color (0.4.3)
+    tty-pager (0.12.1)
+      strings (~> 0.1.4)
+      tty-screen (~> 0.6)
+      tty-which (~> 0.4)
+    tty-screen (0.6.5)
+    tty-tree (0.2.0)
+    tty-which (0.4.0)
     turbolinks (5.2.0)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
@@ -265,9 +288,8 @@ GEM
       thread_safe (~> 0.1)
     uglifier (4.1.20)
       execjs (>= 0.3.0, < 3)
-    unicode-display_width (1.5.0)
-    warden (1.2.8)
-      rack (>= 2.0.6)
+    unicode-display_width (1.4.1)
+    unicode_utils (1.4.0)
     web-console (3.7.0)
       actionview (>= 5.0)
       activemodel (>= 5.0)
@@ -284,6 +306,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate
+  bcrypt
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.3.1)
   byebug
@@ -291,9 +315,9 @@ DEPENDENCIES
   capybara (>= 2.15)
   chromedriver-helper
   coffee-rails (~> 4.2)
-  devise
   dotenv-rails
   factory_bot_rails
+  faker!
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)

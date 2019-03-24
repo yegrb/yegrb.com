@@ -7,7 +7,15 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # Delete all previous entries
+puts '=== Deleting all previous users ==='
 User.all.delete_all
 
 # Create admin
-User.create!(email: ENV['ADMIN_EMAIL'], password: ENV['ADMIN_PASS'], password_confirmation: ENV['ADMIN_PASS'], role: 'admin', first_name: ENV['ADMIN_FIRST'], last_name: ENV['ADMIN_LAST'])
+puts "=== Creating Admin account: #{ENV['ADMIN_EMAIL']} ==="
+User.create!(
+  email: ENV['ADMIN_EMAIL'],
+  password: ENV['ADMIN_PASS'],
+  password_confirmation: ENV['ADMIN_PASS'],
+  role: 'admin',
+  first_name: ENV['ADMIN_FIRST'],
+  last_name: ENV['ADMIN_LAST'])
