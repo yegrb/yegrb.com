@@ -14,10 +14,15 @@
  *= require_self
  */
 
-@import "bootstrap";
 
-$theme-colors: (
-"blue": #375a7f,
+@import url('https://fonts.googleapis.com/css?family=Nunito|Spectral+SC');
+$title-font: 'Spectral SC',
+serif;
+$body-font: 'Nunito',
+sans-serif;
+
+
+$theme-colors: ("blue": #375a7f,
 "indigo": #6610f2,
 "purple": #6f42c1,
 "pink": #e83e8c,
@@ -46,4 +51,14 @@ $theme-colors: (
   height: 20px;
   width: 20px;
   transform: rotate(90deg);
+}
+
+body {
+  font-family: $body-font;
+}
+
+h1,
+h2,
+.navbar-brand {
+  font-family: $title-font;
 }
