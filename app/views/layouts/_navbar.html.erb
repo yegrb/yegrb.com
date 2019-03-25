@@ -1,5 +1,8 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">YEGRB</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="#">
+    YEGRB
+    <%= image_tag 'ruby_logo.svg', class: 'logo mb-1 ml-1' %>
+  </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -39,9 +42,9 @@
       <% end %>
       <% if current_user %>
         <%= link_to "Logged in as #{current_user.first_name}", edit_user_path(current_user), class: 'nav-link mr-2' %>
-        <%= link_to 'Log out', logout_path, method: :delete, class: 'btn btn-primary' %>
+        <%= link_to 'Log out', logout_path, method: :delete, class: 'btn btn-secondary' %>
       <% else %>
-        <%= link_to 'Log in', login_path, class: 'btn btn-primary' %>
+        <%= link_to 'Log in', login_path, class: 'btn btn-secondary' %>
       <% end %>
       </li>
     </ul>

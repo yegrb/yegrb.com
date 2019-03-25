@@ -3,5 +3,5 @@
 <h1>Events</h1>
 <%= render @events, index: true %>
 <p class="my-3">
-  <%= link_to 'New Event', new_event_path, class: 'btn btn-sm btn-outline-primary' if can? :edit, Event %>
+  <%= link_to 'New Event', new_event_path, class: 'btn btn-sm btn-primary' if can? :edit, Event %>
 </p>
