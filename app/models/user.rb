@@ -13,7 +13,6 @@
 #
 
 class User < ApplicationRecord
-
   has_many :events
   has_many :opportunities
   has_many :invites
@@ -26,8 +25,8 @@ class User < ApplicationRecord
   validates :last_name, presence: true, length: { maximum: 50 }
   validates :role, presence: true, inclusion: { in: ROLES }
   validates :email, presence: true, length: { maximum: 255 },
-  format: { with: VALID_EMAIL_REGEX },
-  uniqueness: { case_sensitive: false }
+                    format: { with: VALID_EMAIL_REGEX },
+                    uniqueness: { case_sensitive: false }
 
   before_save { self.email = email.downcase }
 
@@ -44,9 +43,8 @@ class User < ApplicationRecord
   end
 
   # Returns the hash digest of the given string.
-  def User.digest(string)
-    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
-    BCrypt::Engine.cost
+  def self.digest(string)
+    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)
   end
 end
