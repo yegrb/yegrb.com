@@ -9,10 +9,10 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="bg-light">
     <%= render 'layouts/navbar' %>
     <%= render 'layouts/alerts' %>
-    <div class="container">
+    <div class="container text-white py-3">
       <%= yield %>
     </div>
     <%= image_tag "devedmonton.svg" %>
