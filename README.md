@@ -13,8 +13,9 @@ Future features will include user accounts, a mailing list, and a job board.
 6. Run `bundle install` to install gems
 7. Run `bin/rails db:setup` to create databases
 8. Run `bin/rails db:seed` to create administrator account
-9. Create a new branch with `git checkout -b new_branch`
-10. Make modifications and push code with:
+9. You can optionally run `bin/rails db:fill` to fill the site with hilarious fake data.
+10. Create a new branch with `git checkout -b new_branch`
+11. Make modifications and push code with:
 
 ```bash
 git add .
@@ -22,7 +23,7 @@ git commit -m 'Describe your changes'
 git push
 ```
 
-11. And open up a pull request on GitHub!
+12. And open up a pull request on GitHub!
 
 ## Installing Postgresql on Mac OSX
 
