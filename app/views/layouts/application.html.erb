@@ -2,6 +2,7 @@
 <html>
   <head>
     <title><%= @page_title ? @page_title + ' | YEGRB' : 'YEGRB.com' %></title>
+    <%= favicon_link_tag asset_path('favicon/ruby.png') %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +16,6 @@
     <div class="container text-white py-3">
       <%= yield %>
     </div>
-    <%= image_tag "devedmonton.svg" %>
     <%= render 'layouts/footer'%>
   </body>
 </html>
