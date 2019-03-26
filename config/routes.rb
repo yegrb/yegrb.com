@@ -4,8 +4,7 @@
 #                               invites GET    /invites(.:format)                                                                       invites#index
 #                                       POST   /invites(.:format)                                                                       invites#create
 #                            new_invite GET    /invites/new(.:format)                                                                   invites#new
-#                                invite GET    /invites/:id(.:format)                                                                   invites#show
-#                                       DELETE /invites/:id(.:format)                                                                   invites#destroy
+#                                invite DELETE /invites/:id(.:format)                                                                   invites#destroy
 #                         opportunities GET    /opportunities(.:format)                                                                 opportunities#index
 #                                       POST   /opportunities(.:format)                                                                 opportunities#create
 #                       new_opportunity GET    /opportunities/new(.:format)                                                             opportunities#new
@@ -40,7 +39,7 @@
 #                                       GET    /opportunities(.:format)                                                                 pages#opportunities
 #                                 slack GET    /slack(.:format)                                                                         pages#slack
 #                             resources GET    /resources(.:format)                                                                     pages#resources
-#                                       GET    /check.txt(.:format)                                                                     #<Proc:0x000055a376269e30@/home/vardy/coding/yegrb.com/config/routes.rb:89>
+#                                       GET    /check.txt(.:format)                                                                     #<Proc:0x00007fdbb721b3e0@/Users/joshmacsween/Desktop/yeg/yegrb.com/config/routes.rb:85>
 #           rails_amazon_inbound_emails POST   /rails/action_mailbox/amazon/inbound_emails(.:format)                                    action_mailbox/ingresses/amazon/inbound_emails#create
 #         rails_mandrill_inbound_emails POST   /rails/action_mailbox/mandrill/inbound_emails(.:format)                                  action_mailbox/ingresses/mandrill/inbound_emails#create
 #         rails_postmark_inbound_emails POST   /rails/action_mailbox/postmark/inbound_emails(.:format)                                  action_mailbox/ingresses/postmark/inbound_emails#create
