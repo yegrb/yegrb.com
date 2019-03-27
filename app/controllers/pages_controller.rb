@@ -16,4 +16,7 @@ class PagesController < ApplicationController
 
   def resources
   end
+
+  def videos
+  end 
 end

@@ -1,4 +1,11 @@
  FactoryBot.define do
+  factory :video do
+    link { "MyString" }
+    title { "MyString" }
+    speaker { "MyString" }
+    user_id { 1 }
+  end
+
   factory :invite do
     name { Faker::Name.unique.name }
     email { Faker::Internet.unique.email }
