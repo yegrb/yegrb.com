@@ -1,22 +1,25 @@
 <div class="container-fluid mb-5 mt-2">
   <h2><%= event.title %></h2>
   <small class="text-muted">
-    Posted by <%= event.user %> at <%= event.created_at %>
+    Posted by <%= event.user %> on <%= event.nice_created_at %>
   </small>
   <table>
     <tr>
-      <td>Time: </td>
-      <td><%= event.time %></td>
+      <td><strong>Time: </strong></td>
+      <td><%= event.nice_time %></td>
     </tr>
     <tr>
-      <td>Location: </td>
+      <td><strong>Location: </strong></td>
       <td><%= event.location %></td>
     </tr>
     <tr>
-      <td>Sign up link: </td>
-      <td><%= link_to 'Meetup.com', event.signup_link %></td>
+      <td class="pr-3"><strong>Sign up link: </strong></td>
+      <td><%= link_to event.signup_link, event.signup_link %></td>
     </tr>
   </table>
+  <p>
+
+  </p>
   <p><%= event.content %></p>
   <%= link_to 'Show', event, class: 'btn btn-sm btn-primary' if local_assigns[:index] %>
   <%= link_to 'Edit', edit_event_path(event), class: 'btn btn-sm btn-warning' if can? :edit, Event %>

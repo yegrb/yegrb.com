@@ -18,4 +18,11 @@
 class Opportunity < ApplicationRecord
   belongs_to :user
 
+  def nice_created_at
+    created_at.strftime('%d %b %Y')
+  end
+
+  def nice_good_until
+    good_until.strftime('%d %b %Y')
+  end
 end
