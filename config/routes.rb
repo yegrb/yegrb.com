@@ -89,7 +89,6 @@ Rails.application.routes.draw do
   get '/opportunities', to: 'pages#opportunities'
   get '/slack', to: 'pages#slack'
   get '/resources', to: 'pages#resources'
-  get '/videos', to: 'pages#video'
 
   get '/check.txt', to: proc {[200, {}, ['it_works']]}
 end
