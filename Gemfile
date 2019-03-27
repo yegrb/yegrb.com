@@ -63,10 +63,11 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 ### Additional Gems ###
 
-# Make things pretty
+# Pretty UI things
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 gem 'simple_form'
+gem 'will_paginate'
 
 # Authentication and Authorization
 gem 'cancancan', '~> 2.0'

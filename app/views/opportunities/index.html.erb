@@ -2,8 +2,9 @@
 
 <h1>Opportunities</h1>
 
+<%= will_paginate %>
 <%= render @opportunities %>
-
+<%= will_paginate %>
 <br>
 
 <%= link_to 'New Opportunity', new_opportunity_path, class: 'btn btn-sm btn-primary' if can? :edit, Opportunity%>
