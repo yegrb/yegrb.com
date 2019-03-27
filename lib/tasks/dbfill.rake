@@ -44,7 +44,7 @@ namespace :db do
       # role = (x % 10).zero? ? 'editor' : 'user'
 
       Event.create!(
-        content: Faker::Hipster.paragraphs(5),
+        content: Faker::Hipster.paragraph(5),
         location: Faker::Address.full_address,
         signup_link: Faker::Internet.url,
         time: Faker::Time.forward(x, :afternoon),

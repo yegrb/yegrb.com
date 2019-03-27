@@ -1,0 +1,32 @@
+<div class="container-fluid mb-5 mt-2">
+    <h2><%= opportunity.title %></h2>
+    <small class="text-muted">
+        Posted by <%= opportunity.user %> on <%= opportunity.nice_created_at %>
+    </small>
+    <table>
+        <tr>
+            <td><strong>Company: </strong></td>
+            <td><%= opportunity.company %></td>
+        </tr>
+        <tr>
+            <td><strong>Contact: </strong></td>
+            <td><%= opportunity.contact %></td>
+        </tr>
+        <tr>
+            <td class="pr-3"><strong>Paid position? </strong></td>
+            <td><%= opportunity.paid_position %></td>
+        </tr>
+        <tr>
+            <td class="pr-3"><strong>Good Until: </strong></td>
+            <td><%= opportunity.good_until %></td>
+        </tr>
+    </table>
+    <p>
+
+    </p>
+    <p><%= opportunity.content %></p>
+    <%= link_to 'Show', opportunity, class: 'btn btn-sm btn-primary' if local_assigns[:index] %>
+    <%= link_to 'Edit', edit_event_path(opportunity), class: 'btn btn-sm btn-warning' if can? :edit, Event %>
+    <%= link_to 'Destroy', opportunity, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' if can? :edit, Event %>
+    </td>
+</div>
