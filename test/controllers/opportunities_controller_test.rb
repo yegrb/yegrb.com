@@ -60,7 +60,7 @@ class OpportunitiesControllerTest < ActionDispatch::IntegrationTest
         company: @opportunity.company,
         contact: @opportunity.contact,
         content: @opportunity.content,
-        email: @opportunity.email,
+        email: Faker::Internet.email,
         good_until: @opportunity.good_until,
         paid_position: @opportunity.paid_position,
         title: @opportunity.title
@@ -77,7 +77,7 @@ class OpportunitiesControllerTest < ActionDispatch::IntegrationTest
         company: @opportunity.company,
         contact: @opportunity.contact,
         content: @opportunity.content,
-        email: @opportunity.email,
+        email: Faker::Internet.email,
         good_until: @opportunity.good_until,
         paid_position: @opportunity.paid_position,
         title: @opportunity.title
@@ -94,7 +94,7 @@ class OpportunitiesControllerTest < ActionDispatch::IntegrationTest
         company: @opportunity.company,
         contact: @opportunity.contact,
         content: @opportunity.content,
-        email: @opportunity.email,
+        email: Faker::Internet.email,
         good_until: @opportunity.good_until,
         paid_position: @opportunity.paid_position,
         title: @opportunity.title
