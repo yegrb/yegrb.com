@@ -15,7 +15,8 @@ class OpportunitiesController < ApplicationController
   # GET /opportunities/new
   def new
     @opportunity = Opportunity.new
-    authorize! :edit, Opportunity
+    @opportunity.user_id = current_user&.id
+    authorize! :edit, @opportunity
   end
 
   # GET /opportunities/1/edit
@@ -25,6 +26,7 @@ class OpportunitiesController < ApplicationController
   # POST /opportunities
   def create
     @opportunity = Opportunity.new(opportunity_params)
+    @opportunity.user_id = current_user&.id
     authorize! :edit, @opportunity
     if @opportunity.save
       flash[:success] = 'Opportunity was successfully created.'

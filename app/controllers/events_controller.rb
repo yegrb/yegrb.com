@@ -16,8 +16,8 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
-    authorize! :create, @event
-    @event.user_id = current_user.id
+    @event.user_id = current_user&.id
+    authorize! :edit, @event
   end
 
   # GET /events/1/edit
@@ -27,6 +27,7 @@ class EventsController < ApplicationController
   # POST /events
   def create
     @event = Event.new(event_params)
+    @event.user_id = current_user&.id
     authorize! :create, @event
     if @event.save
       flash[:success] = 'Event was successfully created.'
