@@ -96,6 +96,9 @@ footer {
 }
 
 .pagination {
+  a {
+    color: map_get($theme-colors, 'dark');
+  }
 
   a,
   em,

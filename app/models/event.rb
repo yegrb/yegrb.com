@@ -17,6 +17,7 @@ class Event < ApplicationRecord
   belongs_to :user
 
   validates :user_id, :content, :title, presence: true
+  
 
   def nice_created_at
     created_at.strftime('%d %b %Y')
