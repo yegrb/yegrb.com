@@ -96,7 +96,10 @@ footer {
 }
 
 .pagination {
-  a, em {
+
+  a,
+  em,
+  .previous_page {
     margin-right: 10px;
   }
 }

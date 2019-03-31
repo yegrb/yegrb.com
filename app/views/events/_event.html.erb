@@ -22,6 +22,6 @@
   </p>
   <p><%= event.content %></p>
   <%= link_to 'Show', event, class: 'btn btn-sm btn-primary' if local_assigns[:index] %>
-  <%= link_to 'Edit', edit_event_path(event), class: 'btn btn-sm btn-warning' if can? :edit, Event %>
-  <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' if can? :edit, Event %></td>
+  <%= link_to 'Edit', edit_event_path(event), class: 'btn btn-sm btn-warning' if can? :edit, event %>
+  <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' if can? :edit, event %></td>
 </div>
