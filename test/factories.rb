@@ -38,7 +38,7 @@
     title { Faker::Job.title }
     company { Faker::Company.unique.name }
     contact { Faker::Name.unique.name }
-    email { Faker::Internet.unique.email }
+    email { Faker::Internet.email }
     paid_position { true }
     content { Faker::Restaurant.review }
     good_until { Time.now + 3600 }
