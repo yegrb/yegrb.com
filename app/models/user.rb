@@ -30,6 +30,10 @@ class User < ApplicationRecord
 
   before_save { self.email = email.downcase }
 
+  def user?
+    role == 'user'
+  end
+
   def editor?
     role == 'editor'
   end
