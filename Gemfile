@@ -76,7 +76,7 @@ gem 'dotenv-rails', groups: %i[development test]
 
 # Testing
 gem 'factory_bot_rails', groups: %i[development test]
-gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master', group: :test
+gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master', groups: %i[development test]
 gem 'simplecov', require: false, group: :test
 
 # Tools
