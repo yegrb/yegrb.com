@@ -73,8 +73,10 @@ html {
   min-height: 100%;
 }
 
+$footerheight: 150px;
+
 body {
-  margin-bottom: 200px;
+  margin-bottom: $footerheight + 50px;
   /* Margin bottom by footer height */
 }
 
@@ -82,7 +84,7 @@ footer {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 200px;
+  height: $footerheight;
   // /* Set the fixed height of the footer here */
   // line-height: 40px;
 
