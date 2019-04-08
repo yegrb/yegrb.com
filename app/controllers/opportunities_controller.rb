@@ -5,7 +5,7 @@ class OpportunitiesController < ApplicationController
 
   # GET /opportunities
   def index
-    @opportunities = Opportunity.paginate(page: params[:page], per_page: 10)
+    @opportunities = Opportunity.paginate(page: params[:page], per_page: 10).includes(:user)
   end
 
   # GET /opportunities/1

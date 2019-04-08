@@ -5,41 +5,35 @@
         <h5 class="font-weight-bold text-uppercase mt-2 mb-2">Connect</h5>
       <ul class="list-unstyled">
         <li>
-          <a href="#!">Opportunities</a>
+          <%= link_to 'Events', events_path %>
         </li>
         <li>
-          <a href="#!">Slack</a>
+          <%= link_to 'Dev Edmonton Slack', slack_path %>
+        </li>
+        <li>
+          <%= link_to 'Contact', contact_path %>
         </li>
       </div>
-        <div class="col-md-4 text-center d-none d-md-inline-block">
-          <h5 class="font-weight-bold text-uppercase mt-2 mb-2">Inspire</h5>
-          <ul class="list-unstyled">
-            <li>
-              <a href="#!">Learn Ruby On Rails</a>
-            </li>
-            <li>
-              <a href="#!">Wiki</a>
-            </li>
-          </ul>
+      <div class="col-md-4 d-flex align-items-end justify-content-center mb-3">
+        <div class="footer-copyright text-center">
+          © 2019 Copyright: <%= link_to "YEGRB.com", root_path %>
         </div>
+      </div>
         <div class="col-md-4 text-center d-none d-md-inline-block">
-          <h5 class="font-weight-bold text-uppercase mt-2 mb-2">Share</h5>
+          <h5 class="font-weight-bold text-uppercase mt-2 mb-2">Grow</h5>
             <ul class="list-unstyled">
             <li>
-              <a href="#!">News</a>
+              <%= link_to 'Videos', videos_path %>
             </li>
             <li>
-              <a href="#!">Events</a>
+              <%= link_to 'Resources', resources_path %>
             </li>
             <li>
-              <a href="#!">Our Story</a>
+              <%= link_to 'Opportunities', opportunities_path %>
             </li>
           </ul>
         </div>
       </div>
     </div>
-  <div class="footer-copyright text-center py-3">© 2019 Copyright:
-    <%= link_to "YEGRB.com", root_path %>
-  </div>
 </footer
 

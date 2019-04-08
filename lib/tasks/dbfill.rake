@@ -1,7 +1,7 @@
 namespace :db do
   require 'faker'
 
-  task :fill => :environment do
+  task fill: :environment do
     # Delete all previous entries
     puts '=== Deleting all previous users ==='
     User.all.delete_all
@@ -64,7 +64,7 @@ namespace :db do
         contact: Faker::Name.name,
         email: Faker::Internet.email,
         good_until: Faker::Time.forward(x * 20, :afternoon),
-        paid_position: !(x % 3).zero?,
+        paid_position: true,
         title: Faker::ChuckNorris.fact,
         user_id: userid
       )
