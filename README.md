@@ -25,6 +25,10 @@ git push
 
 12. And open up a pull request on GitHub!
 
+## Enable caching in development
+
+The Meetup API is slow when a lot of separate requests are made, so in-memory caching is used. It is turned on in production automatically but will need to be toggled on in development using `rails dev:cache` if you want to utilize it.
+
 ## Installing Postgresql on Mac OSX
 
 First, you need to remove previous versions of PostgreSQL

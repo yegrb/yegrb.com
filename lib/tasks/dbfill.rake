@@ -47,6 +47,7 @@ namespace :db do
         content: Faker::Hipster.paragraph(5),
         location: Faker::Address.full_address,
         signup_link: Faker::Internet.url,
+        meetup_id: 'dgjjmqyzfbdb',
         time: Faker::Time.forward(x, :afternoon),
         title: Faker::ChuckNorris.fact,
         user_id: userid

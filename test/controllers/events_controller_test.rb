@@ -67,6 +67,52 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_path
   end
 
+  test "shouldn't create event when logged in as editor and missing link + location" do
+    log_in @editor
+    assert_no_difference('Event.count') do
+      post events_url, params: { event: {
+        content: @event.content,
+        time: @event.time,
+        title: @event.title
+      } }
+    end
+  end
+
+  test "shouldn't create event when logged in as editor and entered a non-meetup link and no location" do
+    log_in @editor
+    assert_no_difference('Event.count') do
+      post events_url, params: { event: {
+        content: @event.content,
+        signup_link: @event.signup_link,
+        time: @event.time,
+        title: @event.title
+      } }
+    end
+  end
+
+  test 'should create event when logged in as editor and entered a meetup link and no location' do
+    log_in @editor
+    assert_difference('Event.count') do
+      post events_url, params: { event: {
+        content: @event.content,
+        signup_link: 'https://www.meetup.com/startupedmonton/events/dgjjmqyzfbdb/',
+        time: @event.time,
+        title: @event.title
+      } }
+    end
+  end
+
+  test 'should set meetup_id when signup_link is entered' do
+    log_in @editor
+    post events_url, params: { event: {
+      content: @event.content,
+      signup_link: 'https://www.meetup.com/startupedmonton/events/dgjjmqyzfbdb/',
+      time: @event.time,
+      title: @event.title
+    } }
+    assert_equal 'dgjjmqyzfbdb', Event.last.meetup_id
+    end
+
   test 'should create event when logged in as editor' do
     log_in @editor
     assert_difference('Event.count') do
