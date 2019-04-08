@@ -111,7 +111,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
       title: @event.title
     } }
     assert_equal 'dgjjmqyzfbdb', Event.last.meetup_id
-    end
+  end
 
   test 'should create event when logged in as editor' do
     log_in @editor
