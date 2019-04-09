@@ -71,7 +71,7 @@
 
 Rails.application.routes.draw do
   resources :videos
-  resources :invites, except: [:edit, :update, :show]
+  resources :invites, except: %i[edit update show]
   resources :opportunities
   resources :events
 
@@ -90,6 +90,5 @@ Rails.application.routes.draw do
   get '/slack', to: 'pages#slack'
   get '/resources', to: 'pages#resources'
 
-  get '/check.txt', to: proc {[200, {}, ['it_works']]}
+  get '/check.txt', to: proc { [200, {}, ['it_works']] }
 end
-
