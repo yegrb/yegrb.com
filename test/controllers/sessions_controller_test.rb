@@ -4,18 +4,18 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = create(:user)
   end
-  test "should get login" do
+  test 'should get login' do
     get login_path
     assert_response :success
   end
 
   test 'should log in user with correct password' do
-    post login_path, params: { session: {email: @user.email, password: @user.password }}
+    post login_path, params: { session: { email: @user.email, password: @user.password } }
     assert_redirected_to @user
   end
 
   test 'shouldn\'t log in user with incorrect password' do
-    post login_path, params: { session: {email: @user.email, password: 'nottherightpassword'}}
+    post login_path, params: { session: { email: @user.email, password: 'nottherightpassword' } }
     assert_response :success
   end
 
