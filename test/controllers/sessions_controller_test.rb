@@ -18,4 +18,9 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     post login_path, params: { session: {email: @user.email, password: 'nottherightpassword'}}
     assert_response :success
   end
+
+  test 'should log out user' do
+    delete logout_path
+    assert_redirected_to root_path
+  end
 end

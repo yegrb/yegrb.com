@@ -74,6 +74,9 @@ gem 'cancancan', '~> 2.0'
 gem 'bcrypt'
 gem 'dotenv-rails', groups: %i[development test]
 
+# API
+gem 'rest-client'
+
 # Testing
 gem 'factory_bot_rails', groups: %i[development test]
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
