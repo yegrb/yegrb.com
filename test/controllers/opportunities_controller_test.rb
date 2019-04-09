@@ -18,19 +18,19 @@ class OpportunitiesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_path
   end
 
-  test "should get new when logged in" do
+  test 'should get new when logged in' do
     log_in @user
     get new_opportunity_url
     assert_response :success
   end
 
-  test "should get new when logged in as editor" do
+  test 'should get new when logged in as editor' do
     log_in @editor
     get new_opportunity_url
     assert_response :success
   end
 
-  test "should get new when logged in as admin" do
+  test 'should get new when logged in as admin' do
     log_in @admin
     get new_opportunity_url
     assert_response :success
@@ -146,7 +146,7 @@ class OpportunitiesControllerTest < ActionDispatch::IntegrationTest
       email: @opportunity.email,
       good_until: @opportunity.good_until,
       paid_position: @opportunity.paid_position,
-      title: 'NEWTITLE',
+      title: 'NEWTITLE'
     } }
     @opportunity.reload
     assert_not_equal 'NEWTITLE', @opportunity.title
@@ -163,7 +163,7 @@ class OpportunitiesControllerTest < ActionDispatch::IntegrationTest
       email: @opportunity.email,
       good_until: @opportunity.good_until,
       paid_position: @opportunity.paid_position,
-      title: 'NEWTITLE',
+      title: 'NEWTITLE'
     } }
     @opportunity.reload
     assert_not_equal 'NEWTITLE', @opportunity.title
@@ -238,7 +238,7 @@ class OpportunitiesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_path
   end
 
-  test "should destroy opportunity when authoring user" do
+  test 'should destroy opportunity when authoring user' do
     log_in @opportunity.user
     assert_difference('Opportunity.count', -1) do
       delete opportunity_url(@opportunity)
@@ -247,7 +247,7 @@ class OpportunitiesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to opportunities_url
   end
 
-  test "should destroy opportunity when editor" do
+  test 'should destroy opportunity when editor' do
     log_in @editor
     assert_difference('Opportunity.count', -1) do
       delete opportunity_url(@opportunity)
@@ -256,7 +256,7 @@ class OpportunitiesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to opportunities_url
   end
 
-  test "should destroy opportunity when admin" do
+  test 'should destroy opportunity when admin' do
     log_in @admin
     assert_difference('Opportunity.count', -1) do
       delete opportunity_url(@opportunity)

@@ -19,13 +19,13 @@ class InvitesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_path
   end
 
-  test "should get index when editor" do
+  test 'should get index when editor' do
     log_in @editor
     get invites_url
     assert_response :success
   end
 
-  test "should get index when admin" do
+  test 'should get index when admin' do
     log_in @admin
     get invites_url
     assert_response :success
@@ -42,13 +42,13 @@ class InvitesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_path
   end
 
-  test "should get new when editor" do
+  test 'should get new when editor' do
     log_in @editor
     get new_invite_url
     assert_response :success
   end
 
-  test "should get new when admin" do
+  test 'should get new when admin' do
     log_in @admin
     get new_invite_url
     assert_response :success
@@ -73,39 +73,42 @@ class InvitesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_path
   end
 
-  test "editor can invite users" do
+  test 'editor can invite users' do
     log_in @editor
     assert_difference('Invite.count') do
       post invites_url, params: { invite: {
         email: Faker::Internet.unique.email,
         name: @invite.name,
-        role: 'user' } }
+        role: 'user'
+      } }
     end
 
     assert_redirected_to invite_url(Invite.last)
   end
 
-  test "editor cannot invite editors" do
+  test 'editor cannot invite editors' do
     log_in @editor
     assert_no_difference('Invite.count') do
       post invites_url, params: { invite: {
         email: Faker::Internet.unique.email,
         name: @invite.name,
-        role: 'editor' } }
+        role: 'editor'
+      } }
     end
   end
 
-  test "editor cannot invite admins" do
+  test 'editor cannot invite admins' do
     log_in @editor
     assert_no_difference('Invite.count') do
       post invites_url, params: { invite: {
         email: Faker::Internet.unique.email,
         name: @invite.name,
-        role: 'admin' } }
+        role: 'admin'
+      } }
     end
   end
 
-  test "should create invite when admin" do
+  test 'should create invite when admin' do
     log_in @admin
     assert_difference('Invite.count') do
       post invites_url, params: { invite: { email: Faker::Internet.unique.email, name: @invite.name, role: 'admin' } }
@@ -136,7 +139,7 @@ class InvitesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_path
   end
 
-  test "should destroy invite when logged in as editor" do
+  test 'should destroy invite when logged in as editor' do
     log_in @editor
     assert_difference('Invite.count', -1) do
       delete invite_url(@invite)
@@ -145,7 +148,7 @@ class InvitesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to invites_url
   end
 
-  test "should destroy invite when logged in as admin" do
+  test 'should destroy invite when logged in as admin' do
     log_in @admin
     assert_difference('Invite.count', -1) do
       delete invite_url(@invite)
