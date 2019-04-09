@@ -21,8 +21,16 @@ class Event < ApplicationRecord
 
   validates :user_id, :content, :title, presence: true
   validates :time, :location,
-            presence: {message: 'needs to be present if no Meetup link is entered'},
+            presence: { message: 'needs to be present if no Meetup link is entered' },
             unless: proc { |e| e.signup_link.present? && STARTUP_URL =~ e.signup_link }
+
+  before_save :set_meetup_id
+
+  def set_meetup_id
+    self.meetup_id = if signup_link.present? && STARTUP_URL =~ signup_link
+                       STARTUP_URL.match(signup_link)[1]
+                     end
+  end
 
   def nice_created_at
     created_at.strftime('%d %b %Y')
