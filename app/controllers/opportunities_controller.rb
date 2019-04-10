@@ -1,16 +1,15 @@
 class OpportunitiesController < ApplicationController
-  before_action :set_opportunity, only: [:show, :edit, :update, :destroy]
-  before_action :authorize_edit, only: [:edit, :update, :destroy]
+  before_action :set_opportunity, only: %i[show edit update destroy close]
+  before_action :authorize_edit, only: %i[edit update destroy]
   before_action :authorize_read, only: [:show]
 
   # GET /opportunities
   def index
-    @opportunities = Opportunity.order("created_at DESC").paginate(page: params[:page], per_page: 10).includes(:user)
+    @opportunities = Opportunity.order('created_at DESC').paginate(page: params[:page], per_page: 10).includes(:user)
   end
 
   # GET /opportunities/1
-  def show
-  end
+  def show; end
 
   # GET /opportunities/new
   def new
@@ -20,8 +19,7 @@ class OpportunitiesController < ApplicationController
   end
 
   # GET /opportunities/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /opportunities
   def create
@@ -41,9 +39,20 @@ class OpportunitiesController < ApplicationController
   def update
     if @opportunity.update(opportunity_params)
       flash[:success] = 'Opportunity was successfully updated.'
-      redirect_to @opportunity, notice: 'Opportunity was successfully updated.'
+      redirect_to @opportunity
     else
       flash.now[:danger] = 'Unable to update opportunity'
+      render :edit
+    end
+  end
+
+  # PATCH/PUT /opportunities/1
+  def close
+    if @opportunity.close!
+      flash[:success] = 'Opportunity was successfully closed.'
+      redirect_to @opportunity
+    else
+      flash.now[:danger] = 'Unable to close opportunity'
       render :edit
     end
   end

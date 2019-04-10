@@ -41,4 +41,12 @@ class Opportunity < ApplicationRecord
   def nice_good_until
     good_until.strftime('%d %b %Y')
   end
+
+  def closed?
+    Time.zone.now >= good_until
+  end
+
+  def close!
+    update(good_until: Time.zone.now)
+  end
 end

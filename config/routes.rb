@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   resources :videos
   resources :invites, except: %i[edit update show]
-  resources :opportunities
+  resources :opportunities do
+    post 'close', on: :member
+  end
   resources :events
 
   # users
