@@ -53,6 +53,21 @@ class OpportunitiesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_path
   end
 
+  test "shouldn't create opportunity when good until is 4 months in the future" do
+    log_in @opportunity.user
+    assert_no_difference('Opportunity.count') do
+      post opportunities_url, params: { opportunity: {
+        company: @opportunity.company,
+        contact: @opportunity.contact,
+        content: @opportunity.content,
+        email: @opportunity.email,
+        good_until: Time.zone.now + 120.days,
+        paid_position: @opportunity.paid_position,
+        title: @opportunity.title
+      } }
+    end
+  end
+
   test 'should create opportunity when logged in as user' do
     log_in @opportunity.user
     assert_difference('Opportunity.count') do

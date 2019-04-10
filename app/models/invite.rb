@@ -33,14 +33,14 @@ class Invite < ApplicationRecord
 
   def set_attributes
     self.code ||= Digest::SHA1.hexdigest(email)
-    self.expiry ||= Time.now + 1.week
+    self.expiry ||= Time.zone.now + 1.week
   end
 
   def expired?
-    expiry < Time.now
+    expiry < Time.zone.now
   end
 
   def nice_expiry
-    expiry.strftime("%m/%d/%Y %I:%M%p UTC")
+    expiry.strftime('%m/%d/%Y %I:%M%p UTC')
   end
 end
