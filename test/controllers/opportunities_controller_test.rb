@@ -85,6 +85,15 @@ class OpportunitiesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to opportunity_url(Opportunity.last)
   end
 
+  test 'should close opportunity when logged in as user' do
+    log_in @opportunity.user
+    post close_opportunity_url(@opportunity)
+    @opportunity.reload
+    assert @opportunity.closed?
+
+    assert_redirected_to opportunity_url(Opportunity.last)
+  end
+
   test 'should create opportunity when logged in as editor' do
     log_in @editor
     assert_difference('Opportunity.count') do
