@@ -39,7 +39,7 @@ namespace :db do
     userid = User.first.id
 
     # Create events
-    50.times do |x|
+    10.times do |x|
       puts "=== Creating Event ##{x + 1} ==="
       # role = (x % 10).zero? ? 'editor' : 'user'
 
@@ -47,12 +47,37 @@ namespace :db do
         content: Faker::Hipster.paragraph(5),
         location: Faker::Address.full_address,
         signup_link: Faker::Internet.url,
-        meetup_id: 'dgjjmqyzfbdb',
         time: Faker::Time.forward(x, :afternoon),
         title: Faker::ChuckNorris.fact,
         user_id: userid
       )
     end
+
+    puts '=== Creating Actual Events ==='
+    Event.create!(
+      content: Faker::Hipster.paragraph(5),
+      signup_link: 'https://www.meetup.com/startupedmonton/events/dgjjmqyzcbhb/',
+      title: 'January Meetup',
+      user_id: userid
+    )
+    Event.create!(
+      content: Faker::Hipster.paragraph(5),
+      signup_link: 'https://www.meetup.com/startupedmonton/events/dgjjmqyzdbdb/',
+      title: 'February Meetup',
+      user_id: userid
+    )
+    Event.create!(
+      content: Faker::Hipster.paragraph(5),
+      signup_link: 'https://www.meetup.com/startupedmonton/events/dgjjmqyzfbdb/',
+      title: 'March Meetup',
+      user_id: userid
+    )
+    Event.create!(
+      content: Faker::Hipster.paragraph(5),
+      signup_link: 'https://www.meetup.com/startupedmonton/events/dgjjmqyzgbjb/',
+      title: 'April Meetup',
+      user_id: userid
+    )
 
     # Create opportunities
     50.times do |x|
@@ -64,7 +89,7 @@ namespace :db do
         company: Faker::Company.name,
         contact: Faker::Name.name,
         email: Faker::Internet.email,
-        good_until: Faker::Time.forward(x * 20, :afternoon),
+        good_until: Faker::Time.forward(x, :afternoon),
         paid_position: true,
         title: Faker::ChuckNorris.fact,
         user_id: userid
