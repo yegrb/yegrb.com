@@ -64,6 +64,33 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_path
   end
 
+  test "shouldn't create user if passwords don't match" do
+    assert_no_difference('User.count') do
+      post users_url, params: { user: { email: @invite.email,
+                                        code: @invite.code,
+                                        first_name: @user.first_name,
+                                        last_name: @user.last_name,
+                                        role: @invite.role,
+                                        password: 'password',
+                                        password_confirmation: 'differentpassword' } }
+    end
+  end
+
+  test "shouldn't create user if invitation has expired" do
+    @expired_invite = create(:expired_invite)
+    assert_no_difference('User.count') do
+      post users_url, params: { user: { email: @expired_invite.email,
+                                        code: @expired_invite.code,
+                                        first_name: @user.first_name,
+                                        last_name: @user.last_name,
+                                        role: @expired_invite.role,
+                                        password: 'password',
+                                        password_confirmation: 'password' } }
+    end
+
+    assert_redirected_to root_path
+  end
+
   test "shouldn't show user if not logged in" do
     get user_url(@user)
     assert_redirected_to root_path
@@ -155,6 +182,18 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
       role: @user.role
     } }
     assert_redirected_to user_url(@user)
+  end
+
+  test 'shouldn\'t update user when invalid name' do
+    log_in @user
+    patch user_url(@user), params: { user:
+    {
+      first_name: '',
+      last_name: @user.last_name,
+      role: @user.role
+    } }
+    @user.reload
+    assert_not_equal @user.first_name, ''
   end
 
   test "user shouldn't update email" do
