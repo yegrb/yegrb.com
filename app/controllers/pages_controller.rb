@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   def index
+    @event = Event.upcoming.first
   end
 
   def about
