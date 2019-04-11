@@ -48,7 +48,7 @@ namespace :db do
         location: Faker::Address.full_address,
         signup_link: Faker::Internet.url,
         time: Faker::Time.forward(x, :afternoon),
-        title: Faker::ChuckNorris.fact,
+        title: Faker::Superhero.name + ' Meetup',
         user_id: userid
       )
     end
