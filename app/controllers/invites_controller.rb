@@ -1,16 +1,11 @@
 class InvitesController < ApplicationController
   before_action :set_invite, only: [:show, :edit, :update, :destroy]
   before_action :authorize_edit, only: [:destroy]
-  before_action :authorize_read, only: [:show]
 
   # GET /invites
   def index
     authorize! :read, Invite
     @invites = Invite.all
-  end
-
-  # GET /invites/1
-  def show
   end
 
   # GET /invites/new
@@ -44,10 +39,6 @@ class InvitesController < ApplicationController
 
   def authorize_edit
     authorize! :edit, @invite
-  end
-
-  def authorize_read
-    authorize! :read, @invite
   end
 
   # Use callbacks to share common setup or constraints between actions.

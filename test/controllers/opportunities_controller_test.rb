@@ -66,6 +66,7 @@ class OpportunitiesControllerTest < ActionDispatch::IntegrationTest
         title: @opportunity.title
       } }
     end
+    assert_response :success
   end
 
   test 'should create opportunity when logged in as user' do

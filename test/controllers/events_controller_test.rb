@@ -83,7 +83,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     assert_no_difference('Event.count') do
       post events_url, params: { event: {
         content: @event.content,
-        signup_link: @event.signup_link,
+        signup_link: Faker::Internet.url,
         time: @event.time,
         title: @event.title
       } }
