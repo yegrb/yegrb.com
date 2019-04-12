@@ -15,8 +15,8 @@
   </div>
 
   <div class="form-actions">
-    <%= link_to 'Back', opportunities_path, class: 'btn btn-secondary'%>
+    <%= link_to 'Back', opportunities_path, class: 'lg-secondary'%>
     <%= link_to 'Close', close_opportunity_path(@opportunity), method: :post, class: 'btn btn-warning' if @opportunity.persisted? %>
-    <%= f.button :submit, class: 'btn btn-primary'%>
+    <%= f.button :submit, class: 'lg-primary'%>
   </div>
 <% end %>
