@@ -10,8 +10,8 @@
     <% if @event.present? %>
         <h3>Next Event:</h3>
         <%= link_to @event, class: 'info' do %>
-        <div class="container bg-black rounded shadow border-right border orange py-3 mt-4 d-flex">
-            <div class="">
+        <div class="container bg-black rounded shadow border-right border-orange p-4 mt-4 justify-content-between info d-flex">
+            <div class="align-self-center">
                 <h1><%= @event.time.strftime('%d') %></h1>
                 <%= @event.time.strftime('%B') %>
             </div>
