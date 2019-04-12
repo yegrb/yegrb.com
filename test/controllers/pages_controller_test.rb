@@ -2,7 +2,7 @@ require 'test_helper'
 
 class PagesControllerTest < ActionDispatch::IntegrationTest
   test 'should get index' do
-    create(:event)
+    create(:future_event)
     get root_path
     assert_response :success
   end
