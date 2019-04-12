@@ -8,12 +8,12 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get about' do
-    get about_path
+    get aboutus_path
     assert_response :success
   end
 
-  test 'should get contact' do
-    get contact_path
+  test 'should get get involved' do
+    get getinvolved_path
     assert_response :success
   end
 
