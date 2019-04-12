@@ -19,17 +19,28 @@ class Event < ApplicationRecord
 
   STARTUP_URL = %r{https://www.meetup.com/startupedmonton/events/([a-zA-Z0-9]+)}
 
-  validates :user_id, :content, :title, presence: true
+  validates :user_id, :content, presence: true
+  validates :title, presence: true, length: { maximum: 30 }
   validates :time, :location,
             presence: { message: 'needs to be present if no Meetup link is entered' },
             unless: proc { |e| e.signup_link.present? && STARTUP_URL =~ e.signup_link }
 
-  before_save :set_meetup_id
+  before_save :set_attributes
 
-  def set_meetup_id
-    self.meetup_id = if signup_link.present? && STARTUP_URL =~ signup_link
-                       STARTUP_URL.match(signup_link)[1]
+  scope :list, lambda {
+    order('created_at DESC').includes(:user)
+  }
+  scope :upcoming, -> { where('time > ?', Time.zone.now) }
+  scope :past, -> { where('time < ?', Time.zone.now) }
+
+  def set_attributes
+    self.meetup_id ||= if signup_link.present? && STARTUP_URL =~ signup_link
+                         STARTUP_URL.match(signup_link)[1]
                      end
+    return if meetup_id.blank?
+
+    self.time = Meetup.time(meetup_id)
+    self.location = Meetup.location(meetup_id)
   end
 
   def nice_created_at
@@ -37,11 +48,7 @@ class Event < ApplicationRecord
   end
 
   def nice_time
-    (time || Meetup.time(meetup_id)).strftime('%A, %d %b %Y %l:%M %p')
-  end
-
-  def nice_location
-    location || Meetup.location(meetup_id)
+    time.strftime('%A, %d %b %Y %l:%M %p')
   end
 
   def attending

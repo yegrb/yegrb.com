@@ -1,17 +1,15 @@
 class PagesController < ApplicationController
   def index
+    @event = Event.upcoming.first
   end
 
-  def about
-  end
-
-  def contact
+  def aboutus
   end
 
   def opportunities
   end
 
-  def slack
+  def getinvolved
   end
 
   def resources

@@ -87,21 +87,28 @@ footer {
   height: $footerheight;
   // /* Set the fixed height of the footer here */
   // line-height: 40px;
+}
 
-  a {
-    color: map_get($theme-colors, 'dark');
+a {
+  color: map_get($theme-colors, 'dark');
 
-    &:hover {
-      color: map_get($theme-colors, 'gray');
-    }
+  &:hover {
+    color: map_get($theme-colors, 'gray');
+  }
+}
+
+a.info {
+  color: map_get($theme-colors, 'white');
+
+  &:hover {
+    color: map_get($theme-colors, 'gray');
+    text-decoration: none;
+    border-color: map_get($theme-colors, 'gray');
   }
 }
 
 .pagination,
 td {
-  a {
-    color: map_get($theme-colors, 'dark');
-  }
 
   a,
   em,

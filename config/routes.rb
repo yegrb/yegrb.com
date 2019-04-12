@@ -15,10 +15,8 @@ Rails.application.routes.draw do
 
   # static pages
   root 'pages#index'
-  get '/contact', to: 'pages#contact'
-  get '/about', to: 'pages#about'
-  get '/opportunities', to: 'pages#opportunities'
-  get '/slack', to: 'pages#slack'
+  get '/aboutus', to: 'pages#aboutus'
+  get '/getinvolved', to: 'pages#getinvolved'
   get '/resources', to: 'pages#resources'
 
   get '/check.txt', to: proc { [200, {}, ['it_works']] }

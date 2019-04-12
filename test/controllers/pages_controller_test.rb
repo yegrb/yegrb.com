@@ -2,17 +2,18 @@ require 'test_helper'
 
 class PagesControllerTest < ActionDispatch::IntegrationTest
   test 'should get index' do
+    create(:future_event)
     get root_path
     assert_response :success
   end
 
   test 'should get about' do
-    get about_path
+    get aboutus_path
     assert_response :success
   end
 
-  test 'should get contact' do
-    get contact_path
+  test 'should get get involved' do
+    get getinvolved_path
     assert_response :success
   end
 

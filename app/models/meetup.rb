@@ -24,7 +24,7 @@ class Meetup
         expires_in: rand(5).minutes,
         race_condition_ttl: 30.seconds
       ) do
-        puts 'event not cached'
+        puts 'e'
         response = RestClient.get "#{HOST}#{URLNAME}/events/#{id}"
         JSON.parse(response, object_class: OpenStruct)
       end

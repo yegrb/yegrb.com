@@ -5,7 +5,7 @@ class EventsController < ApplicationController
 
   # GET /events
   def index
-    @events = Event.order("created_at DESC").paginate(page: params[:page], per_page: 10).includes(:user)
+    @events = Event.list.paginate(page: params[:page], per_page: 10)
     authorize! :read, Event
   end
 
