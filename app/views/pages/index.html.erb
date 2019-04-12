@@ -7,17 +7,19 @@
 
     </div>
     <div class="col-12 col-lg-4">
-    <h3>Next Event:</h3>
-    <%= link_to @event, class: 'info' do %>
-    <div class="container bg-black rounded shadow border-right border orange py-3 mt-4 d-flex">
-        <div class="">
-            <h1><%= @event.time&.strftime('%d') %></h1>
-            <%= @event.time&.strftime('%B') %>
+    <% if @event.present? %>
+        <h3>Next Event:</h3>
+        <%= link_to @event, class: 'info' do %>
+        <div class="container bg-black rounded shadow border-right border orange py-3 mt-4 d-flex">
+            <div class="">
+                <h1><%= @event.time.strftime('%d') %></h1>
+                <%= @event.time.strftime('%B') %>
+            </div>
+            <div class="align-self-center mt-2 ml-3">
+                <h3><%= @event.title %></h3>
+            </div>
         </div>
-        <div class="align-self-center mt-2 ml-3">
-            <h3><%= @event&.title %></h3>
-        </div>
-    </div>
+        <% end %>
     <% end %>
     </div>
 </div>
