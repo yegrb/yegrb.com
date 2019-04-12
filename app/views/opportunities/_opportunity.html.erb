@@ -25,11 +25,11 @@
 
     </p>
     <p><%= opportunity.content %></p>
-    <%= link_to 'Show', opportunity, class: 'btn btn-sm btn-primary' if local_assigns[:index] %>
+    <%= link_to 'Show', opportunity, class: 'sm-primary' if local_assigns[:index] %>
     <% if can? :edit, opportunity %>
-        <%= link_to 'Edit', edit_opportunity_path(opportunity), class: 'btn btn-sm btn-warning' %>
-        <%= link_to 'Close', close_opportunity_path(opportunity), method: :post, class: 'btn btn-sm btn-warning' unless opportunity.closed? %>
-        <%= link_to 'Destroy', opportunity, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
+        <%= link_to 'Edit', edit_opportunity_path(opportunity), class: 'sm-warning' %>
+        <%= link_to 'Close', close_opportunity_path(opportunity), method: :post, class: 'sm-warning' unless opportunity.closed? %>
+        <%= link_to 'Destroy', opportunity, method: :delete, data: { confirm: 'Are you sure?' }, class: 'sm-danger' %>
     <% end %>
     </td>
 </div>

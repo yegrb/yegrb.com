@@ -9,14 +9,14 @@
     <div class="col-12 col-lg-4">
     <% if @event.present? %>
         <h3>Next Event:</h3>
-        <%= link_to @event, class: 'info' do %>
-        <div class="container bg-black rounded shadow border-right border-orange p-4 mt-4 justify-content-between info d-flex">
+        <%= link_to @event, class: 'white-links' do %>
+        <div class="black-box">
             <div class="align-self-center">
                 <h1><%= @event.time.strftime('%d') %></h1>
                 <%= @event.time.strftime('%B') %>
             </div>
             <div class="align-self-center mt-2 ml-3">
-                <h3><%= @event.title %></h3>
+                <h2><%= @event.title %></h2>
             </div>
         </div>
         <% end %>

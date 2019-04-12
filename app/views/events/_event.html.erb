@@ -25,10 +25,10 @@
 
     </p>
     <p><%= event.content %></p>
-    <%= link_to 'Show', event, class: 'btn btn-sm btn-primary' if local_assigns[:index] %>
+    <%= link_to 'Show', event, class: 'sm-primary' if local_assigns[:index] %>
     <% if can? :edit, event %>
-        <%= link_to 'Edit', edit_event_path(event), class: 'btn btn-sm btn-warning'  %>
-        <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
+        <%= link_to 'Edit', edit_event_path(event), class: 'sm-warning'  %>
+        <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }, class: 'sm-danger' %>
     <% end %>
     </td>
 </div>
