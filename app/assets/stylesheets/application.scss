@@ -97,6 +97,10 @@ a {
   }
 }
 
+.small-icon {
+  height: 100px;
+}
+
 a.info {
   color: map_get($theme-colors, 'white');
 
