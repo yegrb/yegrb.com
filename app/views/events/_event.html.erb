@@ -23,7 +23,7 @@
         </tr>
         <tr>
             <td class="pr-3"><strong>Location: </strong></td>
-            <td><%= event.location %></td>
+            <td><%= link_to event.location, event.google_map, target: '_blank' %></td>
         </tr>
         <% unless index %>
         <tr>

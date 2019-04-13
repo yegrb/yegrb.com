@@ -36,7 +36,7 @@ class Event < ApplicationRecord
   def set_attributes
     self.meetup_id ||= if signup_link.present? && STARTUP_URL =~ signup_link
                          STARTUP_URL.match(signup_link)[1]
-                     end
+                       end
     return if meetup_id.blank?
 
     self.time = Meetup.time(meetup_id)
@@ -55,6 +55,11 @@ class Event < ApplicationRecord
     return 'Unknown' if meetup_id.blank?
 
     Meetup.attending(meetup_id)
+  end
+
+  def google_map
+    parameters = location.scan(/[a-zA-Z0-9]*/).reject(&:blank?).join('+')
+    'https://www.google.com/maps/search/?api=1&query=' + parameters
   end
 
   def upcoming?
