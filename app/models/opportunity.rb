@@ -19,7 +19,8 @@ class Opportunity < ApplicationRecord
   GOOD_UNTIL_MAX_DAYS = 90
   belongs_to :user
 
-  validates :user_id, :title, :contact, :paid_position, presence: true
+  validates :user_id, :title, :contact, presence: true
+  validates :paid_position, inclusion: { in: [true, false] }
   validate :good_until_within_time
   validates :email, presence: true, length: { maximum: 50 },
                     format: { with: User::VALID_EMAIL_REGEX },

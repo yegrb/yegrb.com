@@ -1,4 +1,4 @@
-<div class="c6 mb-3">
+<div class="c6 my-5">
   <%= simple_form_for(@opportunity) do |f| %>
     <%= f.error_notification %>
     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
@@ -9,9 +9,9 @@
       <%= f.input :company %>
       <%= f.input :contact %>
       <%= f.input :email %>
-      <%= f.input :paid_position %>
+      <%= f.input :paid_position, as: :radio_buttons %>
       <%= f.input :content %>
-      <%= f.input :good_until %>
+      <%= f.input :good_until, as: :date, label: 'Close position on this day' %>
     </div>
 
     <div class="form-actions">
