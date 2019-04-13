@@ -1,4 +1,4 @@
-<div class="c6">
+<div class="c6 mb-3">
   <%= simple_form_for(@opportunity) do |f| %>
     <%= f.error_notification %>
     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>

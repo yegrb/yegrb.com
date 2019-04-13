@@ -2,10 +2,10 @@
 
 <h1>Events</h1>
 
-    <%= link_to 'New Event', new_event_path, class: 'sm-info' if can? :edit, Event %>
+<%= render 'nav' %>
 <div class="c8">
     <%= will_paginate %>
-    <%= render @events, index: true %>
+    <%= (render @events, index: true) || 'There is nothing to display!' %>
     <%= will_paginate %>
 </div>
-    <%= link_to 'New Event', new_event_path, class: 'sm-info' if can? :edit, Event %>
+<%= render 'nav' %>

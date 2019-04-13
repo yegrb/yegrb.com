@@ -1,4 +1,4 @@
-<div class="container-fluid mb-5 mt-2">
+<div class="container-fluid mb-5 mt-5">
     <% if index %>
     <%= link_to opportunity do %>
     <h2 class="text-red"><%= opportunity.title %></h2>
@@ -29,14 +29,14 @@
         </div>
         <div>
             <% if opportunity.paid_position %>
-            <div class="green-badge">PAID POSITION</div>
+            <div class="green-badge">PAID</div>
             <% else %>
-            <div class="blue-badge">UNPAID POSITION</div>
+            <div class="blue-badge">UNPAID</div>
             <% end %>
             <% if opportunity.closed? %>
-            <div class="grey-badge">POSITION CLOSED</div>
+            <div class="grey-badge">CLOSED</div>
             <% else %>
-            <div class="blue-badge">POSITION OPEN</div>
+            <div class="blue-badge">OPEN</div>
             <% end %>
         </div>
     </div>
