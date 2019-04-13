@@ -1,22 +1,23 @@
+<div class="c6">
+  <%= simple_form_for(@opportunity) do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-<%= simple_form_for(@opportunity) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+    <div class="form-inputs">
+      <%= f.input :user_id %>
+      <%= f.input :title %>
+      <%= f.input :company %>
+      <%= f.input :contact %>
+      <%= f.input :email %>
+      <%= f.input :paid_position %>
+      <%= f.input :content %>
+      <%= f.input :good_until %>
+    </div>
 
-  <div class="form-inputs">
-    <%= f.input :user_id %>
-    <%= f.input :title %>
-    <%= f.input :company %>
-    <%= f.input :contact %>
-    <%= f.input :email %>
-    <%= f.input :paid_position %>
-    <%= f.input :content %>
-    <%= f.input :good_until %>
-  </div>
-
-  <div class="form-actions">
-    <%= link_to 'Back', opportunities_path, class: 'lg-secondary'%>
-    <%= link_to 'Close', close_opportunity_path(@opportunity), method: :post, class: 'btn btn-warning' if @opportunity.persisted? %>
-    <%= f.button :submit, class: 'lg-primary'%>
-  </div>
-<% end %>
+    <div class="form-actions">
+      <%= link_to 'Back', opportunities_path, class: 'lg-secondary'%>
+      <%= link_to 'Close', close_opportunity_path(@opportunity), method: :post, class: 'btn btn-warning' if @opportunity.persisted? %>
+      <%= f.button :submit, class: 'lg-primary'%>
+    </div>
+  <% end %>
+</div>

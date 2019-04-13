@@ -44,7 +44,7 @@
 
     </p>
     <p><%= opportunity.content %></p>
-    <%= link_to 'More Info', opportunity, class: 'sm-primary' if index %>
+    <%= link_to 'More', opportunity, class: 'sm-info' if index %>
     <% if can? :edit, opportunity %>
     <%= link_to 'Edit', edit_opportunity_path(opportunity), class: 'sm-warning' %>
     <%= link_to 'Close', close_opportunity_path(opportunity), method: :post, class: 'sm-warning' unless opportunity.closed? %>

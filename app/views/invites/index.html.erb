@@ -21,7 +21,7 @@
           <td><%= invite.nice_expiry %></td>
           <td><%= invite.user&.full_name || 'Removed' %></td>
           <td>
-            <%= link_to "Sign up link", signup_path(code: invite.code), class: 'sm-primary' %>
+            <%= link_to "Sign up link", signup_path(code: invite.code), class: 'sm-info' %>
             <%= link_to 'Destroy', invite, method: :delete, data: { confirm: 'Are you sure?' }, class: 'sm-danger ml-1' %>
           </td>
         </tr>
@@ -32,4 +32,4 @@
 
 <br>
 
-<%= link_to 'New Invite', new_invite_path, class: 'sm-primary' %>
+<%= link_to 'New Invite', new_invite_path, class: 'sm-info' %>

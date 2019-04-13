@@ -56,4 +56,16 @@ class Event < ApplicationRecord
 
     Meetup.attending(meetup_id)
   end
+
+  def upcoming?
+    time > Time.zone.now
+  end
+
+  def can_rsvp?
+    upcoming? && signup_link.present?
+  end
+
+  def past?
+    time <= Time.zone.now
+  end
 end
