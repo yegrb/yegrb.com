@@ -22,53 +22,78 @@ $body-font: 'Nunito',
 sans-serif;
 
 
-$theme-colors: ("blue": hsl(211, 40%, 36%),
-"pink": hsl(332, 79%, 58%),
-"red": hsl(6, 78%, 57%),
-"orange": hsl(27, 98%, 54%),
-"yellow": hsl(37, 90%, 51%),
-"green": hsl(165, 100%, 37%),
-"teal": hsl(162, 73%, 46%),
-"cyan": hsl(204, 70%, 53%),
-"white": hsl(0, 7%, 97%),
-"gray": hsl(0, 0%, 60%),
-"gray-dark": hsl(0, 0%, 19%),
-"primary": hsl(0, 93%, 16%),
+$theme-colors: ("red": hsl(0, 87%, 58%),
+"green": hsl(165, 80%, 32%),
+"success": hsl(204, 70%, 53%),
+"white": hsla(0, 0%, 100%, 0.904),
+"primary": hsl(0, 92%, 19%),
 "secondary": hsl(0, 0%, 27%),
-"success": hsl(212, 96%, 36%),
-"info": hsl(204, 70%, 53%),
+"info": hsl(204, 62%, 63%),
 "warning": hsl(37, 90%, 51%),
 "danger": hsl(6, 78%, 57%),
-"light": hsl(0, 0%, 19%),
-"dark": hsl(210, 11%, 71%),
-"black": hsl(0, 2%, 11%),
+"grey-1": hsl(210, 11%, 71%),
+"grey-2": hsl(0, 0%, 60%),
+"grey-4": hsl(0, 0%, 19%),
+"grey-5": hsl(0, 2%, 11%),
+"grey-6": hsl(0, 3%, 9%),
 );
 
 @import "bootstrap";
 
-.small-button {
+%small-button {
   @extend .btn;
   @extend .btn-sm;
   @extend .my-3;
+  @extend .shadow;
+}
+
+%small-title {
+  @extend .text-red;
+  @extend .font-weight-bold;
+  @extend .text-uppercase;
+  font-family: $title-font;
+}
+
+%badge {
+  padding: 8px 20px;
+  margin: 0px 0px 0px 10px;
+  @extend .badge;
+  @extend .shadow;
+  @extend .float-right;
+}
+
+.green-badge {
+  @extend %badge;
+  @extend .badge-green;
+}
+
+.blue-badge {
+  @extend %badge;
+  @extend .badge-info;
+}
+
+.grey-badge {
+  @extend %badge;
+  @extend .badge-grey-1;
 }
 
 .sm-primary {
-  @extend .small-button;
+  @extend %small-button;
   @extend .btn-primary;
 }
 
 .sm-secondary {
-  @extend .small-button;
+  @extend %small-button;
   @extend .btn-secondary;
 }
 
 .sm-warning {
-  @extend .small-button;
+  @extend %small-button;
   @extend .btn-warning;
 }
 
 .sm-danger {
-  @extend .small-button;
+  @extend %small-button;
   @extend .btn-danger;
 }
 
@@ -82,17 +107,22 @@ $theme-colors: ("blue": hsl(211, 40%, 36%),
   @extend .btn-secondary;
 }
 
-.black-box {
+.dark-box {
   @extend .container;
-  @extend .bg-black;
+  @extend .bg-grey-5;
   @extend .rounded;
   @extend .shadow;
   @extend .border-right;
-  @extend .border-orange;
+  @extend .border-red;
   @extend .p-4;
   @extend .mt-4;
   @extend .d-flex;
   @extend .justify-content-between;
+  @extend %white-links;
+
+  &:hover {
+    background-color: map_get($theme-colors, 'grey-6') !important;
+  }
 }
 
 .logo {
@@ -105,19 +135,29 @@ body {
   font-family: $body-font;
 }
 
-h1,
-h2, .navbar-brand {
+.navbar-brand {
   font-family: $title-font;
+}
+
+h1 {
+  font-family: $title-font;
+  margin-bottom: 2rem;
+}
+
+h2 {
+  font-family: $title-font;
+  // @extend %white-links;
 }
 
 h3 {
-  @extend .text-orange;
-  @extend .font-weight-bold;
-  @extend .text-uppercase;
-  font-family: $title-font;
-  font-size: 1.4rem;
+  @extend %small-title;
+  font-size: 1.8rem;
 }
 
+h4 {
+  @extend %small-title;
+  font-size: 1.4rem;
+}
 
 html {
   position: relative;
@@ -132,9 +172,9 @@ body {
 }
 
 .footer {
-  @extend .bg-black;
-  @extend .text-white;
+  @extend .bg-grey-5;
   @extend .pt-3;
+  @extend %white-links;
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -144,11 +184,17 @@ body {
 }
 
 a {
-  color: map_get($theme-colors, 'dark');
+  color: map_get($theme-colors, 'grey-1');
 
   &:hover {
-    color: map_get($theme-colors, 'gray');
+    color: map_get($theme-colors, 'grey-2');
     text-decoration: none;
+  }
+}
+
+td {
+  strong {
+    margin-right: 20px;
   }
 }
 
@@ -156,12 +202,23 @@ a {
   height: 100px;
 }
 
-a.white-links {
-  color: map_get($theme-colors, 'white');
+%white-links {
+  color: map_get($theme-colors, 'grey-1');
 
-  &:hover {
-    color: map_get($theme-colors, 'gray');
-    border-color: map_get($theme-colors, 'gray');
+  a {
+    color: map_get($theme-colors, 'white');
+
+    &:hover {
+      color: map_get($theme-colors, 'grey-1');
+    }
+  }
+
+  div {
+
+    p,
+    h2 {
+      color: map_get($theme-colors, 'white');
+    }
   }
 }
 

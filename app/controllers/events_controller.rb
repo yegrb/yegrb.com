@@ -5,7 +5,7 @@ class EventsController < ApplicationController
 
   # GET /events
   def index
-    @events = Event.list.paginate(page: params[:page], per_page: 10)
+    @events = Event.list.paginate(page: params[:page], per_page: 5)
     authorize! :read, Event
   end
 
