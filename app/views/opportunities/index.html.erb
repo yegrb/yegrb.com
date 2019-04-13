@@ -2,10 +2,10 @@
 
 <h1>Opportunities</h1>
 
-<%= link_to 'New Opportunity', new_opportunity_path, class: 'sm-info my-3' if can? :edit, Opportunity%>
+    <%= render 'nav' %>
 <div class="c10">
     <%= will_paginate %>
-    <%= render @opportunities, index:true %>
+    <%= (render @opportunities, index:true) || 'There is nothing to display!' %>
     <%= will_paginate %>
 </div>
-<%= link_to 'New Opportunity', new_opportunity_path, class: 'sm-info my-3' if can? :edit, Opportunity%>
+    <%= render 'nav' %>

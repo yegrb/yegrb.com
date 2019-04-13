@@ -27,7 +27,7 @@
         </tr>
         <% unless index %>
         <tr>
-            <td class="pr-3"><strong>Attending: </strong></td>
+            <td class="pr-3"><strong><%= event.upcoming? ? 'Attending' : 'Attended' %>: </strong></td>
             <td><%= event.attending %></td>
         </tr>
         <% end %>

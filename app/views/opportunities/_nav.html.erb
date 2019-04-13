@@ -1,0 +1,7 @@
+    <nav class="nav nav-pills flex-column flex-sm-row mb-4 c10">
+    <% all = (params[:collection].nil? || params[:collection] == 'all') ? 'pill active' : 'pill'%>
+        <%= link_to 'All', opportunities_path(collection: 'all'), class: all %>
+        <%= link_to 'Open', opportunities_path(collection: 'open'), class: params[:collection] == 'open' ? 'pill active' : 'pill' %>
+        <%= link_to 'Closed', opportunities_path(collection: 'closed'), class: params[:collection] == 'closed' ? 'pill active' : 'pill' %>
+        <%= link_to 'New', new_opportunity_path(collection: 'new'), class: params[:collection] == 'new' ? 'pill active' : 'pill' if can? :edit, Opportunity%>
+    </nav>

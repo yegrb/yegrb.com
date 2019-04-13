@@ -141,7 +141,19 @@ h4 {
   @extend %badge;
   @extend .badge-grey-1;
 }
+// PILLS
 
+.pill {
+  @extend .flex-sm-fill;
+  @extend .text-sm-center;
+  @extend .nav-link;
+  @extend .bg-grey-3;
+  @extend .mx-1;
+  &.active {
+    @extend .bg-red;
+  }
+
+}
 // FORMS AND AREAS
 
 .c6 {
@@ -208,6 +220,7 @@ body {
 
 .pagination,
 td {
+  margin-bottom: 20px;
 
   a,
   em,

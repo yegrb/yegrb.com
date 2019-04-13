@@ -5,7 +5,13 @@ class EventsController < ApplicationController
 
   # GET /events
   def index
-    @events = Event.list.paginate(page: params[:page], per_page: 5)
+    if params[:collection] == 'upcoming'
+      @events = Event.upcoming.paginate(page: params[:page], per_page: 10)
+    elsif params[:collection] == 'past'
+      @events = Event.past.paginate(page: params[:page], per_page: 10)
+    else
+      @events = Event.sorted.paginate(page: params[:page], per_page: 10)
+    end
     authorize! :read, Event
   end
 
