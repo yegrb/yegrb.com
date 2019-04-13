@@ -30,15 +30,18 @@ $theme-colors: ("red": hsl(0, 87%, 58%),
 "secondary": hsl(0, 0%, 27%),
 "info": hsl(204, 62%, 63%),
 "warning": hsl(37, 90%, 51%),
-"danger": hsl(6, 78%, 57%),
-"grey-1": hsl(210, 11%, 71%),
-"grey-2": hsl(0, 0%, 60%),
-"grey-4": hsl(0, 0%, 19%),
-"grey-5": hsl(0, 2%, 11%),
-"grey-6": hsl(0, 3%, 9%),
+"danger": hsl(0, 100%, 50%),
+"grey-1": hsl(210, 2%, 71%),
+"grey-2": hsl(210, 4%, 60%),
+"grey-3": hsl(210, 6%, 40%),
+"grey-4": hsl(210, 8%, 19%),
+"grey-5": hsl(210, 10%, 11%),
+"grey-6": hsl(210, 12%, 9%),
 );
 
 @import "bootstrap";
+
+// BUTTONS
 
 %small-button {
   @extend .btn;
@@ -47,39 +50,9 @@ $theme-colors: ("red": hsl(0, 87%, 58%),
   @extend .shadow;
 }
 
-%small-title {
-  @extend .text-red;
-  @extend .font-weight-bold;
-  @extend .text-uppercase;
-  font-family: $title-font;
-}
-
-%badge {
-  padding: 8px 20px;
-  margin: 0px 0px 0px 10px;
-  @extend .badge;
-  @extend .shadow;
-  @extend .float-right;
-}
-
-.green-badge {
-  @extend %badge;
-  @extend .badge-green;
-}
-
-.blue-badge {
-  @extend %badge;
-  @extend .badge-info;
-}
-
-.grey-badge {
-  @extend %badge;
-  @extend .badge-grey-1;
-}
-
-.sm-primary {
+.sm-red {
   @extend %small-button;
-  @extend .btn-primary;
+  @extend .btn-red;
 }
 
 .sm-secondary {
@@ -90,6 +63,11 @@ $theme-colors: ("red": hsl(0, 87%, 58%),
 .sm-warning {
   @extend %small-button;
   @extend .btn-warning;
+}
+
+.sm-info {
+  @extend %small-button;
+  @extend .btn-info;
 }
 
 .sm-danger {
@@ -107,32 +85,13 @@ $theme-colors: ("red": hsl(0, 87%, 58%),
   @extend .btn-secondary;
 }
 
-.dark-box {
-  @extend .container;
-  @extend .bg-grey-5;
-  @extend .rounded;
-  @extend .shadow;
-  @extend .border-right;
-  @extend .border-red;
-  @extend .p-4;
-  @extend .mt-4;
-  @extend .d-flex;
-  @extend .justify-content-between;
-  @extend %white-links;
+// TITLES
 
-  &:hover {
-    background-color: map_get($theme-colors, 'grey-6') !important;
-  }
-}
-
-.logo {
-  height: 20px;
-  width: 20px;
-  transform: rotate(90deg);
-}
-
-body {
-  font-family: $body-font;
+%small-title {
+  @extend .text-red;
+  @extend .font-weight-bold;
+  @extend .text-uppercase;
+  font-family: $title-font;
 }
 
 .navbar-brand {
@@ -159,6 +118,70 @@ h4 {
   font-size: 1.4rem;
 }
 
+// BADGES
+
+%badge {
+  padding: 4px 20px;
+  margin: 0px 0px 0px 10px;
+  @extend .badge;
+  @extend .float-right;
+}
+
+.green-badge {
+  @extend %badge;
+  @extend .badge-green;
+}
+
+.blue-badge {
+  @extend %badge;
+  @extend .badge-info;
+}
+
+.grey-badge {
+  @extend %badge;
+  @extend .badge-grey-1;
+}
+
+// FORMS AND AREAS
+
+.c6 {
+  @extend .col-lg-6;
+  @extend .offset-lg-3;
+}
+
+.c8 {
+  @extend .col-lg-8;
+  @extend .offset-lg-2;
+}
+
+.c10 {
+  @extend .col-lg-10;
+  @extend .offset-lg-1;
+}
+
+.dark-box {
+  @extend .container;
+  @extend .bg-grey-5;
+  @extend .rounded;
+  @extend .shadow;
+  @extend .border-right;
+  @extend .border-red;
+  @extend .p-4;
+  @extend .mt-4;
+  @extend .d-flex;
+  @extend .justify-content-between;
+  @extend %white-links;
+
+  &:hover {
+    background-color: map_get($theme-colors, 'grey-6') !important;
+  }
+}
+
+body {
+  font-family: $body-font;
+}
+
+
 html {
   position: relative;
   min-height: 100%;
@@ -183,6 +206,28 @@ body {
   // line-height: 40px;
 }
 
+.pagination,
+td {
+
+  a,
+  em,
+  .previous_page {
+    margin-right: 10px;
+  }
+}
+
+// IMAGES
+
+.logo {
+  height: 20px;
+  width: 20px;
+  transform: rotate(90deg);
+}
+
+.small-icon {
+  height: 100px;
+}
+
 a {
   color: map_get($theme-colors, 'grey-1');
 
@@ -196,10 +241,6 @@ td {
   strong {
     margin-right: 20px;
   }
-}
-
-.small-icon {
-  height: 100px;
 }
 
 %white-links {
@@ -219,15 +260,5 @@ td {
     h2 {
       color: map_get($theme-colors, 'white');
     }
-  }
-}
-
-.pagination,
-td {
-
-  a,
-  em,
-  .previous_page {
-    margin-right: 10px;
   }
 }

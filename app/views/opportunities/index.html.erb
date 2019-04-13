@@ -2,7 +2,10 @@
 
 <h1>Opportunities</h1>
 
-<%= will_paginate %>
-<%= render @opportunities, index:true %>
-<%= will_paginate %>
-<%= link_to 'New Opportunity', new_opportunity_path, class: 'sm-primary my-3' if can? :edit, Opportunity%>
+<%= link_to 'New Opportunity', new_opportunity_path, class: 'sm-info my-3' if can? :edit, Opportunity%>
+<div class="c10">
+    <%= will_paginate %>
+    <%= render @opportunities, index:true %>
+    <%= will_paginate %>
+</div>
+<%= link_to 'New Opportunity', new_opportunity_path, class: 'sm-info my-3' if can? :edit, Opportunity%>

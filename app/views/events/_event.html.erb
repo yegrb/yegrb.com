@@ -6,9 +6,16 @@
     <% else %>
     <h2><%= event.title %></h2>
     <% end %>
-    <small class="text-muted">
-        Posted by <%= event.user %> on <%= event.nice_created_at %>
-    </small>
+    <div class="d-flex justify-content-between">
+        <small class="text-muted">
+            Posted by <%= event.user %> on <%= event.nice_created_at %>
+        </small>
+        <% if event.upcoming? %>
+        <span class="blue-badge">Upcoming</span>
+        <% else %>
+        <span class="grey-badge">Past</span>
+        <% end %>
+    </div>
     <table>
         <tr>
             <td><strong>Time: </strong></td>
@@ -28,12 +35,14 @@
     <p class="mt-3">
         <%= index ? event.content.truncate(40) : event.content %>
     </p>
+
     <% if index %>
-    <%= link_to 'More Info', event, class: 'sm-primary' %>
-    <%= link_to 'RSVP', event.signup_link, class: 'sm-secondary' if event.signup_link.present? %>
+    <%= link_to 'More', event, class: 'sm-info' %>
+    <%= link_to 'RSVP', event.signup_link, class: 'sm-secondary' if event.can_rsvp? %>
     <% else %>
-    <%= link_to 'RSVP', event.signup_link, class: 'lg-primary' if event.signup_link.present? %>
+    <%= link_to 'RSVP', event.signup_link, class: 'lg-primary' if event.can_rsvp? %>
     <% end %>
+
     <% if can? :edit, event %>
     <%= link_to 'Edit', edit_event_path(event), class: 'sm-warning'  %>
     <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }, class: 'sm-danger' %>
