@@ -1,35 +1,54 @@
 <div class="container-fluid mb-5 mt-2">
+    <% if index %>
+    <%= link_to opportunity do %>
+    <h2 class="text-red"><%= opportunity.title %></h2>
+    <% end %>
+    <% else %>
     <h2><%= opportunity.title %></h2>
-    <small class="text-muted">
-        Posted by <%= opportunity.user %> on <%= opportunity.nice_created_at %>
-    </small>
-    <table>
-        <tr>
-            <td><strong>Company: </strong></td>
-            <td><%= opportunity.company %></td>
-        </tr>
-        <tr>
-            <td><strong>Contact: </strong></td>
-            <td><%= opportunity.contact %></td>
-        </tr>
-        <tr>
-            <td class="pr-3"><strong>Paid position? </strong></td>
-            <td><%= opportunity.paid_position %></td>
-        </tr>
-        <tr>
-            <td class="pr-3"><strong>Good Until: </strong></td>
-            <td><%= opportunity.nice_good_until %></td>
-        </tr>
-    </table>
+    <% end %>
+    <div class="d-flex justify-content-between">
+        <div>
+            <% if index %>
+            <h5><%= opportunity.company %></h3>
+                <% else %>
+                <table>
+                    <tr>
+                        <td><strong>Company: </strong></td>
+                        <td><%= opportunity.company %></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Contact: </strong></td>
+                        <td><%= mail_to opportunity.email, opportunity.contact %></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Posted by: </strong></td>
+                        <td><%= opportunity.user %></td>
+                    </tr>
+                </table>
+                <% end %>
+        </div>
+        <div>
+            <% if opportunity.paid_position %>
+            <div class="green-badge">PAID POSITION</div>
+            <% else %>
+            <div class="blue-badge">UNPAID POSITION</div>
+            <% end %>
+            <% if opportunity.closed? %>
+            <div class="grey-badge">POSITION CLOSED</div>
+            <% else %>
+            <div class="blue-badge">POSITION OPEN</div>
+            <% end %>
+        </div>
+    </div>
     <p>
 
     </p>
     <p><%= opportunity.content %></p>
-    <%= link_to 'Show', opportunity, class: 'sm-primary' if local_assigns[:index] %>
+    <%= link_to 'More Info', opportunity, class: 'sm-primary' if index %>
     <% if can? :edit, opportunity %>
-        <%= link_to 'Edit', edit_opportunity_path(opportunity), class: 'sm-warning' %>
-        <%= link_to 'Close', close_opportunity_path(opportunity), method: :post, class: 'sm-warning' unless opportunity.closed? %>
-        <%= link_to 'Destroy', opportunity, method: :delete, data: { confirm: 'Are you sure?' }, class: 'sm-danger' %>
+    <%= link_to 'Edit', edit_opportunity_path(opportunity), class: 'sm-warning' %>
+    <%= link_to 'Close', close_opportunity_path(opportunity), method: :post, class: 'sm-warning' unless opportunity.closed? %>
+    <%= link_to 'Destroy', opportunity, method: :delete, data: { confirm: 'Are you sure?' }, class: 'sm-danger' %>
     <% end %>
     </td>
 </div>

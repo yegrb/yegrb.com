@@ -1,39 +1,39 @@
 <div class="footer">
   <div class="container text-center text-md-left">
     <div class="row">
-      <div class="col-md-4 text-center">
-        <h3 class="mt-2 mb-2">Connect</h3>
-      <ul class="list-unstyled">
-        <li>
-          <%= link_to 'Events', events_path %>
-        </li>
-        <li>
-          <%= link_to 'Opportunities', opportunities_path %>
-        </li>
-        <li>
-          <%= link_to 'Get Involved', getinvolved_path %>
-        </li>
+      <div class="col-6 col-md-4 text-center">
+        <h4 class="mt-2 mb-2">Connect</h4>
+        <ul class="list-unstyled">
+          <li>
+            <%= link_to 'Events', events_path %>
+          </li>
+          <li>
+            <%= link_to 'Opportunities', opportunities_path %>
+          </li>
+          <li>
+            <%= link_to 'Get Involved', getinvolved_path %>
+          </li>
+        </ul>
       </div>
-      <div class="col-md-4 d-flex align-items-end justify-content-center mb-3">
-        <div class="footer-copyright text-center">
+      <div class="d-none d-md-flex col-md-4 align-items-end mb-3 justify-content-center">
+        <div class="footer-copyright text-center align-self-center">
           © 2019 Copyright: <%= link_to "YEGRB.com", root_path %>
         </div>
       </div>
-        <div class="col-md-4 text-center d-none d-md-inline-block">
-          <h3 class="mt-2 mb-2">Grow</h3>
-            <ul class="list-unstyled">
-            <li>
-              <%= link_to 'Videos', videos_path %>
-            </li>
-            <li>
-              <%= link_to 'Resources', resources_path %>
-            </li>
-            <li>
-              <%= link_to 'About Us', aboutus_path %>
-            </li>
-          </ul>
-        </div>
+      <div class="col-6 col-md-4 text-center">
+        <h4 class="mt-2 mb-2">Grow</h4>
+        <ul class="list-unstyled">
+          <li>
+            <%= link_to 'Videos', videos_path %>
+          </li>
+          <li>
+            <%= link_to 'Resources', resources_path %>
+          </li>
+          <li>
+            <%= link_to 'About Us', aboutus_path %>
+          </li>
+        </ul>
       </div>
     </div>
+  </div>
 </div>
-

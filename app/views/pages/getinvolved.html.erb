@@ -2,39 +2,43 @@
 <h1>Get Involved</h1>
 <div class="row">
     <div class="col-12 col-lg-6">
-        <%= link_to "https://devedmonton-invite.herokuapp.com/", class: 'white-links' do %>
-            <div class="black-box">
-                <div>
-                    <h3 class="text-orange">Find us on Slack</h3>
+        <%= link_to "https://devedmonton-invite.herokuapp.com/" do %>
+        <div class="dark-box">
+            <div>
+                <h3 class="text-red">Find us on Slack</h3>
+                <p>
                     Get an automated invite for the Dev Edmonton Society Slack, where hundreds of developers meet.
-                </div>
-                <div class="align-self-center ml-3">
-                    <%= image_tag "devedmonton.svg", class: 'small-icon' %>
-                </div>
+                </p>
             </div>
+            <div class="align-self-center ml-3">
+                <%= image_tag "devedmonton.svg", class: 'small-icon' %>
+            </div>
+        </div>
         <% end %>
     </div>
     <div class="col-12 col-lg-6">
-        <%= link_to "https://devedmonton-invite.herokuapp.com/", class: 'white-links' do %>
-            <div class="black-box">
-                <div>
-                    <h3 class="text-orange">Submit a topic</h3>
+        <%= link_to "https://devedmonton-invite.herokuapp.com/" do %>
+        <div class="dark-box">
+            <div>
+                <h3 class="text-red">Submit a topic</h3>
+                <p>
                     Suggest a topic or do a talk at one of our meetups using a quick airtable form.
-                </div>
-                <div class="align-self-center ml-3">
-                    <%= image_tag "airtable.svg", class: 'small-icon' %>
-                </div>
+                </p>
             </div>
+            <div class="align-self-center ml-3">
+                <%= image_tag "airtable.svg", class: 'small-icon' %>
+            </div>
+        </div>
         <% end %>
     </div>
     <div class="col-12">
-        <div class="black-box">
-            <h3 class="text-orange">Email Alan</h3>
-            Contact me at alan@alanvardy.com for all other comments, questions, or concerns!
+        <div class="dark-box">
+            <div>
+                <h3 class="text-red">Email Alan</h3>
+                <p>
+                    Contact me at <%= mail_to 'alan@alanvardy.com' %> for all other comments, questions, or concerns!
+                </p>
+            </div>
         </div>
     </div>
 </div>
-
-
-
-
