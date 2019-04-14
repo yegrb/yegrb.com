@@ -8,21 +8,20 @@
     <% end %>
     <div class="d-flex justify-content-between">
         <div>
+        <small class="text-muted">
+            Posted by <%= opportunity.user %> on <%= opportunity.nice_created_at %>
+        </small>
             <% if index %>
             <h5><%= opportunity.company %></h3>
                 <% else %>
                 <table>
                     <tr>
-                        <td><strong>Company: </strong></td>
+                        <td><strong><%= icon('fas', 'building', title: 'Company') %> </strong></td>
                         <td><%= opportunity.company %></td>
                     </tr>
                     <tr>
-                        <td><strong>Contact: </strong></td>
+                        <td><strong><%= icon('fas', 'envelope', title: 'Email') %> </strong></td>
                         <td><%= mail_to opportunity.email, opportunity.contact %></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Posted by: </strong></td>
-                        <td><%= opportunity.user %></td>
                     </tr>
                 </table>
                 <% end %>

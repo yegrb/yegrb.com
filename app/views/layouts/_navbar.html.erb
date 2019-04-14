@@ -35,7 +35,7 @@
       <% if current_user&.admin? %>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Manage Users
+            Users
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <%= link_to 'All users', users_path, class: 'dropdown-item' %>
@@ -44,7 +44,9 @@
         </li>
       <% end %>
       <% if current_user %>
-        <%= link_to "Logged in as #{current_user.first_name}", edit_user_path(current_user), class: 'nav-link mr-2' %>
+        <%= link_to edit_user_path(current_user), class: 'nav-link mr-2' do %>
+        <%= icon('fas', 'user', class: 'mr-1') %> <%= current_user.first_name %>
+        <% end %>
         <%= link_to 'Log out', logout_path, method: :delete, class: 'lg-secondary' %>
       <% else %>
         <%= link_to 'Log in', login_path, class: 'lg-secondary' %>

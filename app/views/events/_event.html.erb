@@ -18,16 +18,16 @@
     </div>
     <table>
         <tr>
-            <td><strong>Time: </strong></td>
+            <td><strong><%= icon('fas', 'clock', title: 'Time') %> </strong></td>
             <td><%= event.nice_time %></td>
         </tr>
         <tr>
-            <td class="pr-3"><strong>Location: </strong></td>
+            <td class="pr-3"><strong><%= icon('fas', 'map-marked', title: 'Location') %> </strong></td>
             <td><%= link_to event.location, event.google_map, target: '_blank' %></td>
         </tr>
         <% unless index %>
         <tr>
-            <td class="pr-3"><strong><%= event.upcoming? ? 'Attending' : 'Attended' %>: </strong></td>
+            <td class="pr-3"><strong><%= icon('fas', 'users', title: 'RSVPed') %> </strong></td>
             <td><%= event.attending %></td>
         </tr>
         <% end %>
