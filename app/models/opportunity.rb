@@ -17,9 +17,25 @@
 
 class Opportunity < ApplicationRecord
   GOOD_UNTIL_MAX_DAYS = 90
+  DATEPICKER_JS = {
+    format: 'YYYY-MM-DD',
+    showTodayButton: true,
+    icons: {
+      time: 'fa fa-clock-o',
+      date: 'fa fa-calendar',
+      up: 'fa fa-arrow-up',
+      down: 'fa fa-arrow-down',
+      previous: 'fa fa-chevron-left',
+      next: 'fa fa-chevron-right',
+      today: 'fa fa-calendar-check-o',
+      clear: 'fa fa-delete',
+      close: 'fa fa-times'
+    }
+  }
   belongs_to :user
 
-  validates :user_id, :title, :contact, :paid_position, presence: true
+  validates :user_id, :title, :contact, presence: true
+  validates :paid_position, inclusion: { in: [true, false] }
   validate :good_until_within_time
   validates :email, presence: true, length: { maximum: 50 },
                     format: { with: User::VALID_EMAIL_REGEX },

@@ -67,6 +67,8 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 gem 'simple_form'
+gem 'font-awesome-sass', '~> 5.8.1'
+gem 'effective_form_inputs'
 gem 'will_paginate'
 
 # Authentication and Authorization

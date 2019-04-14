@@ -1,4 +1,4 @@
-<div class="c6 mb-3">
+<div class="c6 my-5">
   <%= simple_form_for(@event) do |f| %>
     <%= f.error_notification %>
     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
@@ -6,10 +6,10 @@
     <div class="form-inputs">
       <%= f.association :user, as: :hidden%>
       <%= f.input :title %>
-      <%= f.input :time %>
-      <%= f.input :location %>
       <%= f.input :signup_link %>
-      <%= f.input :content %>
+      <%= f.input :location %>
+      <%= f.input :time, as: :effective_date_time_picker, input_js: Event::DATEPICKER_JS %>
+      <%= f.input :content, input_html: {rows: 20} %>
     </div>
 
     <div class="form-actions">
@@ -18,3 +18,4 @@
     </div>
   <% end %>
 </div>
+<%= render 'form_help' %>
