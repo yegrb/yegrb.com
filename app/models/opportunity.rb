@@ -17,6 +17,21 @@
 
 class Opportunity < ApplicationRecord
   GOOD_UNTIL_MAX_DAYS = 90
+  DATEPICKER_JS = {
+    format: 'YYYY-MM-DD',
+    showTodayButton: true,
+    icons: {
+      time: 'fa fa-clock-o',
+      date: 'fa fa-calendar',
+      up: 'fa fa-arrow-up',
+      down: 'fa fa-arrow-down',
+      previous: 'fa fa-chevron-left',
+      next: 'fa fa-chevron-right',
+      today: 'fa fa-calendar-check-o',
+      clear: 'fa fa-delete',
+      close: 'fa fa-times'
+    }
+  }
   belongs_to :user
 
   validates :user_id, :title, :contact, presence: true

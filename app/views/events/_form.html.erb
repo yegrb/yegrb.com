@@ -6,7 +6,7 @@
     <div class="form-inputs">
       <%= f.association :user, as: :hidden%>
       <%= f.input :title %>
-      <%= f.input :time %>
+      <%= f.input :time, as: :effective_date_time_picker, input_js: Event::DATEPICKER_JS %>
       <%= f.input :location %>
       <%= f.input :signup_link %>
       <%= f.input :content %>

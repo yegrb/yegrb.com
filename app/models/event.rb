@@ -18,6 +18,21 @@ class Event < ApplicationRecord
   belongs_to :user
 
   STARTUP_URL = %r{https://www.meetup.com/startupedmonton/events/([a-zA-Z0-9]+)}
+  DATEPICKER_JS = {
+    format: 'YYYY-MM-DD HH:mm',
+    showTodayButton: true,
+    icons: {
+      time: 'fa fa-clock-o',
+      date: 'fa fa-calendar',
+      up: 'fa fa-arrow-up',
+      down: 'fa fa-arrow-down',
+      previous: 'fa fa-chevron-left',
+      next: 'fa fa-chevron-right',
+      today: 'fa fa-calendar-check-o',
+      clear: 'fa fa-delete',
+      close: 'fa fa-times'
+    }
+  }
 
   validates :user_id, :content, presence: true
   validates :title, presence: true, length: { maximum: 30 }

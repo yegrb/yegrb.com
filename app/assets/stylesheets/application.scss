@@ -40,6 +40,10 @@ $theme-colors: ("red": hsl(0, 87%, 58%),
 );
 
 @import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+@import "effective_form_inputs";
+
 
 // BUTTONS
 
