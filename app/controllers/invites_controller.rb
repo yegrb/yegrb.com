@@ -5,7 +5,7 @@ class InvitesController < ApplicationController
   # GET /invites
   def index
     authorize! :read, Invite
-    @invites = Invite.all
+    @invites = Invite.paginate(page: params[:page], per_page: 10)
   end
 
   # GET /invites/new

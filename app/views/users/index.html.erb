@@ -1,35 +1,19 @@
 <% @page_title = 'Users' %>
 
 <h1>Users</h1>
-<div class="table-responsive">
+<div class="table-responsive c8">
+  <%= will_paginate %>
   <table class="table table-striped text-white">
     <thead>
       <tr>
-        <th scope="col">Email</th>
-        <th scope="col">First name</th>
-        <th scope="col">Last name</th>
-        <th scope="col">Role</th>
-        <th scope="col"></th>
+        <th scope="col">User</th>
+        <th scope="col">Actions</th>
       </tr>
     </thead>
-
     <tbody>
-      <% @users.each do |user| %>
-        <tr>
-          <th scope="row"><%= user.email %></th>
-          <td><%= user.first_name %></td>
-          <td><%= user.last_name %></td>
-          <td><%= user.role %></td>
-          <td>
-            <%= link_to 'Show', user, class: 'sm-info' %>
-            <%= link_to 'Edit', edit_user_path(user), class: 'sm-warning ml-1' %>
-            <%= link_to 'Destroy', user, method: :delete, class: 'sm-danger ml-1', data: { confirm: 'Are you sure?' } %>
-          </td>
-        </tr>
-      <% end %>
+      <%= render @users %>
     </tbody>
   </table>
+  <%= will_paginate %>
 </div>
 <br>
-
-<%= link_to 'New User', new_user_path, class: 'sm-info' %>

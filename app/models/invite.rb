@@ -41,6 +41,17 @@ class Invite < ApplicationRecord
   end
 
   def nice_expiry
-    expiry.strftime('%m/%d/%Y %I:%M%p UTC')
+    if expired?
+      "Expired: #{expiry.strftime('%d %b %Y')}"
+    else
+      "Expires: #{expiry.strftime('%d %b %Y')}"
+    end
   end
+
+  def nice_user
+    return 'Removed' unless user&.full_name
+
+    "Invited by: #{user&.full_name}"
+  end
+
 end
