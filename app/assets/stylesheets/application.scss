@@ -31,8 +31,8 @@ $theme-colors: ("red": hsl(0, 87%, 58%),
 "info": hsl(204, 62%, 63%),
 "warning": hsl(37, 90%, 51%),
 "danger": hsl(0, 100%, 50%),
-"grey-1": hsl(210, 2%, 71%),
-"grey-2": hsl(210, 4%, 60%),
+"grey-1": hsl(210, 22%, 71%),
+"grey-2": hsl(210, 35%, 60%),
 "grey-3": hsl(210, 6%, 40%),
 "grey-4": hsl(210, 8%, 19%),
 "grey-5": hsl(210, 10%, 11%),
@@ -141,10 +141,11 @@ h4 {
   @extend .badge-info;
 }
 
-.grey-badge {
+.white-badge {
   @extend %badge;
-  @extend .badge-grey-1;
+  @extend .badge-white;
 }
+
 // PILLS
 
 .pill {
@@ -153,11 +154,13 @@ h4 {
   @extend .nav-link;
   @extend .bg-grey-3;
   margin: 0 5px 10px 5px;
+
   &.active {
     @extend .bg-red;
   }
 
 }
+
 // FORMS AND AREAS
 
 .c6 {
