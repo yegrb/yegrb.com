@@ -11,28 +11,28 @@
   <div class="w-100 d-flex justify-content-between">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <%= link_to 'Events', events_path, class: 'nav-link' %>
+        <%= link_to 'Events', events_path, class: "nav-link #{'active' if @page_title == 'Events'}" %>
       </li>
       <li class="nav-item">
-        <%= link_to 'Videos', videos_path, class: 'nav-link'%>
+        <%= link_to 'Videos', videos_path, class: "nav-link #{'active' if @page_title == 'Videos'}"%>
       </li>
       <li class="nav-item">
-        <%= link_to 'Resources', resources_path, class: 'nav-link'%>
+        <%= link_to 'Resources', resources_path, class: "nav-link #{'active' if @page_title == 'Resources'}"%>
       </li>
       <li class="nav-item">
-        <%= link_to 'Opportunities', opportunities_path, class: 'nav-link' %>
+        <%= link_to 'Opportunities', opportunities_path, class: "nav-link #{'active' if @page_title == 'Opportunities'}" %>
       </li>
       <li class="nav-item">
-        <%= link_to 'About Us', aboutus_path, class: 'nav-link' %>
+        <%= link_to 'About Us', aboutus_path, class: "nav-link #{'active' if @page_title == 'About Us'}" %>
       </li>
       <li class="nav-item">
-        <%= link_to 'Get Involved', getinvolved_path, class: 'nav-link' %>
+        <%= link_to 'Get Involved', getinvolved_path, class: "nav-link #{'active' if @page_title == 'Get Involved'}" %>
       </li>
     </ul>
     <ul class="navbar-nav justify-content-lg-end">
       <% if current_user&.admin? %>
       <li class="nav-item dropdown rightalign mb-auto mb-lg-0">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+        <a class="nav-link <%= 'active' if (@page_title == 'Users' || @page_title == 'Invites') %> dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
           Users
         </a>
@@ -44,7 +44,7 @@
       <% end %>
       <% if current_user %>
       <li class="nav-item rightalign">
-        <%= link_to edit_user_path(current_user), class: 'nav-link' do %>
+        <%= link_to edit_user_path(current_user), class: "nav-link #{'active' if @page_title == 'Account'}" do %>
         <%= icon('fas', 'user', class: 'mr-1') %> <%= current_user.first_name %>
         <% end %>
       </li>
