@@ -1,23 +1,26 @@
-<div class="c6 my-5">
-  <%= simple_form_for(@opportunity) do |f| %>
-    <%= f.error_notification %>
-    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+<div class="row">
+  <div class="c6 mb-2">
+    <%= simple_form_for(@opportunity) do |f| %>
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-    <div class="form-inputs">
-      <%= f.input :user_id %>
-      <%= f.input :title %>
-      <%= f.input :company %>
-      <%= f.input :contact %>
-      <%= f.input :email %>
-      <%= f.input :paid_position, as: :radio_buttons %>
-      <%= f.input :content %>
-      <%= f.input :good_until, label: 'Close on this day', as: :effective_date_time_picker, input_js: Opportunity::DATEPICKER_JS %>
-    </div>
+      <div class="form-inputs">
+        <%= f.input :user_id, as: :hidden %>
+        <%= f.input :title %>
+        <%= f.input :company %>
+        <%= f.input :contact %>
+        <%= f.input :email %>
+        <%= f.input :good_until, label: 'Closing date', as: :effective_date_time_picker, input_js: Opportunity::DATEPICKER_JS %>
+        <%= f.input :paid_position, as: :radio_buttons %>
+        <%= f.input :content, input_html: {rows: 20} %>
+      </div>
 
-    <div class="form-actions">
-      <%= link_to 'Back', opportunities_path, class: 'lg-secondary'%>
-      <%= link_to 'Close', close_opportunity_path(@opportunity), method: :post, class: 'btn btn-warning' if @opportunity.persisted? %>
-      <%= f.button :submit, class: 'lg-primary'%>
-    </div>
-  <% end %>
+      <div class="form-actions">
+        <%= link_to 'Back', opportunities_path, class: 'lg-secondary'%>
+        <%= link_to 'Close', close_opportunity_path(@opportunity), method: :post, class: 'btn btn-warning' if @opportunity.persisted? %>
+        <%= f.button :submit, class: 'lg-primary'%>
+      </div>
+    <% end %>
+  </div>
+    <%= render 'form_help' %>
 </div>
