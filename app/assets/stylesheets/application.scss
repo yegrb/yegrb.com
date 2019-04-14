@@ -126,7 +126,7 @@ h4 {
 
 %badge {
   padding: 4px 20px;
-  margin: 0px 0px 0px 10px;
+  margin: 0px 0px 10px 10px;
   @extend .badge;
   @extend .float-right;
 }
@@ -152,7 +152,7 @@ h4 {
   @extend .text-sm-center;
   @extend .nav-link;
   @extend .bg-grey-3;
-  @extend .mx-1;
+  margin: 0 5px 10px 5px;
   &.active {
     @extend .bg-red;
   }
