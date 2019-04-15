@@ -166,11 +166,17 @@ h4 {
 .c6 {
   @extend .col-lg-6;
   @extend .offset-lg-3;
+  @extend .col-md-8;
+  @extend .offset-md-2;
+  @extend .col-sm-10;
+  @extend .offset-sm-1;
 }
 
 .c8 {
   @extend .col-lg-8;
   @extend .offset-lg-2;
+  @extend .col-md-10;
+  @extend .offset-md-1;
 }
 
 .c10 {
