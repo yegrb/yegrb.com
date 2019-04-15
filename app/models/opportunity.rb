@@ -68,7 +68,7 @@ class Opportunity < ApplicationRecord
 
   def close!
     return false if closed?
-    
+
     update(good_until: Time.zone.now)
   end
 end
