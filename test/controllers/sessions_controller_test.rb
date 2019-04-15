@@ -23,5 +23,16 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     log_in @user
     delete logout_path
     assert_redirected_to root_path
+    get user_path(@user)
+    assert_redirected_to root_path
+  end
+
+  test 'should remember user' do
+    log_in @user
+    assert_equal @user.id, session[:user_id]
+    session.delete(:user_id)
+    assert session[:user_id].nil?
+    get user_path(@user)
+    assert_response :success
   end
 end

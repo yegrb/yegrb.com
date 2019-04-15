@@ -240,6 +240,35 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to user_url(@user)
   end
 
+  test 'user can update name without updating password' do
+    log_in @user
+    old_password = @user.password_digest
+    patch user_url(@user), params: { user:
+    {
+      email: @user.email,
+      first_name: 'somethingelse',
+      last_name: @user.last_name
+    } }
+    @user.reload
+    assert_equal @user.first_name, 'somethingelse'
+    assert_redirected_to user_url(@user)
+  end
+
+  test 'user cannot submit if only password is filled in' do
+    log_in @user
+    old_password = @user.password_digest
+    patch user_url(@user), params: { user:
+    {
+      email: @user.email,
+      first_name: 'somethingelse',
+      last_name: @user.last_name,
+      password: 'partialpassword'
+    } }
+    @user.reload
+    assert_not_equal @user.first_name, 'somethingelse'
+    assert_response :success
+  end
+
   test 'should update user when admin' do
     log_in @admin
     patch user_url(@user), params: { user:
