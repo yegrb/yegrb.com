@@ -185,6 +185,7 @@ h4 {
 }
 
 .dark-box {
+  // Need to add d-flex class for flexbox features. Do not @extend
   @extend .container;
   @extend .bg-grey-5;
   @extend .rounded;
@@ -193,7 +194,6 @@ h4 {
   @extend .border-red;
   @extend .p-4;
   @extend .mt-4;
-  @extend .d-flex;
   @extend .justify-content-between;
   @extend %white-links;
 
@@ -279,7 +279,7 @@ td {
       color: map_get($theme-colors, 'grey-1');
     }
   }
-
+  
   div {
 
     p,

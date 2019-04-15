@@ -1,7 +1,7 @@
 <h4 class="mt-4">Latest Opportunity:</h4>
 <% if @opportunity.present? %>
 <%= link_to @opportunity do %>
-<div class="dark-box">
+<div class="dark-box d-flex">
     <div class="align-self-center text-center">
         <h2><%= @opportunity.title %></h2>
         <h4><%= @opportunity.company %></h4>

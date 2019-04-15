@@ -11,6 +11,7 @@ class PagesController < ApplicationController
   end
 
   def getinvolved
+    @message = Message.new
   end
 
   def resources

@@ -1,0 +1,22 @@
+<%= simple_form_for @message do |f| %>
+<%= f.error_notification %>
+<%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+<div class="form-inputs row">
+    <div class="col-12 col-xl-4">
+        <h3 class="text-red">Email Alan</h3>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <%= f.input :name %>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <%= f.input :email %>
+    </div>
+    <div class="col-12">
+        <%= f.input :body, as: :text, input_html: {rows: 8} %>
+    </div>
+</div>
+
+<div class="form-actions">
+    <%= f.submit 'Send Form', class: 'btn btn-red'%>
+</div>
+<% end %>

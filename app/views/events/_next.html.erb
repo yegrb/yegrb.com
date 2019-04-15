@@ -1,7 +1,7 @@
 <h4>Next Event:</h4>
 <% if @event.present? %>
 <%= link_to @event do %>
-<div class="dark-box">
+<div class="dark-box d-flex">
     <div class="align-self-center text-center">
         <h3><%= @event.time.strftime('%d') %></h3>
         <h4><%= @event.time.strftime('%^b') %></h4>
@@ -13,7 +13,7 @@
 <% end %>
 <% else %>
 <%= link_to events_path do %>
-<div class="dark-box">
+<div class="dark-box d-flex">
     <div class="text-center">
         <h2>Coming soon!</h2>
     </div>

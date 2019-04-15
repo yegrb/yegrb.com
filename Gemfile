@@ -76,8 +76,9 @@ gem 'cancancan', '~> 2.0'
 gem 'bcrypt'
 gem 'dotenv-rails', groups: %i[development test]
 
-# API
+# APIs
 gem 'rest-client'
+gem 'mailgun-ruby'
 
 # Testing
 gem 'factory_bot_rails', groups: %i[development test]

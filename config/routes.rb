@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   get '/signup', to: 'users#new'
 
+  post '/messages', to: 'messages#create'
+
   # static pages
   root 'pages#index'
   get '/aboutus', to: 'pages#aboutus'
