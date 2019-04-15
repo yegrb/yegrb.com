@@ -43,9 +43,12 @@ class Event < ApplicationRecord
 
   before_save :set_attributes
 
-  scope :sorted, -> { order('created_at DESC').includes(:user) }
-  scope :upcoming, -> { sorted.where('time > ?', Time.zone.now) }
-  scope :past, -> { sorted.where('time < ?', Time.zone.now) }
+  scope :upcoming, lambda {
+    where('time > ?', Time.zone.now).order('time ASC').includes(:user)
+  }
+  scope :past, lambda {
+    where('time < ?', Time.zone.now).order('time DESC').includes(:user)
+  }
 
   def set_attributes
     self.meetup_id ||= if signup_link.present? && STARTUP_URL =~ signup_link
