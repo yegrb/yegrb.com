@@ -11,6 +11,10 @@ class OpportunitiesControllerTest < ActionDispatch::IntegrationTest
   test 'should get index when not logged in' do
     get opportunities_url
     assert_response :success
+    get opportunities_url(collection: 'open')
+    assert_response :success
+    get opportunities_url(collection: 'closed')
+    assert_response :success
   end
 
   test "shouldn't get new when not logged in" do
@@ -210,6 +214,22 @@ class OpportunitiesControllerTest < ActionDispatch::IntegrationTest
     @opportunity.reload
     assert_equal 'NEWTITLE', @opportunity.title
     assert_redirected_to opportunity_url(@opportunity)
+  end
+
+  test 'shouldn\'t update opportunity when authoring user and good_until is greater than 90 days' do
+    log_in @opportunity.user
+    patch opportunity_url(@opportunity), params: { opportunity: {
+      company: @opportunity.company,
+      contact: @opportunity.contact,
+      content: @opportunity.content,
+      email: @opportunity.email,
+      good_until: 91.days.from_now,
+      paid_position: @opportunity.paid_position,
+      title: 'NEWTITLE'
+    } }
+    @opportunity.reload
+    assert_not_equal 'NEWTITLE', @opportunity.title
+    assert_response :success
   end
 
   test 'should update opportunity when editor' do

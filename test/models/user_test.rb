@@ -8,6 +8,7 @@
 #  first_name      :string
 #  last_name       :string
 #  password_digest :string
+#  remember_digest :string
 #  role            :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null

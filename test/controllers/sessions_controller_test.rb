@@ -20,6 +20,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should log out user' do
+    log_in @user
     delete logout_path
     assert_redirected_to root_path
   end
