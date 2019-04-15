@@ -31,12 +31,23 @@ class User < ApplicationRecord
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
+  with_options if: :password_required? do |user|
+    user.validates_presence_of :password
+    user.validates_presence_of :password_confirmation
+    user.validates_length_of :password, within: 4..40
+    user.validates_confirmation_of :password
+  end
 
   before_save :set_attributes
 
   def set_attributes
     self.email = email.downcase
   end
+
+  def password_required?
+    password_digest.blank? || !password.blank?
+  end
+
 
   def user?
     role == 'user'

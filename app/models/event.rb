@@ -34,7 +34,8 @@ class Event < ApplicationRecord
     }
   }
 
-  validates :user_id, :content, presence: true
+  validates :user_id, presence: true
+  validates :content, presence: true, length: { within: 20..1000 }
   validates :title, presence: true, length: { maximum: 30 }
   validates :time, :location,
             presence: { message: 'needs to be present if no Meetup link is entered' },

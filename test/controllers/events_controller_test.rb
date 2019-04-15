@@ -11,6 +11,10 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   test 'should get index when not logged in' do
     get events_url
     assert_response :success
+    get events_url(collection: 'upcoming')
+    assert_response :success
+    get events_url(collection: 'past')
+    assert_response :success
   end
 
   test "shouldn't get new when not logged in" do
@@ -200,6 +204,18 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     log_in @editor
     patch event_url(@event), params: { event: {
       content: @event.content,
+      location: @event.location,
+      signup_link: @event.signup_link,
+      time: @event.time,
+      title: @event.title
+    } }
+    assert_redirected_to event_url(@event)
+  end
+
+  test 'shouldn\'t update event when logged in as editor and no content' do
+    log_in @editor
+    patch event_url(@event), params: { event: {
+      content: 'bleh',
       location: @event.location,
       signup_link: @event.signup_link,
       time: @event.time,
