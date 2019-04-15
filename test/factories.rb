@@ -1,4 +1,8 @@
 FactoryBot.define do
+  factory :message do
+    
+  end
+
   factory :video do
     link { 'MyString' }
     title { 'MyString' }
