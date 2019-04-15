@@ -104,22 +104,22 @@ $theme-colors: ("red": hsl(0, 87%, 58%),
 
 h1 {
   font-family: $title-font;
-  margin-bottom: 2rem;
+  margin-bottom: 1.8rem;
 }
 
 h2 {
   font-family: $title-font;
-  // @extend %white-links;
+  font-size: 1.6rem;
 }
 
 h3 {
   @extend %small-title;
-  font-size: 1.8rem;
+  font-size: 1.3rem;
 }
 
 h4 {
   @extend %small-title;
-  font-size: 1.4rem;
+  font-size: 1.1rem;
 }
 
 // BADGES
