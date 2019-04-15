@@ -2,7 +2,7 @@
     <td scope="row">
         <p>
             <strong><%= user.first_name %> <%= user.last_name %></strong><br>
-            <%= user.email %>
+            <%= mail_to user.email %>
         </p>
         <p>
             Role: <%= user.role.capitalize %>
