@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
   before_action :authorize_edit, only: %i[edit update destroy]
-  before_action :authorize_read, only: [:show]
 
   # GET /users
   def index
@@ -10,7 +9,9 @@ class UsersController < ApplicationController
   end
 
   # GET /users/1
-  def show; end
+  def show
+    authorize! :read, @user
+  end
 
   # GET /users/new
   def new
@@ -72,10 +73,6 @@ class UsersController < ApplicationController
 
   def authorize_edit
     authorize! :edit, @user
-  end
-
-  def authorize_read
-    authorize! :read, @user
   end
 
   # Use callbacks to share common setup or constraints between actions.

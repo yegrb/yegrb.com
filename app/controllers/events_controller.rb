@@ -1,7 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :authorize_edit, only: [:edit, :update, :destroy]
-  before_action :authorize_read, only: [:show]
 
   # GET /events
   def index
@@ -17,6 +16,7 @@ class EventsController < ApplicationController
 
   # GET /events/1
   def show
+    authorize! :read, @event
   end
 
   # GET /events/new
@@ -71,10 +71,6 @@ class EventsController < ApplicationController
 
   def authorize_edit
     authorize! :edit, @event
-  end
-
-  def authorize_read
-    authorize! :read, @event
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
