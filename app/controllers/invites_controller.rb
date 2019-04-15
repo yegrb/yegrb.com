@@ -1,6 +1,5 @@
 class InvitesController < ApplicationController
   before_action :set_invite, only: [:show, :edit, :update, :destroy]
-  before_action :authorize_edit, only: [:destroy]
 
   # GET /invites
   def index
@@ -30,16 +29,13 @@ class InvitesController < ApplicationController
 
   # DELETE /invites/1
   def destroy
+    authorize! :edit, @invite
     @invite.destroy
     flash[:success] = 'Invite was successfully destroyed.'
     redirect_to invites_url
   end
 
   private
-
-  def authorize_edit
-    authorize! :edit, @invite
-  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_invite

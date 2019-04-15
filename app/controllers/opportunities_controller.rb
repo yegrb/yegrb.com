@@ -1,7 +1,6 @@
 class OpportunitiesController < ApplicationController
   before_action :set_opportunity, only: %i[show edit update destroy close]
-  before_action :authorize_edit, only: %i[edit update destroy]
-  before_action :authorize_read, only: [:show]
+  before_action :authorize_edit, only: %i[edit update destroy close]
 
   # GET /opportunities
   def index
@@ -16,7 +15,9 @@ class OpportunitiesController < ApplicationController
   end
 
   # GET /opportunities/1
-  def show; end
+  def show
+    authorize! :read, @opportunity
+  end
 
   # GET /opportunities/new
   def new
@@ -76,10 +77,6 @@ class OpportunitiesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def authorize_edit
     authorize! :edit, @opportunity
-  end
-
-  def authorize_read
-    authorize! :read, @opportunity
   end
 
   def set_opportunity

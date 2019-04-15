@@ -221,7 +221,8 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
       time: @event.time,
       title: @event.title
     } }
-    assert_redirected_to event_url(@event)
+    @event.reload
+    assert_not_equal @event.content, 'bleh'
   end
 
   test 'should update event when logged in as admin' do
