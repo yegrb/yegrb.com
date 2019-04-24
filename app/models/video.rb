@@ -4,6 +4,7 @@
 #
 #  id          :bigint(8)        not null, primary key
 #  recorded_at :date
+#  runtime     :integer
 #  slides_url  :string
 #  speaker     :string
 #  speaker_url :string
@@ -40,6 +41,7 @@ class Video < ApplicationRecord
 
   validates :user_id, presence: true
   validates :recorded_at, presence: true
+  validates :runtime, presence: true
   validates :speaker, presence: true
   validates :summary, presence: true, length: { within: 20..1000 }
   validates :title, presence: true, length: { maximum: 30 }
@@ -49,6 +51,10 @@ class Video < ApplicationRecord
   end
 
   def nice_created_at
+    created_at.strftime('%d %b %Y')
+  end
+
+  def nice_recorded_at
     created_at.strftime('%d %b %Y')
   end
 end

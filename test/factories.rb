@@ -10,6 +10,7 @@ FactoryBot.define do
     summary { Faker::Restaurant.review }
     title { Faker::Restaurant.name }
     video_url { Faker::Internet.url }
+    runtime { 120 }
     user
     event
   end

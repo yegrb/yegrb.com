@@ -4,6 +4,7 @@
 #
 #  id          :bigint(8)        not null, primary key
 #  recorded_at :date
+#  runtime     :integer
 #  slides_url  :string
 #  speaker     :string
 #  speaker_url :string

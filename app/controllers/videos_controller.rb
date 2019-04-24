@@ -79,7 +79,8 @@ class VideosController < ApplicationController
       :speaker,
       :summary,
       :event_id,
-      :user_id
+      :user_id,
+      :runtime
     )
   end
 end

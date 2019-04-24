@@ -8,6 +8,7 @@ namespace :db do
     Event.all.delete_all
     Invite.all.delete_all
     Opportunity.all.delete_all
+    Video.all.delete_all
 
     # Create admin
     puts "=== Creating Admin account: #{ENV['ADMIN_EMAIL']} ==="
@@ -118,9 +119,10 @@ namespace :db do
         slides_url: Faker::Internet.url,
         speaker_url: Faker::Internet.url,
         recorded_at: Time.now,
-        title: Faker::ChuckNorris.fact,
+        title: Faker::Superhero.name,
         speaker: Faker::Name.name,
         summary: Faker::Hipster.paragraph(2),
+        runtime: 120,
         user_id: userid,
         event_id: event.id
       )
