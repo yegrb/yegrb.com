@@ -128,22 +128,39 @@ h4 {
   padding: 4px 20px;
   margin: 0px 0px 10px 10px;
   @extend .badge;
-  @extend .float-right;
 }
 
-.green-badge {
+.green-badge-l {
   @extend %badge;
   @extend .badge-green;
 }
 
-.blue-badge {
+.green-badge-r {
+  @extend %badge;
+  @extend .badge-green;
+  @extend .float-right;
+}
+
+.blue-badge-l {
   @extend %badge;
   @extend .badge-info;
 }
 
-.white-badge {
+.blue-badge-r {
+  @extend %badge;
+  @extend .badge-info;
+  @extend .float-right;
+}
+
+.white-badge-l {
   @extend %badge;
   @extend .badge-white;
+}
+
+.white-badge-r {
+  @extend %badge;
+  @extend .badge-white;
+  @extend .float-right;
 }
 
 // PILLS
@@ -279,7 +296,7 @@ td {
       color: map_get($theme-colors, 'grey-1');
     }
   }
-  
+
   div {
 
     p,

@@ -5,7 +5,7 @@
 <%= render 'nav' %>
 <div class="c8">
     <%= will_paginate %>
-    <%= (render @events, index: true) || 'There is nothing to display!' %>
+    <%= (render @events, index: true) || (render 'layouts/nothing_here') %>
     <%= will_paginate %>
 </div>
 <%= render 'nav' %>
