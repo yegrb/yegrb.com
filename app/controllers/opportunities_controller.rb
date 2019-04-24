@@ -4,13 +4,13 @@ class OpportunitiesController < ApplicationController
 
   # GET /opportunities
   def index
-    if params[:collection] == 'open'
-      @opportunities = Opportunity.open.paginate(page: params[:page], per_page: 10)
-    elsif params[:collection] == 'closed'
-      @opportunities = Opportunity.closed.paginate(page: params[:page], per_page: 10)
-    else
-      @opportunities = Opportunity.sorted.paginate(page: params[:page], per_page: 10)
-    end
+    @opportunities = if params[:collection] == 'open'
+                       Opportunity.open.paginate(page: params[:page], per_page: 10)
+                     elsif params[:collection] == 'closed'
+                       Opportunity.closed.paginate(page: params[:page], per_page: 10)
+                     else
+                       Opportunity.sorted.paginate(page: params[:page], per_page: 10)
+                     end
     authorize! :read, Opportunity
   end
 
@@ -23,6 +23,7 @@ class OpportunitiesController < ApplicationController
   def new
     @opportunity = Opportunity.new
     @opportunity.user_id = current_user&.id
+    @opportunity.good_until = Time.now
     authorize! :edit, @opportunity
   end
 
