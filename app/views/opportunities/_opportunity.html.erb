@@ -12,7 +12,7 @@
             Posted by <%= opportunity.user %> on <%= opportunity.nice_created_at %>
         </small>
             <% if index %>
-            <h5><%= opportunity.company %></h3>
+            <h5><%= opportunity.company %></h5>
                 <% else %>
                 <table>
                     <tr>
@@ -49,5 +49,4 @@
     <%= link_to 'Close', close_opportunity_path(opportunity), method: :post, class: 'sm-warning' unless opportunity.closed? %>
     <%= link_to 'Destroy', opportunity, method: :delete, data: { confirm: 'Are you sure?' }, class: 'sm-danger' %>
     <% end %>
-    </td>
 </div>
