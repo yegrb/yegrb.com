@@ -32,6 +32,7 @@ class Ability
     user ||= User.new
     can :read, Event
     can :read, Opportunity
+    can :read, Video
     can :signup, User
     can :use, Invite
 
@@ -45,6 +46,7 @@ class Ability
 
     if user.editor?
       can :manage, Event
+      can :manage, Video
       can :manage, Opportunity
       can :read, User
       can :read_all, User
