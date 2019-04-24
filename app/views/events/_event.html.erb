@@ -38,9 +38,9 @@
 
     <% if index %>
     <%= link_to 'More', event, class: 'sm-info' %>
-    <%= link_to 'RSVP', event.signup_link, class: 'sm-secondary' if event.can_rsvp? %>
+    <%= link_to 'RSVP', event.url, class: 'sm-secondary' if event.can_rsvp? %>
     <% else %>
-    <%= link_to 'RSVP', event.signup_link, class: 'lg-primary' if event.can_rsvp? %>
+    <%= link_to 'RSVP', event.url, class: 'lg-primary' if event.can_rsvp? %>
     <% end %>
 
     <% if can? :edit, event %>

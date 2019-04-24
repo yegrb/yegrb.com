@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2019_04_15_065244) do
     t.string "title"
     t.datetime "time"
     t.string "location"
-    t.string "signup_link"
+    t.string "url"
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

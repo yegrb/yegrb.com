@@ -59,7 +59,7 @@ FactoryBot.define do
   factory :event, class: Event do
     user
     title { Faker::Restaurant.unique.name }
-    signup_link { 'https://www.meetup.com/startupedmonton/events/dgjjmqyzcbhb/' }
+    url { 'https://www.meetup.com/startupedmonton/events/dgjjmqyzcbhb/' }
     content { Faker::Restaurant.review }
   end
 
@@ -68,7 +68,7 @@ FactoryBot.define do
     title { Faker::Restaurant.unique.name }
     location { Faker::Address.full_address }
     time { Time.zone.now + 1.day }
-    signup_link { 'https://www.meetup.com/startupedmonton/events/dgjjmqyzcbhb/' }
+    url { 'https://www.meetup.com/startupedmonton/events/dgjjmqyzcbhb/' }
     content { Faker::Restaurant.review }
   end
 end

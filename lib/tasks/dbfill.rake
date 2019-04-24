@@ -45,7 +45,7 @@ namespace :db do
       Event.create!(
         content: Faker::Hipster.paragraph(5),
         location: Faker::Address.full_address,
-        signup_link: Faker::Internet.url,
+        url: Faker::Internet.url,
         time: Faker::Time.forward(x, :afternoon),
         title: Faker::Superhero.name,
         user_id: userid
@@ -55,25 +55,25 @@ namespace :db do
     puts '=== Creating Actual Events ==='
     Event.create!(
       content: Faker::Hipster.paragraph(5),
-      signup_link: 'https://www.meetup.com/startupedmonton/events/dgjjmqyzcbhb/',
+      url: 'https://www.meetup.com/startupedmonton/events/dgjjmqyzcbhb/',
       title: 'January Meetup',
       user_id: userid
     )
     Event.create!(
       content: Faker::Hipster.paragraph(5),
-      signup_link: 'https://www.meetup.com/startupedmonton/events/dgjjmqyzdbdb/',
+      url: 'https://www.meetup.com/startupedmonton/events/dgjjmqyzdbdb/',
       title: 'February Meetup',
       user_id: userid
     )
     Event.create!(
       content: Faker::Hipster.paragraph(5),
-      signup_link: 'https://www.meetup.com/startupedmonton/events/dgjjmqyzfbdb/',
+      url: 'https://www.meetup.com/startupedmonton/events/dgjjmqyzfbdb/',
       title: 'March Meetup',
       user_id: userid
     )
     Event.create!(
       content: Faker::Hipster.paragraph(5),
-      signup_link: 'https://www.meetup.com/startupedmonton/events/dgjjmqyzgbjb/',
+      url: 'https://www.meetup.com/startupedmonton/events/dgjjmqyzgbjb/',
       title: 'April Meetup',
       user_id: userid
     )
