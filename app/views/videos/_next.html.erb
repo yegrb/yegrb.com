@@ -1,0 +1,11 @@
+<% if @video.present? %>
+<h4 class="mt-4">Freshest Video</h4>
+<%= link_to @video do %>
+<div class="dark-box">
+    <div class="align-self-center text-center">
+        <h2><%= @video.title %></h2>
+        <h4><%= @video.speaker %></h4>
+    </div>
+</div>
+<% end %>
+<% end %>
