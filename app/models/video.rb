@@ -36,6 +36,8 @@ class Video < ApplicationRecord
     }
   }
 
+  scope :sorted, -> { order('recorded_at DESC').includes(:user, :event) }
+
   validates :user_id, presence: true
   validates :recorded_at, presence: true
   validates :speaker, presence: true

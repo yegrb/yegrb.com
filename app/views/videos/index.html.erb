@@ -1,5 +1,11 @@
+<% @page_title = 'Videos' %>
+
 <h1>Videos</h1>
 
-<%= render @videos, index: true %>
+<div class="c8">
+    <%= will_paginate %>
+    <%= (render @videos, index: true) || (render 'layouts/nothing_here') %>
+    <%= will_paginate %>
+</div>
 
-<%= link_to 'New Video', new_video_path %>
+<%= link_to 'New Video', new_video_path if can? :edit, Video %>

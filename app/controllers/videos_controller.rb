@@ -4,7 +4,7 @@ class VideosController < ApplicationController
 
   # GET /videos
   def index
-    @videos = Video.all
+    @videos = Video.sorted.paginate(page: params[:page], per_page: 10)
     authorize! :read, Video
   end
 
