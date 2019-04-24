@@ -3,9 +3,10 @@
 <h1>Videos</h1>
 
 <div class="c8">
+<%= link_to 'New Video', new_video_path, class: 'sm-red' if can? :edit, Video %>
     <%= will_paginate %>
     <%= (render @videos, index: true) || (render 'layouts/nothing_here') %>
     <%= will_paginate %>
+<%= link_to 'New Video', new_video_path, class: 'sm-red' if can? :edit, Video %>
 </div>
 
-<%= link_to 'New Video', new_video_path if can? :edit, Video %>
