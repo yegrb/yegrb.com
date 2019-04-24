@@ -16,6 +16,7 @@
 
 class Event < ApplicationRecord
   belongs_to :user
+  has_many :videos
 
   STARTUP_URL = %r{https://www.meetup.com/startupedmonton/events/([a-zA-Z0-9]+)}
   DATEPICKER_JS = {
@@ -63,6 +64,10 @@ class Event < ApplicationRecord
 
   def nice_created_at
     created_at.strftime('%d %b %Y')
+  end
+
+  def to_s
+    title
   end
 
   def nice_time

@@ -18,6 +18,7 @@ class User < ApplicationRecord
   has_many :events
   has_many :opportunities
   has_many :invites
+  has_many :videos
   has_secure_password
 
   attr_accessor :remember_token
