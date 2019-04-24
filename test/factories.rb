@@ -1,13 +1,17 @@
 FactoryBot.define do
   factory :message do
-    
   end
 
   factory :video do
-    link { 'MyString' }
-    title { 'MyString' }
-    speaker { 'MyString' }
-    user_id { 1 }
+    recorded_at { Time.now }
+    slides_url { Faker::Internet.url }
+    speaker { Faker::Name.name }
+    speaker_url { Faker::Internet.url }
+    summary { Faker::Restaurant.review }
+    title { Faker::Restaurant.name }
+    video_url { Faker::Internet.url }
+    user
+    event
   end
 
   factory :invite do
@@ -24,8 +28,8 @@ FactoryBot.define do
   end
 
   factory :user, class: User do
-    first_name { Faker::Name.unique.first_name }
-    last_name  { Faker::Name.unique.last_name }
+    first_name { Faker::Name.first_name }
+    last_name  { Faker::Name.last_name }
     role  { 'user' }
     email { Faker::Internet.unique.email }
     password { Faker::Internet.password(10, 20) }
