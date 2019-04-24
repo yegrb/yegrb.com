@@ -21,7 +21,7 @@ class Video < ApplicationRecord
   belongs_to :event
 
   DATEPICKER_JS = {
-    format: 'YYYY-MM-DD HH:mm',
+    format: 'YYYY-MM-DD',
     showTodayButton: true,
     icons: {
       time: 'fa fa-clock-o',
@@ -43,7 +43,6 @@ class Video < ApplicationRecord
   validates :speaker, presence: true
   validates :summary, presence: true, length: { within: 20..1000 }
   validates :title, presence: true, length: { maximum: 30 }
-
 
   def to_s
     "#{title}, #{speaker}"
