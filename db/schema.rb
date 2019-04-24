@@ -64,10 +64,15 @@ ActiveRecord::Schema.define(version: 2019_04_15_065244) do
   end
 
   create_table "videos", force: :cascade do |t|
-    t.string "link"
+    t.string "video_url"
+    t.string "slides_url"
+    t.string "speaker_url"
+    t.date "recorded_at"
     t.string "title"
     t.string "speaker"
+    t.text "summary"
     t.integer "user_id"
+    t.integer "event_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
