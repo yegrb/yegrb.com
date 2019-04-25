@@ -8,6 +8,7 @@ namespace :db do
     Event.all.delete_all
     Invite.all.delete_all
     Opportunity.all.delete_all
+    Video.all.delete_all
 
     # Create admin
     puts "=== Creating Admin account: #{ENV['ADMIN_EMAIL']} ==="
@@ -30,7 +31,7 @@ namespace :db do
         first_name: Faker::Name.unique.first_name,
         last_name: Faker::Name.unique.last_name,
         password: 'password',
-        # password_comfirmation: 'password',
+        password_confirmation: 'password',
         role: role
       )
     end
@@ -41,14 +42,13 @@ namespace :db do
     # Create events
     10.times do |x|
       puts "=== Creating Event ##{x + 1} ==="
-      # role = (x % 10).zero? ? 'editor' : 'user'
 
       Event.create!(
         content: Faker::Hipster.paragraph(5),
         location: Faker::Address.full_address,
-        signup_link: Faker::Internet.url,
+        url: Faker::Internet.url,
         time: Faker::Time.forward(x, :afternoon),
-        title: Faker::Superhero.name + ' Meetup',
+        title: Faker::Superhero.name,
         user_id: userid
       )
     end
@@ -56,25 +56,25 @@ namespace :db do
     puts '=== Creating Actual Events ==='
     Event.create!(
       content: Faker::Hipster.paragraph(5),
-      signup_link: 'https://www.meetup.com/startupedmonton/events/dgjjmqyzcbhb/',
+      url: 'https://www.meetup.com/startupedmonton/events/dgjjmqyzcbhb/',
       title: 'January Meetup',
       user_id: userid
     )
     Event.create!(
       content: Faker::Hipster.paragraph(5),
-      signup_link: 'https://www.meetup.com/startupedmonton/events/dgjjmqyzdbdb/',
+      url: 'https://www.meetup.com/startupedmonton/events/dgjjmqyzdbdb/',
       title: 'February Meetup',
       user_id: userid
     )
     Event.create!(
       content: Faker::Hipster.paragraph(5),
-      signup_link: 'https://www.meetup.com/startupedmonton/events/dgjjmqyzfbdb/',
+      url: 'https://www.meetup.com/startupedmonton/events/dgjjmqyzfbdb/',
       title: 'March Meetup',
       user_id: userid
     )
     Event.create!(
       content: Faker::Hipster.paragraph(5),
-      signup_link: 'https://www.meetup.com/startupedmonton/events/dgjjmqyzgbjb/',
+      url: 'https://www.meetup.com/startupedmonton/events/dgjjmqyzgbjb/',
       title: 'April Meetup',
       user_id: userid
     )
@@ -106,6 +106,25 @@ namespace :db do
         email: Faker::Internet.email,
         role: role,
         user_id: userid
+      )
+    end
+
+    # Create Videos
+    count = 0
+    Event.all.each do |event|
+      count += 1
+      puts "=== Creating Video ##{count} ==="
+      Video.create!(
+        video_url: Faker::Internet.url,
+        slides_url: Faker::Internet.url,
+        speaker_url: Faker::Internet.url,
+        recorded_at: Time.now,
+        title: Faker::Superhero.name,
+        speaker: Faker::Name.name,
+        summary: Faker::Hipster.paragraph(2),
+        runtime: 120,
+        user_id: userid,
+        event_id: event.id
       )
     end
   end

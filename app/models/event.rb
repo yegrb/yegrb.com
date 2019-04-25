@@ -2,20 +2,21 @@
 #
 # Table name: events
 #
-#  id          :bigint(8)        not null, primary key
-#  content     :text
-#  location    :string
-#  signup_link :string
-#  time        :datetime
-#  title       :string
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  meetup_id   :string
-#  user_id     :integer
+#  id         :bigint(8)        not null, primary key
+#  content    :text
+#  location   :string
+#  time       :datetime
+#  title      :string
+#  url        :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  meetup_id  :string
+#  user_id    :integer
 #
 
 class Event < ApplicationRecord
   belongs_to :user
+  has_many :videos
 
   STARTUP_URL = %r{https://www.meetup.com/startupedmonton/events/([a-zA-Z0-9]+)}
   DATEPICKER_JS = {
@@ -39,7 +40,7 @@ class Event < ApplicationRecord
   validates :title, presence: true, length: { maximum: 30 }
   validates :time, :location,
             presence: { message: 'needs to be present if no Meetup link is entered' },
-            unless: proc { |e| e.signup_link.present? && STARTUP_URL =~ e.signup_link }
+            unless: proc { |e| e.url.present? && STARTUP_URL =~ e.url }
 
   before_save :set_attributes
 
@@ -52,8 +53,8 @@ class Event < ApplicationRecord
   }
 
   def set_attributes
-    self.meetup_id ||= if signup_link.present? && STARTUP_URL =~ signup_link
-                         STARTUP_URL.match(signup_link)[1]
+    self.meetup_id ||= if url.present? && STARTUP_URL =~ url
+                         STARTUP_URL.match(url)[1]
                        end
     return if meetup_id.blank?
 
@@ -63,6 +64,10 @@ class Event < ApplicationRecord
 
   def nice_created_at
     created_at.strftime('%d %b %Y')
+  end
+
+  def to_s
+    title
   end
 
   def nice_time
@@ -85,7 +90,7 @@ class Event < ApplicationRecord
   end
 
   def can_rsvp?
-    upcoming? && signup_link.present?
+    upcoming? && url.present?
   end
 
   def past?

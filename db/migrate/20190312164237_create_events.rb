@@ -5,7 +5,7 @@ class CreateEvents < ActiveRecord::Migration[5.2]
       t.string :title
       t.datetime :time
       t.string :location
-      t.string :signup_link
+      t.string :url
       t.text :content
 
       t.timestamps

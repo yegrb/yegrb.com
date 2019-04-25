@@ -1,16 +1,16 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
-  before_action :authorize_edit, only: [:edit, :update, :destroy]
+  before_action :set_event, only: %i[show edit update destroy]
+  before_action :authorize_edit, only: %i[edit update destroy]
 
   # GET /events
   def index
-    if params[:collection] == 'upcoming'
-      @events = Event.upcoming.paginate(page: params[:page], per_page: 10)
-    elsif params[:collection] == 'past'
-      @events = Event.past.paginate(page: params[:page], per_page: 10)
-    else
-      @events = Event.sorted.paginate(page: params[:page], per_page: 10)
-    end
+    @events = if params[:collection] == 'upcoming'
+                Event.upcoming.paginate(page: params[:page], per_page: 10)
+              elsif params[:collection] == 'past'
+                Event.past.paginate(page: params[:page], per_page: 10)
+              else
+                Event.sorted.paginate(page: params[:page], per_page: 10)
+              end
     authorize! :read, Event
   end
 
@@ -27,8 +27,7 @@ class EventsController < ApplicationController
   end
 
   # GET /events/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /events
   def create
@@ -75,6 +74,6 @@ class EventsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def event_params
-    params.require(:event).permit(:user_id, :title, :time, :location, :signup_link, :content)
+    params.require(:event).permit(:user_id, :title, :time, :location, :url, :content)
   end
 end

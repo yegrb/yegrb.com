@@ -45,7 +45,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
       post events_url, params: { event: {
         content: @event.content,
         location: @event.location,
-        signup_link: @event.signup_link,
+        url: @event.url,
         time: @event.time,
         title: @event.title
       } }
@@ -61,7 +61,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
       post events_url, params: { event: {
         content: @event.content,
         location: @event.location,
-        signup_link: @event.signup_link,
+        url: @event.url,
         time: @event.time,
         title: @event.title
       } }
@@ -87,7 +87,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     assert_no_difference('Event.count') do
       post events_url, params: { event: {
         content: @event.content,
-        signup_link: Faker::Internet.url,
+        url: Faker::Internet.url,
         time: @event.time,
         title: @event.title
       } }
@@ -99,18 +99,18 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     assert_difference('Event.count') do
       post events_url, params: { event: {
         content: @event.content,
-        signup_link: 'https://www.meetup.com/startupedmonton/events/dgjjmqyzfbdb/',
+        url: 'https://www.meetup.com/startupedmonton/events/dgjjmqyzfbdb/',
         time: @event.time,
         title: @event.title
       } }
     end
   end
 
-  test 'should set meetup_id when signup_link is entered' do
+  test 'should set meetup_id when url is entered' do
     log_in @editor
     post events_url, params: { event: {
       content: @event.content,
-      signup_link: 'https://www.meetup.com/startupedmonton/events/dgjjmqyzfbdb/',
+      url: 'https://www.meetup.com/startupedmonton/events/dgjjmqyzfbdb/',
       time: @event.time,
       title: @event.title
     } }
@@ -123,7 +123,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
       post events_url, params: { event: {
         content: @event.content,
         location: @event.location,
-        signup_link: @event.signup_link,
+        url: @event.url,
         time: @event.time,
         title: @event.title
       } }
@@ -138,7 +138,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
       post events_url, params: { event: {
         content: @event.content,
         location: @event.location,
-        signup_link: @event.signup_link,
+        url: @event.url,
         time: @event.time,
         title: @event.title
       } }
@@ -179,7 +179,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     patch event_url(@event), params: { event: {
       content: @event.content,
       location: @event.location,
-      signup_link: @event.signup_link,
+      url: @event.url,
       time: @event.time,
       title: @event.title
     } }
@@ -192,7 +192,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     patch event_url(@event), params: { event: {
       content: @event.content,
       location: @event.location,
-      signup_link: @event.signup_link,
+      url: @event.url,
       time: @event.time,
       title: @event.title
     } }
@@ -205,7 +205,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     patch event_url(@event), params: { event: {
       content: @event.content,
       location: @event.location,
-      signup_link: @event.signup_link,
+      url: @event.url,
       time: @event.time,
       title: @event.title
     } }
@@ -217,7 +217,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     patch event_url(@event), params: { event: {
       content: 'bleh',
       location: @event.location,
-      signup_link: @event.signup_link,
+      url: @event.url,
       time: @event.time,
       title: @event.title
     } }
@@ -230,7 +230,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     patch event_url(@event), params: { event: {
       content: @event.content,
       location: @event.location,
-      signup_link: @event.signup_link,
+      url: @event.url,
       time: @event.time,
       title: @event.title
     } }

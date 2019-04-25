@@ -1,74 +1,86 @@
 class VideosController < ApplicationController
-  before_action :set_video, only: [:show, :edit, :update, :destroy]
+  before_action :set_video, only: %i[show edit update destroy]
+  before_action :authorize_edit, only: %i[edit update destroy]
 
   # GET /videos
-  # GET /videos.json
   def index
-    @videos = Video.all
+    @videos = Video.sorted.paginate(page: params[:page], per_page: 10)
+    authorize! :read, Video
   end
 
   # GET /videos/1
-  # GET /videos/1.json
   def show
+    authorize! :read, @video
   end
 
   # GET /videos/new
   def new
     @video = Video.new
+    authorize! :edit, @video
   end
 
   # GET /videos/1/edit
   def edit
+    authorize! :edit, @video
   end
 
   # POST /videos
-  # POST /videos.json
   def create
     @video = Video.new(video_params)
+    @video.user_id = current_user&.id
+    authorize! :create, @video
 
-    respond_to do |format|
-      if @video.save
-        format.html { redirect_to @video, notice: 'Video was successfully created.' }
-        format.json { render :show, status: :created, location: @video }
-      else
-        format.html { render :new }
-        format.json { render json: @video.errors, status: :unprocessable_entity }
-      end
+    if @video.save
+      flash[:success] = 'Video was successfully created.'
+      redirect_to @video
+    else
+      flash[:danger] = 'Unable to create video'
+      render :new
     end
   end
 
   # PATCH/PUT /videos/1
-  # PATCH/PUT /videos/1.json
   def update
-    respond_to do |format|
-      if @video.update(video_params)
-        format.html { redirect_to @video, notice: 'Video was successfully updated.' }
-        format.json { render :show, status: :ok, location: @video }
-      else
-        format.html { render :edit }
-        format.json { render json: @video.errors, status: :unprocessable_entity }
-      end
+    if @video.update(video_params)
+      flash[:success] = 'Video was successfully updated.'
+      redirect_to @video
+    else
+      flash.now[:danger] = 'Unable to update video.'
+      render :edit
     end
   end
 
   # DELETE /videos/1
-  # DELETE /videos/1.json
   def destroy
     @video.destroy
-    respond_to do |format|
-      format.html { redirect_to videos_url, notice: 'Video was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    flash[:success] = 'Event was successfully destroyed.'
+    redirect_to videos_url
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_video
-      @video = Video.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def video_params
-      params.require(:video).permit(:link, :title, :speaker, :user_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_video
+    @video = Video.find(params[:id])
+  end
+
+  def authorize_edit
+    authorize! :edit, @video
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def video_params
+    params.require(:video).permit(
+      :video_url,
+      :slides_url,
+      :speaker_url,
+      :recorded_at,
+      :title,
+      :speaker,
+      :summary,
+      :event_id,
+      :user_id,
+      :runtime
+    )
+  end
 end

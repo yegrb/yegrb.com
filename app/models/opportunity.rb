@@ -34,7 +34,7 @@ class Opportunity < ApplicationRecord
   }
   belongs_to :user
 
-  validates :user_id, :title, :contact, presence: true
+  validates :user_id, :title, :contact, :good_until, presence: true
   validates :paid_position, inclusion: { in: [true, false] }
   validate :good_until_within_time
   validates :email, presence: true, length: { maximum: 50 },
