@@ -32,20 +32,20 @@
             <td class="pr-3"><%= icon('fas', 'stopwatch', title: 'Runtime') %></td>
             <td><%= video.runtime %> minutes</td>
           </tr>
-          <% if video.slides_url %>
-            <tr>
-              <td><%= icon('fas', 'clock', title: 'Time') %> Slides </td>
-              <td><%= link_to 'view', video.slides_url, target: '_blank' %></td>
-            </tr>
-          <% end %>
           <tr>
-            <td class="pr-3"><%= icon('fas', 'map-marked', title: 'Recorded at') %></td>
+            <td class="pr-3"><%= icon('fas', 'clock', title: 'Recorded at') %></td>
             <td><%= video.nice_recorded_at %></td>
           </tr>
           <% if @video.event %>
             <tr>
-              <td class="pr-3"><%= icon('fas', 'hands-helping', title: 'Location') %></td>
+              <td class="pr-3"><%= icon('fas', 'map-marked', title: 'Location') %></td>
               <td><%= link_to video.event.title, video.event %></td>
+            </tr>
+          <% end %>
+          <% if video.slides_url %>
+            <tr>
+              <td><%= icon('fas', 'file', title: 'Slides') %></td>
+              <td><%= link_to 'View Slides', video.slides_url, target: '_blank' %></td>
             </tr>
           <% end %>
         </table>
