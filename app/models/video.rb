@@ -55,10 +55,10 @@ class Video < ApplicationRecord
   end
 
   def nice_recorded_at
-    created_at.strftime('%d %b %Y')
+    recorded_at.strftime('%d %b %Y')
   end
 
   def youtube_id
-    video_url.scan(/v=(.+)/).flatten.first
+    video_url.scan(/v=([^&]+)/).flatten.first
   end
 end
