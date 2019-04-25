@@ -46,7 +46,8 @@ class VideosControllerTest < ActionDispatch::IntegrationTest
         summary: @video.summary,
         video_url: @video.video_url,
         event_id: @video.event_id,
-        title: @video.title
+        title: @video.title,
+        runtime: 120
       } }
     end
 
@@ -65,7 +66,8 @@ class VideosControllerTest < ActionDispatch::IntegrationTest
         summary: @video.summary,
         video_url: @video.video_url,
         event_id: @video.event_id,
-        title: @video.title
+        title: @video.title,
+        runtime: 120
       } }
     end
 
@@ -84,7 +86,8 @@ class VideosControllerTest < ActionDispatch::IntegrationTest
         summary: @video.summary,
         video_url: @video.video_url,
         event_id: @video.event_id,
-        title: @video.title
+        title: @video.title,
+        runtime: 120
       } }
     end
 
@@ -102,7 +105,8 @@ class VideosControllerTest < ActionDispatch::IntegrationTest
         summary: @video.summary,
         video_url: @video.video_url,
         event_id: @video.event_id,
-        title: @video.title
+        title: @video.title,
+        runtime: 120
       } }
     end
 
@@ -146,7 +150,8 @@ class VideosControllerTest < ActionDispatch::IntegrationTest
       summary: @video.summary,
       video_url: @video.video_url,
       event_id: @video.event_id,
-      title: @video.title
+      title: @video.title,
+      runtime: 120
     } }
     # assert_redirected_to video_url(@video)
     assert_redirected_to root_path
@@ -162,7 +167,8 @@ class VideosControllerTest < ActionDispatch::IntegrationTest
       summary: @video.summary,
       video_url: @video.video_url,
       event_id: @video.event_id,
-      title: @video.title
+      title: @video.title,
+      runtime: 120
     } }
     # assert_redirected_to video_url(@video)
     assert_redirected_to root_path
@@ -178,7 +184,8 @@ class VideosControllerTest < ActionDispatch::IntegrationTest
       summary: @video.summary,
       video_url: @video.video_url,
       event_id: @video.event_id,
-      title: @video.title
+      title: @video.title,
+      runtime: 120
     } }
     assert_redirected_to video_url(@video)
   end
@@ -190,10 +197,11 @@ class VideosControllerTest < ActionDispatch::IntegrationTest
       slides_url: @video.slides_url,
       speaker: @video.speaker,
       speaker_url: @video.speaker_url,
-      summary: '',
+      summary: @video.summary,
       video_url: @video.video_url,
       event_id: @video.event_id,
-      title: @video.title
+      title: @video.title,
+      runtime: 120
     } }
     @video.reload
     assert_not_equal @video.summary, ''
@@ -209,7 +217,8 @@ class VideosControllerTest < ActionDispatch::IntegrationTest
       summary: @video.summary,
       video_url: @video.video_url,
       event_id: @video.event_id,
-      title: @video.title
+      title: @video.title,
+      runtime: 120
     } }
     assert_redirected_to video_url(@video)
   end
