@@ -1,9 +1,6 @@
 <% @page_title = 'Invites' %>
-
 <h1>Invites</h1>
-
 <%= link_to 'New Invite', new_invite_path, class: 'sm-info' %>
-
 <div class="table-responsive c8">
   <%= will_paginate %>
   <table class="table table-striped text-white">
@@ -13,14 +10,11 @@
         <th scope="col">Actions</th>
       </tr>
     </thead>
-
     <tbody>
       <%= render @invites %>
     </tbody>
   </table>
   <%= will_paginate %>
 </div>
-
 <br>
-
 <%= link_to 'New Invite', new_invite_path, class: 'sm-info' %>

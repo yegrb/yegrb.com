@@ -1,16 +1,13 @@
 <% @page_title = 'Invites' %>
-
 <h1>New Invite</h1>
-
 <%= simple_form_for(@invite) do |f| %>
-<div class="form-inputs">
-  <%= f.input :name %>
-  <%= f.input :email %>
-  <%= f.input :role, collection: User::ROLES, as: :radio_buttons %>
-</div>
-
-<div class="form-actions">
-  <%= link_to 'Back', invites_path, class: 'lg-secondary' %>
-  <%= f.button :submit, class: 'lg-primary' %>
-</div>
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :email %>
+    <%= f.input :role, collection: User::ROLES, as: :radio_buttons %>
+  </div>
+  <div class="form-actions">
+    <%= link_to 'Back', invites_path, class: 'lg-secondary' %>
+    <%= f.button :submit, class: 'lg-primary' %>
+  </div>
 <% end %>

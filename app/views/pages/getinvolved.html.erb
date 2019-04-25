@@ -1,39 +1,39 @@
 <% @page_title = 'Get Involved' %>
 <h1>Get Involved</h1>
 <div class="row">
-    <div class="col-12 col-lg-6">
-        <%= link_to "https://devedmonton-invite.herokuapp.com/", target: '_blank' do %>
-        <div class="dark-box d-flex">
-            <div>
-                <h3 class="text-red">Find us on Slack</h3>
-                <p>
-                    Get an automated invite for the Dev Edmonton Society Slack, where hundreds of developers meet.
-                </p>
-            </div>
-            <div class="align-self-center ml-3">
-                <%= image_tag "devedmonton.svg", class: 'small-icon' %>
-            </div>
+  <div class="col-12 col-lg-6">
+    <%= link_to "https://devedmonton-invite.herokuapp.com/", target: '_blank' do %>
+      <div class="dark-box d-flex">
+        <div>
+          <h3 class="text-red">Find us on Slack</h3>
+          <p>
+            Get an automated invite for the Dev Edmonton Society Slack, where hundreds of developers meet.
+          </p>
         </div>
-        <% end %>
-    </div>
-    <div class="col-sm-10 offset-sm-1 col-lg-6 offset-lg-0">
-        <%= link_to "https://airtable.com/shrhvr3vpGV2Q0W68", target: '_blank' do %>
-        <div class="dark-box d-flex">
-            <div>
-                <h3 class="text-red">Submit a topic</h3>
-                <p>
-                    Suggest a topic or do a talk at one of our meetups using a quick airtable form.
-                </p>
-            </div>
-            <div class="align-self-center ml-3">
-                <%= image_tag "airtable.svg", class: 'small-icon' %>
-            </div>
+        <div class="align-self-center ml-3">
+          <%= image_tag "devedmonton.svg", class: 'small-icon' %>
         </div>
-        <% end %>
-    </div>
-    <div class="col-12">
-        <div class="dark-box">
-            <%= render 'messages/form' %>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-sm-10 offset-sm-1 col-lg-6 offset-lg-0">
+    <%= link_to "https://airtable.com/shrhvr3vpGV2Q0W68", target: '_blank' do %>
+      <div class="dark-box d-flex">
+        <div>
+          <h3 class="text-red">Submit a topic</h3>
+          <p>
+            Suggest a topic or do a talk at one of our meetups using a quick airtable form.
+          </p>
         </div>
+        <div class="align-self-center ml-3">
+          <%= image_tag "airtable.svg", class: 'small-icon' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-12">
+    <div class="dark-box">
+      <%= render 'messages/form' %>
     </div>
+  </div>
 </div>

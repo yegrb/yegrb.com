@@ -1,51 +1,49 @@
 <div class="mb-5 mt-2">
-    <% if index %>
+  <% if index %>
     <%= link_to event do %>
-    <h2 class="text-red"><%= event.title %></h2>
+      <h2 class="text-red"><%= event.title %></h2>
     <% end %>
-    <% else %>
+  <% else %>
     <h2><%= event.title %></h2>
+  <% end %>
+  <div class="d-flex justify-content-between">
+    <small class="text-muted">
+      Posted by <%= event.user %> on <%= event.nice_created_at %>
+    </small>
+    <% if event.upcoming? %>
+      <span class="blue-badge-r">Upcoming</span>
+    <% else %>
+      <span class="white-badge-r">Past</span>
     <% end %>
-    <div class="d-flex justify-content-between">
-        <small class="text-muted">
-            Posted by <%= event.user %> on <%= event.nice_created_at %>
-        </small>
-        <% if event.upcoming? %>
-        <span class="blue-badge-r">Upcoming</span>
-        <% else %>
-        <span class="white-badge-r">Past</span>
-        <% end %>
-    </div>
-    <table>
-        <tr>
-            <td><strong><%= icon('fas', 'clock', title: 'Time') %> </strong></td>
-            <td><%= event.nice_time %></td>
-        </tr>
-        <tr>
-            <td class="pr-3"><strong><%= icon('fas', 'map-marked', title: 'Location') %> </strong></td>
-            <td><%= link_to event.location, event.google_map, target: '_blank' %></td>
-        </tr>
-        <% unless index %>
-        <tr>
-            <td class="pr-3"><strong><%= icon('fas', 'users', title: 'RSVPed') %> </strong></td>
-            <td><%= event.attending %></td>
-        </tr>
-        <% end %>
-    </table>
-    <p class="mt-3">
-        <%= index ? event.content.truncate(40) : event.content %>
-    </p>
-
-    <% if index %>
+  </div>
+  <table>
+    <tr>
+      <td><strong><%= icon('fas', 'clock', title: 'Time') %> </strong></td>
+      <td><%= event.nice_time %></td>
+    </tr>
+    <tr>
+      <td class="pr-3"><strong><%= icon('fas', 'map-marked', title: 'Location') %> </strong></td>
+      <td><%= link_to event.location, event.google_map, target: '_blank' %></td>
+    </tr>
+    <% unless index %>
+      <tr>
+        <td class="pr-3"><strong><%= icon('fas', 'users', title: 'RSVPed') %> </strong></td>
+        <td><%= event.attending %></td>
+      </tr>
+    <% end %>
+  </table>
+  <p class="mt-3">
+    <%= index ? event.content.truncate(40) : event.content %>
+  </p>
+  <% if index %>
     <%= link_to 'More', event, class: 'sm-info' %>
     <%= link_to 'RSVP', event.url, class: 'sm-secondary' if event.can_rsvp? %>
-    <% else %>
+  <% else %>
     <%= link_to 'RSVP', event.url, class: 'lg-primary' if event.can_rsvp? %>
-    <% end %>
-
-    <% if can? :edit, event %>
+  <% end %>
+  <% if can? :edit, event %>
     <%= link_to 'Edit', edit_event_path(event), class: 'sm-warning'  %>
     <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }, class: 'sm-danger' %>
-    <% end %>
-    </td>
+  <% end %>
+</td>
 </div>

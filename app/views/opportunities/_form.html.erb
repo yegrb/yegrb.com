@@ -3,7 +3,6 @@
     <%= simple_form_for(@opportunity) do |f| %>
       <%= f.error_notification %>
       <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
       <div class="form-inputs">
         <%= f.input :user_id, as: :hidden %>
         <%= f.input :title %>
@@ -14,7 +13,6 @@
         <%= f.input :paid_position, as: :radio_buttons %>
         <%= f.input :content, input_html: {rows: 20} %>
       </div>
-
       <div class="form-actions">
         <%= link_to 'Back', opportunities_path, class: 'lg-secondary'%>
         <%= link_to 'Close', close_opportunity_path(@opportunity), method: :post, class: 'btn btn-warning' if @opportunity.persisted? %>
@@ -22,5 +20,5 @@
       </div>
     <% end %>
   </div>
-    <%= render 'form_help' %>
+  <%= render 'form_help' %>
 </div>

@@ -44,7 +44,7 @@ class Video < ApplicationRecord
   validates :runtime, presence: true
   validates :speaker, presence: true
   validates :summary, presence: true, length: { within: 20..1000 }
-  validates :title, presence: true, length: { maximum: 30 }
+  validates :title, presence: true, length: { maximum: 50 }
 
   def to_s
     "#{title}, #{speaker}"
@@ -56,5 +56,9 @@ class Video < ApplicationRecord
 
   def nice_recorded_at
     created_at.strftime('%d %b %Y')
+  end
+
+  def youtube_id
+    video_url.scan(/v=(.+)/).flatten.first
   end
 end

@@ -1,52 +1,51 @@
 <div class="container-fluid mb-5 mt-5">
-    <% if index %>
+  <% if index %>
     <%= link_to opportunity do %>
-    <h2 class="text-red"><%= opportunity.title %></h2>
+      <h2 class="text-red"><%= opportunity.title %></h2>
     <% end %>
-    <% else %>
+  <% else %>
     <h2><%= opportunity.title %></h2>
-    <% end %>
-    <div class="d-flex justify-content-between">
-        <div>
-        <small class="text-muted">
-            Posted by <%= opportunity.user %> on <%= opportunity.nice_created_at %>
-        </small>
-            <% if index %>
-            <h5><%= opportunity.company %></h5>
-                <% else %>
-                <table>
-                    <tr>
-                        <td><strong><%= icon('fas', 'building', title: 'Company') %> </strong></td>
-                        <td><%= opportunity.company %></td>
-                    </tr>
-                    <tr>
-                        <td><strong><%= icon('fas', 'envelope', title: 'Email') %> </strong></td>
-                        <td><%= mail_to opportunity.email, opportunity.contact %></td>
-                    </tr>
-                </table>
-                <% end %>
-        </div>
-        <div>
-            <% if opportunity.paid_position %>
-            <div class="green-badge-r">PAID</div>
-            <% else %>
-            <div class="blue-badge-r">UNPAID</div>
-            <% end %>
-            <% if opportunity.closed? %>
-            <div class="white-badge-r">CLOSED</div>
-            <% else %>
-            <div class="blue-badge-r">OPEN</div>
-            <% end %>
-        </div>
+  <% end %>
+  <div class="d-flex justify-content-between">
+    <div>
+      <small class="text-muted">
+        Posted by <%= opportunity.user %> on <%= opportunity.nice_created_at %>
+      </small>
+      <% if index %>
+        <h5><%= opportunity.company %></h5>
+      <% else %>
+        <table>
+          <tr>
+            <td><strong><%= icon('fas', 'building', title: 'Company') %> </strong></td>
+            <td><%= opportunity.company %></td>
+          </tr>
+          <tr>
+            <td><strong><%= icon('fas', 'envelope', title: 'Email') %> </strong></td>
+            <td><%= mail_to opportunity.email, opportunity.contact %></td>
+          </tr>
+        </table>
+      <% end %>
     </div>
-    <p>
-
-    </p>
-    <p><%= opportunity.content %></p>
-    <%= link_to 'More', opportunity, class: 'sm-info' if index %>
-    <% if can? :edit, opportunity %>
+    <div>
+      <% if opportunity.paid_position %>
+        <div class="green-badge-r">PAID</div>
+      <% else %>
+        <div class="blue-badge-r">UNPAID</div>
+      <% end %>
+      <% if opportunity.closed? %>
+        <div class="white-badge-r">CLOSED</div>
+      <% else %>
+        <div class="blue-badge-r">OPEN</div>
+      <% end %>
+    </div>
+  </div>
+  <p>
+  </p>
+  <p><%= opportunity.content %></p>
+  <%= link_to 'More', opportunity, class: 'sm-info' if index %>
+  <% if can? :edit, opportunity %>
     <%= link_to 'Edit', edit_opportunity_path(opportunity), class: 'sm-warning' %>
     <%= link_to 'Close', close_opportunity_path(opportunity), method: :post, class: 'sm-warning' unless opportunity.closed? %>
     <%= link_to 'Destroy', opportunity, method: :delete, data: { confirm: 'Are you sure?' }, class: 'sm-danger' %>
-    <% end %>
+  <% end %>
 </div>

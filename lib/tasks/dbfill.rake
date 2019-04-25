@@ -22,7 +22,7 @@ namespace :db do
     )
 
     # Create users
-    50.times do |x|
+    10.times do |x|
       puts "=== Creating User ##{x + 1} ==="
       role = (x % 10).zero? ? 'editor' : 'user'
 
@@ -40,18 +40,6 @@ namespace :db do
     userid = User.first.id
 
     # Create events
-    10.times do |x|
-      puts "=== Creating Event ##{x + 1} ==="
-
-      Event.create!(
-        content: Faker::Hipster.paragraph(5),
-        location: Faker::Address.full_address,
-        url: Faker::Internet.url,
-        time: Faker::Time.forward(x, :afternoon),
-        title: Faker::Superhero.name,
-        user_id: userid
-      )
-    end
 
     puts '=== Creating Actual Events ==='
     Event.create!(
@@ -76,6 +64,12 @@ namespace :db do
       content: Faker::Hipster.paragraph(5),
       url: 'https://www.meetup.com/startupedmonton/events/dgjjmqyzgbjb/',
       title: 'April Meetup',
+      user_id: userid
+    )
+    Event.create!(
+      content: Faker::Hipster.paragraph(5),
+      url: 'https://www.meetup.com/startupedmonton/events/dgjjmqyzhbgb/',
+      title: 'May Meetup',
       user_id: userid
     )
 
@@ -110,22 +104,18 @@ namespace :db do
     end
 
     # Create Videos
-    count = 0
-    Event.all.each do |event|
-      count += 1
-      puts "=== Creating Video ##{count} ==="
-      Video.create!(
-        video_url: Faker::Internet.url,
-        slides_url: Faker::Internet.url,
-        speaker_url: Faker::Internet.url,
-        recorded_at: Time.now,
-        title: Faker::Superhero.name,
-        speaker: Faker::Name.name,
-        summary: Faker::Hipster.paragraph(2),
-        runtime: 120,
-        user_id: userid,
-        event_id: event.id
-      )
-    end
+    puts '=== Creating Actual Videos ==='
+    Video.create!(
+      video_url: 'https://www.youtube.com/watch?v=xJsJ4paVVA8',
+      slides_url: 'https://docs.google.com/presentation/d/1eag2L_QUMy3uiPpeQZN6zvy-prCwbHfVR1o0g_GaOFY/edit?usp=sharing',
+      speaker_url: 'https://www.alanvardy.com',
+      title: 'Deploying a Rails App with Dokku and Digital Ocean',
+      speaker: 'Alan Vardy',
+      summary: Faker::Hipster.paragraph(2),
+      runtime: 33,
+      user_id: userid,
+      event_id: Event.find_by(title: 'February Meetup').id,
+      recorded_at: '2019-02-06'
+    )
   end
 end

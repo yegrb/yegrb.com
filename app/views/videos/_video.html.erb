@@ -1,56 +1,63 @@
 <div class="mb-5 mt-2">
-    <% if index %>
+  <% if index %>
     <%= link_to video do %>
-    <h2 class="text-red"><%= video.title %></h2>
+      <h2 class="text-red"><%= video.title %></h2>
     <% end %>
     <h5><%= video.speaker %></h5>
-    <% else %>
+    <p class="mt-3">
+      <%= video.summary.truncate(40) %>
+    </p>
+  <% else %>
     <h2><%= video.title %></h2>
     <small class="text-muted">
-        Posted by <%= video.user %> on <%= video.nice_created_at %>
+      Posted by <%= video.user %> on <%= video.nice_created_at %>
     </small>
-    <p class="text-center m-5">
-        <%= video.video_url %>
-    </p>
-    <table>
-        <tr>
+    <div class="embed-responsive embed-responsive-16by9 mb-3 shadow">
+      <iframe class="embed-responsive-item"
+            src='https://www.youtube.com/embed/<%= video.youtube_id %>?rel=0&autoplay=0' frameborder='0'
+            allowfullscreen></iframe>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <table>
+          <tr>
             <td class="pr-3"><strong><%= icon('fas', 'map-marked', title: 'Location') %> Speaker </strong></td>
             <% if video.speaker_url %>
-            <td><%= link_to video.speaker, video.speaker_url %></td>
+              <td><%= link_to video.speaker, video.speaker_url, target: '_blank' %></td>
             <% else %>
-            <td><%= video.speaker %></td>
+              <td><%= video.speaker %></td>
             <% end %>
-        </tr>
-        <tr>
+          </tr>
+          <tr>
             <td class="pr-3"><strong><%= icon('fas', 'map-marked', title: 'Location') %> Runtime </strong></td>
             <td><%= video.runtime %> minutes</td>
-        </tr>
-        <% if video.slides_url %>
-        <tr>
-            <td><strong><%= icon('fas', 'clock', title: 'Time') %> Slides </strong></td>
-            <td><%= link_to video.slides_url, video.slides_url %></td>
-        </tr>
-        <% end %>
-        <tr>
+          </tr>
+          <% if video.slides_url %>
+            <tr>
+              <td><strong><%= icon('fas', 'clock', title: 'Time') %> Slides </strong></td>
+              <td><%= link_to 'view', video.slides_url, target: '_blank' %></td>
+            </tr>
+          <% end %>
+          <tr>
             <td class="pr-3"><strong><%= icon('fas', 'map-marked', title: 'Location') %> Recorded at </strong></td>
             <td><%= video.nice_recorded_at %></td>
-        </tr>
-        <% if @video.event %>
+          </tr>
+          <% if @video.event %>
             <tr>
-                <td class="pr-3"><strong><%= icon('fas', 'map-marked', title: 'Location') %> Event </strong></td>
-                <td><%= link_to video.event.title, video.event %></td>
+              <td class="pr-3"><strong><%= icon('fas', 'map-marked', title: 'Location') %> Event </strong></td>
+              <td><%= link_to video.event.title, video.event %></td>
             </tr>
-        <% end %>
-    </table>
-    <% end %>
-
-    <p class="mt-3">
-        <%= index ? video.summary.truncate(40) : video.summary %>
-    </p>
-
-    <%= link_to 'Watch', video, class: 'sm-info' if index %>
-    <% if can? :edit, video %>
+          <% end %>
+        </table>
+      </div>
+      <div class="col-lg-6">
+        <%= video.summary %>
+      </div>
+    </div>
+  <% end %>
+  <%= link_to 'Watch', video, class: 'sm-info' if index %>
+  <% if can? :edit, video %>
     <%= link_to 'Edit', edit_video_path(video), class: 'sm-warning' %>
     <%= link_to 'Destroy', video, method: :delete, data: { confirm: 'Are you sure?' }, class: 'sm-danger' %>
-    <% end %>
+  <% end %>
 </div>
