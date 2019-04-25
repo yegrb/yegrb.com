@@ -25,11 +25,19 @@
       <td class="pr-3"><strong><%= icon('fas', 'map-marked', title: 'Location') %> </strong></td>
       <td><%= link_to event.location, event.google_map, target: '_blank' %></td>
     </tr>
-    <% unless index %>
+    <% if !index %>
       <tr>
         <td class="pr-3"><strong><%= icon('fas', 'users', title: 'RSVPed') %> </strong></td>
         <td><%= event.attending %></td>
       </tr>
+      <% event.videos.each do |v| %>
+        <tr>
+          <td><strong><%= icon('fa', 'play-circle', title: 'Video') %> </strong></td>
+          <td>
+            <%= link_to v, v %>
+          </td>
+        </tr>
+      <% end %>
     <% end %>
   </table>
   <p class="mt-3">
