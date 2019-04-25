@@ -2,7 +2,6 @@
   <%= simple_form_for(@video) do |f| %>
     <%= f.error_notification %>
     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
     <div class="form-inputs">
       <%= f.association :user, as: :hidden%>
       <%= f.association :event %>
@@ -15,7 +14,6 @@
       <%= f.input :recorded_at, as: :effective_date_time_picker, input_js: Video::DATEPICKER_JS %>
       <%= f.input :summary, input_html: {rows: 20} %>
     </div>
-
     <div class="form-actions">
       <%= link_to 'Back', videos_path, class: 'lg-secondary'%>
       <%= f.button :submit, class: 'lg-primary'%>

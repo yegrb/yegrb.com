@@ -1,17 +1,17 @@
 <tr>
-    <td scope="row">
-        <p>
-            <strong><%= user.first_name %> <%= user.last_name %></strong><br>
-            <%= mail_to user.email %>
-        </p>
-        <p>
-            Role: <%= user.role.capitalize %>
-        </p>
-    </td>
-    <td>
-        <%= link_to 'Show', user, class: 'sm-info' %>
-        <%= link_to 'Edit', edit_user_path(user), class: 'sm-warning ml-1' %>
-        <%= link_to 'Destroy', user, method: :delete, class: 'sm-danger ml-1', data: { confirm: 'Are you sure?' } %>
-    </td>
+  <td scope="row">
+    <p>
+      <strong><%= user.first_name %> <%= user.last_name %></strong><br>
+      <%= mail_to user.email %>
+    </p>
+    <p>
+      Role: <%= user.role.capitalize %>
+    </p>
+  </td>
+  <td>
+    <%= link_to 'Show', user, class: 'sm-info' %>
+    <%= link_to 'Edit', edit_user_path(user), class: 'sm-warning ml-1' %>
+    <%= link_to 'Destroy', user, method: :delete, class: 'sm-danger ml-1', data: { confirm: 'Are you sure?' } %>
+  </td>
 </tr>
 </tr>

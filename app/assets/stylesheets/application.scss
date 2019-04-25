@@ -48,264 +48,266 @@ $theme-colors: ("red": hsl(0, 87%, 58%),
 // BUTTONS
 
 %small-button {
-  @extend .btn;
-  @extend .btn-sm;
-  @extend .my-3;
-  @extend .shadow;
+    @extend .btn;
+    @extend .btn-sm;
+    @extend .my-3;
+    @extend .shadow;
 }
 
 .sm-red {
-  @extend %small-button;
-  @extend .btn-red;
+    @extend %small-button;
+    @extend .btn-red;
 }
 
 .sm-secondary {
-  @extend %small-button;
-  @extend .btn-secondary;
+    @extend %small-button;
+    @extend .btn-secondary;
 }
 
 .sm-warning {
-  @extend %small-button;
-  @extend .btn-warning;
+    @extend %small-button;
+    @extend .btn-warning;
 }
 
 .sm-info {
-  @extend %small-button;
-  @extend .btn-info;
+    @extend %small-button;
+    @extend .btn-info;
 }
 
 .sm-danger {
-  @extend %small-button;
-  @extend .btn-danger;
+    @extend %small-button;
+    @extend .btn-danger;
 }
 
 .lg-primary {
-  @extend .btn;
-  @extend .btn-primary;
+    @extend .btn;
+    @extend .btn-primary;
 }
 
 .lg-secondary {
-  @extend .btn;
-  @extend .btn-secondary;
+    @extend .btn;
+    @extend .btn-secondary;
 }
 
 // TITLES
 
 %small-title {
-  @extend .text-red;
-  @extend .font-weight-bold;
-  @extend .text-uppercase;
-  font-family: $title-font;
+    @extend .text-red;
+    @extend .font-weight-bold;
+    @extend .text-uppercase;
+    font-family: $title-font;
 }
 
 .navbar-brand {
-  font-family: $title-font;
+    font-family: $title-font;
 }
 
 h1 {
-  font-family: $title-font;
-  margin-bottom: 1.8rem;
+    font-family: $title-font;
+    margin-bottom: 1.8rem;
 }
 
 h2 {
-  font-family: $title-font;
-  font-size: 1.6rem;
+    font-family: $title-font;
+    font-size: 1.6rem;
 }
 
 h3 {
-  @extend %small-title;
-  font-size: 1.3rem;
+    @extend %small-title;
+    font-size: 1.3rem;
 }
 
 h4 {
-  @extend %small-title;
-  font-size: 1.1rem;
+    @extend %small-title;
+    font-size: 1.1rem;
 }
 
 // BADGES
 
 %badge {
-  padding: 4px 20px;
-  margin: 0px 0px 10px 10px;
-  @extend .badge;
+    padding: 6px 20px 4px 20px;
+    margin: 0px 0px 10px 10px;
+    @extend .badge;
 }
 
 .green-badge-l {
-  @extend %badge;
-  @extend .badge-green;
+    @extend %badge;
+    @extend .badge-green;
 }
 
 .green-badge-r {
-  @extend %badge;
-  @extend .badge-green;
-  @extend .float-right;
+    @extend %badge;
+    @extend .badge-green;
+    @extend .float-right;
 }
 
 .blue-badge-l {
-  @extend %badge;
-  @extend .badge-info;
+    @extend %badge;
+    @extend .badge-info;
 }
 
 .blue-badge-r {
-  @extend %badge;
-  @extend .badge-info;
-  @extend .float-right;
+    @extend %badge;
+    @extend .badge-info;
+    @extend .float-right;
 }
 
 .white-badge-l {
-  @extend %badge;
-  @extend .badge-white;
+    @extend %badge;
+    @extend .badge-white;
 }
 
 .white-badge-r {
-  @extend %badge;
-  @extend .badge-white;
-  @extend .float-right;
+    @extend %badge;
+    @extend .badge-white;
+    @extend .float-right;
 }
 
 // PILLS
 
 .pill {
-  @extend .flex-sm-fill;
-  @extend .text-sm-center;
-  @extend .nav-link;
-  @extend .bg-grey-3;
-  margin: 0 5px 10px 5px;
+    @extend .flex-sm-fill;
+    @extend .text-sm-center;
+    @extend .nav-link;
+    @extend .bg-grey-3;
+    margin: 0 5px 10px 5px;
 
-  &.active {
-    @extend .bg-red;
-  }
+    &.active {
+        @extend .bg-red;
+    }
 
 }
 
 // FORMS AND AREAS
 
 .c6 {
-  @extend .col-lg-6;
-  @extend .offset-lg-3;
-  @extend .col-md-8;
-  @extend .offset-md-2;
-  @extend .col-sm-10;
-  @extend .offset-sm-1;
+    @extend .col-lg-6;
+    @extend .offset-lg-3;
+    @extend .col-md-8;
+    @extend .offset-md-2;
+    @extend .col-sm-10;
+    @extend .offset-sm-1;
 }
 
 .c8 {
-  @extend .col-lg-8;
-  @extend .offset-lg-2;
-  @extend .col-md-10;
-  @extend .offset-md-1;
+    @extend .col-lg-8;
+    @extend .offset-lg-2;
+    @extend .col-md-10;
+    @extend .offset-md-1;
 }
 
 .c10 {
-  @extend .col-lg-10;
-  @extend .offset-lg-1;
+    @extend .col-lg-10;
+    @extend .offset-lg-1;
 }
 
 .dark-box {
-  // Need to add d-flex class for flexbox features. Do not @extend
-  @extend .container;
-  @extend .bg-grey-5;
-  @extend .rounded;
-  @extend .shadow;
-  @extend .border-right;
-  @extend .border-red;
-  @extend .p-4;
-  @extend .mb-4;
-  @extend .justify-content-between;
-  @extend %white-links;
+    // Need to add d-flex class for flexbox features. Do not @extend
+    @extend .container;
+    @extend .bg-grey-5;
+    @extend .rounded;
+    @extend .shadow;
+    @extend .border-right;
+    @extend .border-red;
+    @extend .p-4;
+    @extend .mb-4;
+    @extend .justify-content-between;
+    @extend %white-links;
 
-  &:hover {
-    background-color: map_get($theme-colors, 'grey-6') !important;
-  }
+    &:hover {
+        background-color: map_get($theme-colors, 'grey-6') !important;
+    }
 }
 
 body {
-  font-family: $body-font;
+    font-family: $body-font;
 }
 
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 $footerheight: 150px;
 
 body {
-  margin-bottom: $footerheight + 50px;
-  /* Margin bottom by footer height */
+    margin-bottom: $footerheight + 50px;
+    /* Margin bottom by footer height */
 }
 
 .footer {
-  @extend .bg-grey-5;
-  @extend .pt-3;
-  @extend %white-links;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: $footerheight;
-  // /* Set the fixed height of the footer here */
-  // line-height: 40px;
+    @extend .bg-grey-5;
+    @extend .pt-3;
+    @extend %white-links;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: $footerheight;
+    // /* Set the fixed height of the footer here */
+    // line-height: 40px;
 }
 
 .pagination,
 td {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 
-  a,
-  em,
-  .previous_page {
-    margin-right: 10px;
-  }
+    a,
+    em,
+    .previous_page {
+        margin-right: 10px;
+    }
 }
+
+
 
 // IMAGES
 
 .logo {
-  height: 20px;
-  width: 20px;
-  transform: rotate(90deg);
+    height: 20px;
+    width: 20px;
+    transform: rotate(90deg);
 }
 
 .small-icon {
-  height: 100px;
+    height: 100px;
 }
 
 a {
-  color: map_get($theme-colors, 'grey-1');
+    color: map_get($theme-colors, 'grey-1');
 
-  &:hover {
-    color: map_get($theme-colors, 'grey-2');
-    text-decoration: none;
-  }
+    &:hover {
+        color: map_get($theme-colors, 'grey-2');
+        text-decoration: none;
+    }
 }
 
 td {
-  strong {
-    margin-right: 20px;
-  }
+    strong {
+        margin-right: 20px;
+    }
 }
 
 %white-links {
-  color: map_get($theme-colors, 'grey-1');
+    color: map_get($theme-colors, 'grey-1');
 
-  a {
-    color: map_get($theme-colors, 'white');
+    a {
+        color: map_get($theme-colors, 'white');
 
-    &:hover {
-      color: map_get($theme-colors, 'grey-1');
+        &:hover {
+            color: map_get($theme-colors, 'grey-1');
+        }
     }
-  }
 
-  div {
+    div {
 
-    p,
-    h2 {
-      color: map_get($theme-colors, 'white');
+        p,
+        h2 {
+            color: map_get($theme-colors, 'white');
+        }
     }
-  }
 }
 
 .nav-item.rightalign {
-  text-align: right;
+    text-align: right;
 }

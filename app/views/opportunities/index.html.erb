@@ -1,11 +1,9 @@
 <% @page_title = 'Opportunities' %>
-
 <h1>Opportunities</h1>
-
-    <%= render 'nav' %>
+<%= render 'nav' %>
 <div class="c10">
-    <%= will_paginate %>
-    <%= (render @opportunities, index: true) || (render 'layouts/nothing_here') %>
-    <%= will_paginate %>
+  <%= will_paginate %>
+  <%= (render @opportunities, index: true) || (render 'layouts/nothing_here') %>
+  <%= will_paginate %>
 </div>
-    <%= render 'nav' %>
+<%= render 'nav' %>

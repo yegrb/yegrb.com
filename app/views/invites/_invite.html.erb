@@ -1,18 +1,18 @@
 <tr>
-    <td scope="row">
-        <p>
-            <strong>
-                <%= invite.name %><br>
-            </strong>
-            <%= mail_to invite.email %>
-        </p>
-        <p>
-            <%= invite.nice_user %><br>
-            <%= invite.nice_expiry %>
-        </p>
-    </td>
-    <td>
-        <%= link_to "Sign up link", signup_path(code: invite.code), class: 'sm-info' %>
-        <%= link_to 'Destroy', invite, method: :delete, data: { confirm: 'Are you sure?' }, class: 'sm-danger ml-1' %>
-    </td>
+  <td scope="row">
+    <p>
+      <strong>
+        <%= invite.name %><br>
+      </strong>
+      <%= mail_to invite.email %>
+    </p>
+    <p>
+      <%= invite.nice_user %><br>
+      <%= invite.nice_expiry %>
+    </p>
+  </td>
+  <td>
+    <%= link_to "Sign up link", signup_path(code: invite.code), class: 'sm-info' %>
+    <%= link_to 'Destroy', invite, method: :delete, data: { confirm: 'Are you sure?' }, class: 'sm-danger ml-1' %>
+  </td>
 </tr>
