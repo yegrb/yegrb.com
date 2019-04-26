@@ -69,6 +69,8 @@ gem 'simple_form'
 gem 'font-awesome-sass', '~> 5.8.1'
 gem 'effective_form_inputs'
 gem 'will_paginate'
+gem 'redcarpet'
+gem 'rouge'
 
 # Authentication and Authorization
 gem 'cancancan', '~> 2.0'

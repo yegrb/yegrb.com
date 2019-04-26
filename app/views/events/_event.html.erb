@@ -41,7 +41,7 @@
     <% end %>
   </table>
   <p class="mt-3">
-    <%= index ? event.content.truncate(40) : event.content %>
+    <%= markdown_text(index ? event.content.truncate(40) : event.content) %>
   </p>
   <% if index %>
     <%= link_to 'More', event, class: 'sm-info' %>
