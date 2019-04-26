@@ -88,3 +88,4 @@ gem 'simplecov', require: false, group: :test
 gem 'rubocop', groups: %i[development test]
 gem 'rubocop-performance', groups: %i[development test]
 gem 'annotate', group: :development
+gem 'bullet', group: :development

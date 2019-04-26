@@ -5,11 +5,11 @@ class OpportunitiesController < ApplicationController
   # GET /opportunities
   def index
     @opportunities = if params[:collection] == 'open'
-                       Opportunity.open.paginate(page: params[:page], per_page: 10)
+                       Opportunity.open.paginate(page: params[:page], per_page: 10).includes(:user)
                      elsif params[:collection] == 'closed'
-                       Opportunity.closed.paginate(page: params[:page], per_page: 10)
+                       Opportunity.closed.paginate(page: params[:page], per_page: 10).includes(:user)
                      else
-                       Opportunity.sorted.paginate(page: params[:page], per_page: 10)
+                       Opportunity.sorted.paginate(page: params[:page], per_page: 10).includes(:user)
                      end
     authorize! :read, Opportunity
   end

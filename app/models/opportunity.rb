@@ -42,7 +42,7 @@ class Opportunity < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   validates :content, presence: true, length: { maximum: 1000 }
 
-  scope :sorted, -> { order('created_at DESC').includes(:user) }
+  scope :sorted, -> { order('created_at DESC') }
   scope :open, -> { sorted.where('good_until > ?', Time.zone.now) }
   scope :closed, -> { sorted.where('good_until <= ?', Time.zone.now) }
 
