@@ -44,12 +44,12 @@ class Event < ApplicationRecord
 
   before_save :set_attributes
 
-  scope :sorted, -> { order('time DESC').includes(:user) }
+  scope :sorted, -> { order('time DESC') }
   scope :upcoming, lambda {
-    where('time > ?', Time.zone.now).order('time ASC').includes(:user)
+    where('time > ?', Time.zone.now).order('time ASC')
   }
   scope :past, lambda {
-    where('time < ?', Time.zone.now).order('time DESC').includes(:user)
+    where('time < ?', Time.zone.now).order('time DESC')
   }
 
   def set_attributes

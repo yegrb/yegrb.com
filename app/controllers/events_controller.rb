@@ -5,11 +5,11 @@ class EventsController < ApplicationController
   # GET /events
   def index
     @events = if params[:collection] == 'upcoming'
-                Event.upcoming.paginate(page: params[:page], per_page: 10)
+                Event.upcoming.paginate(page: params[:page], per_page: 10).includes(:user)
               elsif params[:collection] == 'past'
-                Event.past.paginate(page: params[:page], per_page: 10)
+                Event.past.paginate(page: params[:page], per_page: 10).includes(:user)
               else
-                Event.sorted.paginate(page: params[:page], per_page: 10)
+                Event.sorted.paginate(page: params[:page], per_page: 10).includes(:user)
               end
     authorize! :read, Event
   end
