@@ -41,7 +41,7 @@
   </div>
   <p>
   </p>
-  <p><%= opportunity.content %></p>
+  <p><%= markdown_text(opportunity.content) %></p>
   <%= link_to 'More', opportunity, class: 'sm-info' if index %>
   <% if can? :edit, opportunity %>
     <%= link_to 'Edit', edit_opportunity_path(opportunity), class: 'sm-warning' %>

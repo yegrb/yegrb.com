@@ -200,11 +200,13 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
+    redcarpet (3.4.0)
     regexp_parser (1.4.0)
     rest-client (2.0.2)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
+    rouge (3.3.0)
     rubocop (0.67.2)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
@@ -331,7 +333,9 @@ DEPENDENCIES
   pg (>= 0.18, < 2.0)
   puma (~> 3.11)
   rails
+  redcarpet
   rest-client
+  rouge
   rubocop
   rubocop-performance
   sass-rails
