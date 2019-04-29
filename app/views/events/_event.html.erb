@@ -41,13 +41,13 @@
     <% end %>
   </table>
   <p class="mt-3">
-    <%= markdown_text(index ? event.content.truncate(40) : event.content) %>
+    <%= markdown_text(index ? event.content.truncate(100) : event.content) %>
   </p>
   <% if index %>
     <%= link_to 'More', event, class: 'sm-info' %>
-    <%= link_to 'RSVP', event.url, class: 'sm-secondary' if event.can_rsvp? %>
+    <%= link_to 'RSVP', event.url, class: 'sm-secondary', target: '_blank' if event.can_rsvp? %>
   <% else %>
-    <%= link_to 'RSVP', event.url, class: 'lg-primary' if event.can_rsvp? %>
+    <%= link_to 'RSVP', event.url, class: 'lg-primary', target: '_blank' if event.can_rsvp? %>
   <% end %>
   <% if can? :edit, event %>
     <%= link_to 'Edit', edit_event_path(event), class: 'sm-warning'  %>
