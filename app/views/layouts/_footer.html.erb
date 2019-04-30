@@ -8,7 +8,7 @@
             <%= link_to 'Events', events_path %>
           </li>
           <!-- <li> -->
-            <%# link_to 'Opportunities', opportunities_path %>
+          <%# link_to 'Opportunities', opportunities_path %>
           <!-- </li> -->
           <li>
             <%= link_to 'Get Involved', getinvolved_path %>
@@ -16,9 +16,10 @@
         </ul>
       </div>
       <div class="d-none d-md-flex col-md-4 align-items-end mb-3 justify-content-center">
-        <div class="footer-copyright text-center align-self-center">
-          © 2019 Copyright: <%= link_to "YEGRB.com", root_path %>
-        </div>
+        <ul class="list-unstyled footer-copyright text-center align-self-center">
+          <li>Copyright <%= Time.now.year %> <%= link_to 'Alan Vardy', 'https://www.alanvardy.com' %></li>
+          <li>under the <%= link_to "MIT License", 'https://opensource.org/licenses/MIT' %></li>
+        </ul>
       </div>
       <div class="col-6 col-md-4 text-center">
         <h4 class="mt-2 mb-2">Grow</h4>
