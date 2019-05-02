@@ -4,7 +4,9 @@ class Message
   include ActiveModel::Model
   attr_accessor :name, :email, :body
 
-  validates :name, :email, :body, presence: true
+  validates :name, :body, presence: true
+  validates :email, presence: true, length: { maximum: 255 },
+  format: { with: User::VALID_EMAIL_REGEX }
 
   def send_it
     mg_client = Mailgun::Client.new ENV['MAILGUN_API_KEY']
