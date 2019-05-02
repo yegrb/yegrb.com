@@ -47,7 +47,7 @@
     <%= link_to 'More', event, class: 'sm-info' %>
     <%= link_to 'RSVP', event.url, class: 'sm-secondary', target: '_blank' if event.can_rsvp? %>
   <% else %>
-    <%= link_to 'RSVP', event.url, class: 'lg-primary', target: '_blank' if event.can_rsvp? %>
+    <%= link_to 'RSVP', event.url, class: 'sm-primary', target: '_blank' if event.can_rsvp? %>
   <% end %>
   <% if can? :edit, event %>
     <%= link_to 'Edit', edit_event_path(event), class: 'sm-warning'  %>

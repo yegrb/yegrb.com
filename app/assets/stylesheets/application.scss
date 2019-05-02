@@ -50,13 +50,19 @@ $theme-colors: ("red": hsl(0, 87%, 58%),
 %small-button {
     @extend .btn;
     @extend .btn-sm;
-    @extend .my-3;
+    @extend .mt-2;
+    @extend .mb-4;
     @extend .shadow;
 }
 
 .sm-red {
     @extend %small-button;
     @extend .btn-red;
+}
+
+.sm-primary {
+    @extend %small-button;
+    @extend .btn-primary;
 }
 
 .sm-secondary {
