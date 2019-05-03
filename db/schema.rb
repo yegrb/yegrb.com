@@ -33,8 +33,8 @@ ActiveRecord::Schema.define(version: 2019_04_24_213307) do
     t.string "code"
     t.datetime "expiry"
     t.integer "user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "role"
   end
 
@@ -56,8 +56,8 @@ ActiveRecord::Schema.define(version: 2019_04_24_213307) do
     t.string "first_name"
     t.string "last_name"
     t.string "role"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "password_digest"
     t.string "code"
     t.string "remember_digest"
@@ -73,8 +73,8 @@ ActiveRecord::Schema.define(version: 2019_04_24_213307) do
     t.text "summary"
     t.integer "user_id"
     t.integer "event_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "runtime"
   end
 
