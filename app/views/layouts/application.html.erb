@@ -1,16 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-131114774-3"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-131114774-3');
-    </script>
-
     <title><%= @page_title ? @page_title + ' | YEGRB' : 'YEGRB.com' %></title>
     <%= favicon_link_tag asset_path('favicon/ruby.png') %>
     <%= csrf_meta_tags %>
