@@ -24,7 +24,7 @@
         <table>
           <tr>
             <td class="pr-3"><%= icon('fas', 'user-circle', title: 'Speaker') %></td>
-            <% if video.speaker_url %>
+            <% if video.speaker_url.present? %>
               <td><%= link_to video.speaker, video.speaker_url, target: '_blank' %></td>
             <% else %>
               <td><%= video.speaker %></td>
@@ -38,19 +38,19 @@
             <td class="pr-3"><%= icon('fas', 'clock', title: 'Recorded at') %></td>
             <td><%= video.nice_recorded_at %></td>
           </tr>
-          <% if @video.event %>
+          <% if @video.event.present? %>
             <tr>
               <td class="pr-3"><%= icon('fas', 'map-marked', title: 'Location') %></td>
               <td><%= link_to video.event.title, video.event %></td>
             </tr>
           <% end %>
-          <% if video.slides_url %>
+          <% if video.slides_url.present? %>
             <tr>
               <td><%= icon('fas', 'file', title: 'Slides') %></td>
               <td><%= link_to 'View Slides', video.slides_url, target: '_blank' %></td>
             </tr>
           <% end %>
-          <% if video.content_url %>
+          <% if video.content_url.present? %>
             <tr>
               <td><%= icon('fas', 'file-alt', title: 'Content') %></td>
               <td><%= link_to 'View Content', video.content_url, target: '_blank' %></td>
