@@ -50,6 +50,12 @@
               <td><%= link_to 'View Slides', video.slides_url, target: '_blank' %></td>
             </tr>
           <% end %>
+          <% if video.content_url %>
+            <tr>
+              <td><%= icon('fas', 'file-alt', title: 'Cont') %></td>
+              <td><%= link_to 'View Content', video.content_url, target: '_blank' %></td>
+            </tr>
+          <% end %>
         </table>
       </div>
       <div class="col-lg-6">
