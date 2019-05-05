@@ -1,22 +1,22 @@
-<% if @event.present? %>
   <h4 class="">Next Event</h4>
+  <% if @event.present? %>
   <%= link_to @event do %>
-    <div class="dark-box d-flex">
-      <div class="align-self-center text-center">
-        <h3><%= @event.time.strftime('%d') %></h3>
-        <h4><%= @event.time.strftime('%^b') %></h4>
-      </div>
-      <div class="align-self-center mt-2 ml-3">
-        <h2><%= @event.title %></h2>
-      </div>
+  <div class="dark-box d-flex">
+    <div class="align-self-center text-center">
+      <h3><%= @event.time.strftime('%d') %></h3>
+      <h4><%= @event.time.strftime('%^b') %></h4>
     </div>
+    <div class="align-self-center mt-2 ml-3">
+      <h2><%= @event.title %></h2>
+    </div>
+  </div>
   <% end %>
-<% else %>
+  <% else %>
   <%= link_to events_path do %>
-    <div class="dark-box d-flex">
-      <div class="text-center">
-        <h2>Coming soon!</h2>
-      </div>
+  <div class="dark-box d-flex">
+    <div class="text-center">
+      <h2>Coming soon!</h2>
     </div>
+  </div>
   <% end %>
-<% end %>
+  <% end %>
