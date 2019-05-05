@@ -73,6 +73,7 @@ class VideosController < ApplicationController
     params.require(:video).permit(
       :video_url,
       :slides_url,
+      :content_url,
       :speaker_url,
       :recorded_at,
       :title,
