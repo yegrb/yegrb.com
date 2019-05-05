@@ -12,10 +12,12 @@
     <small class="text-muted">
       Posted by <%= video.user %> on <%= video.nice_created_at %>
     </small>
-    <div class="embed-responsive embed-responsive-16by9 mb-3 shadow mh-80">
-      <iframe class="embed-responsive-item"
-            src='https://www.youtube.com/embed/<%= video.youtube_id %>?rel=0&autoplay=0' frameborder='0'
-            allowfullscreen></iframe>
+    <div class="video-container">
+      <div class="embed-responsive embed-responsive-16by9 mb-3 shadow mh-80">
+        <iframe class="embed-responsive-item"
+              src='https://www.youtube.com/embed/<%= video.youtube_id %>?rel=0&autoplay=0' frameborder='0'
+              allowfullscreen></iframe>
+      </div>
     </div>
     <div class="row">
       <div class="col-lg-6">

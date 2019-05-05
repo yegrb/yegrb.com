@@ -23,20 +23,20 @@ sans-serif;
 
 
 $theme-colors: ("red": hsl(0, 87%, 58%),
-"green": hsl(165, 80%, 32%),
-"success": hsl(204, 70%, 53%),
-"white": hsla(0, 0%, 100%, 0.904),
-"primary": hsl(0, 92%, 19%),
-"secondary": hsl(0, 0%, 27%),
-"info": hsl(204, 62%, 63%),
-"warning": hsl(37, 90%, 51%),
-"danger": hsl(0, 100%, 50%),
-"grey-1": hsl(210, 22%, 71%),
-"grey-2": hsl(210, 35%, 60%),
-"grey-3": hsl(210, 6%, 40%),
-"grey-4": hsl(210, 8%, 19%),
-"grey-5": hsl(210, 10%, 11%),
-"grey-6": hsl(210, 12%, 9%),
+    "green": hsl(165, 80%, 32%),
+    "success": hsl(204, 70%, 53%),
+    "white": hsla(0, 0%, 100%, 0.904),
+    "primary": hsl(0, 92%, 19%),
+    "secondary": hsl(0, 0%, 27%),
+    "info": hsl(204, 62%, 63%),
+    "warning": hsl(37, 90%, 51%),
+    "danger": hsl(0, 100%, 50%),
+    "grey-1": hsl(210, 22%, 71%),
+    "grey-2": hsl(210, 35%, 60%),
+    "grey-3": hsl(210, 6%, 40%),
+    "grey-4": hsl(210, 8%, 19%),
+    "grey-5": hsl(210, 10%, 11%),
+    "grey-6": hsl(210, 12%, 9%),
 );
 
 @import "bootstrap";
@@ -223,6 +223,11 @@ h4 {
     &:hover {
         background-color: map_get($theme-colors, 'grey-6') !important;
     }
+}
+
+.video-container {
+    max-height: calc(100vh - 225px);
+    max-width: calc(calc(calc(100vh - 225px) * 16) / 9);
 }
 
 body {
