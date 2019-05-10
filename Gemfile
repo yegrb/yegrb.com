@@ -75,7 +75,6 @@ gem 'rouge'
 # Authentication and Authorization
 gem 'cancancan', '~> 2.0'
 gem 'bcrypt'
-gem 'dotenv-rails', groups: %i[development test]
 
 # APIs
 gem 'rest-client'
@@ -90,8 +89,10 @@ gem 'simplecov', require: false, group: :test
 gem 'rubocop', groups: %i[development test]
 gem 'rubocop-performance', groups: %i[development test]
 gem 'annotate', group: :development
-gem 'bullet', group: :development
+gem 'bullet', groups: %i[development test]
 gem 'solargraph', group: :development
 gem 'fasterer', group: :development
 gem 'debride', group: :development
 gem 'reek', group: :development
+gem 'dokku-cli', group: :development
+gem 'dotenv-rails', groups: %i[development test]
