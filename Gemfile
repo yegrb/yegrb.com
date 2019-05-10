@@ -91,3 +91,7 @@ gem 'rubocop', groups: %i[development test]
 gem 'rubocop-performance', groups: %i[development test]
 gem 'annotate', group: :development
 gem 'bullet', group: :development
+gem 'solargraph', group: :development
+gem 'fasterer', group: :development
+gem 'debride', group: :development
+gem 'reek', group: :development

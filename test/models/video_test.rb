@@ -3,6 +3,7 @@
 # Table name: videos
 #
 #  id          :bigint(8)        not null, primary key
+#  content_url :string
 #  recorded_at :date
 #  runtime     :integer
 #  slides_url  :string
