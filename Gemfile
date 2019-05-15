@@ -73,7 +73,7 @@ gem 'redcarpet'
 gem 'rouge'
 
 # Authentication and Authorization
-gem 'cancancan', '~> 2.0'
+gem 'cancancan', '~> 3.0'
 gem 'bcrypt'
 
 # APIs
