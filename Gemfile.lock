@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/stympy/faker.git
-  revision: a26e802f9e9d578e2b8df3d094f0a77a5c6b1f80
+  revision: 14617c4ef7b89998e98e833ad5d11760e03d9bad
   branch: master
   specs:
     faker (1.9.3)
@@ -147,7 +147,7 @@ GEM
     fasterer (0.5.1)
       colorize (~> 0.7)
       ruby_parser (>= 3.13.0)
-    ffi (1.11.0)
+    ffi (1.11.1)
     font-awesome-sass (5.8.1)
       sassc (>= 1.11)
     globalid (0.4.2)
