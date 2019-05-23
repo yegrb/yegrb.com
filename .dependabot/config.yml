@@ -4,6 +4,8 @@ update_configs:
   - package_manager: "ruby:bundler"
     directory: "/"
     update_schedule: "live"
+    default_reviewers:
+    - "alanvardy"
     automerged_updates:
       - match:
           dependency_type: "all"
@@ -11,7 +13,7 @@ update_configs:
           # - "development"
           # - "production"
           # - "all"
-          update_type: "all"
+          update_type: "semver:minor"
           # Supported updates to automerge:
           # - "security:patch"
           #   SemVer patch update that fixes a known security vulnerability
