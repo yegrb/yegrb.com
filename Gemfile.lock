@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/stympy/faker.git
-  revision: a26e802f9e9d578e2b8df3d094f0a77a5c6b1f80
+  revision: 14617c4ef7b89998e98e833ad5d11760e03d9bad
   branch: master
   specs:
     faker (1.9.3)
@@ -147,7 +147,7 @@ GEM
     fasterer (0.5.1)
       colorize (~> 0.7)
       ruby_parser (>= 3.13.0)
-    ffi (1.11.0)
+    ffi (1.11.1)
     font-awesome-sass (5.8.1)
       sassc (>= 1.11)
     globalid (0.4.2)
@@ -255,7 +255,7 @@ GEM
     reverse_markdown (1.1.0)
       nokogiri
     rouge (3.3.0)
-    rubocop (0.69.0)
+    rubocop (0.70.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
       parser (>= 2.6)
@@ -268,7 +268,7 @@ GEM
     ruby_dep (1.5.0)
     ruby_parser (3.13.1)
       sexp_processor (~> 4.9)
-    rubyzip (1.2.2)
+    rubyzip (1.2.3)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -289,7 +289,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    selenium-webdriver (3.142.2)
+    selenium-webdriver (3.142.3)
       childprocess (>= 0.5, < 2.0)
       rubyzip (~> 1.2, >= 1.2.2)
     sexp_processor (4.12.0)
@@ -364,7 +364,7 @@ GEM
       activemodel (>= 6.0.0.a)
       bindex (>= 0.4.0)
       railties (>= 6.0.0.a)
-    webdrivers (3.9.3)
+    webdrivers (3.9.4)
       nokogiri (~> 1.6)
       rubyzip (~> 1.0)
       selenium-webdriver (~> 3.0)
