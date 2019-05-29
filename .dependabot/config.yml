@@ -3,9 +3,7 @@ update_configs:
   # required properties omitted ...
   - package_manager: "ruby:bundler"
     directory: "/"
-    update_schedule: "live"
-    default_reviewers:
-    - "alanvardy"
+    update_schedule: "weekly"
     # automerged_updates:
     #   - match:
     #       dependency_type: "all"
