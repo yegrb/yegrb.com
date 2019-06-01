@@ -104,7 +104,6 @@ class OpportunitiesControllerTest < ActionDispatch::IntegrationTest
     post close_opportunity_url(@opportunity)
     @opportunity.reload
     assert_not @opportunity.closed?
-
   end
 
   test 'should create opportunity when logged in as editor' do

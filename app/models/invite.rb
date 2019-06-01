@@ -53,5 +53,4 @@ class Invite < ApplicationRecord
 
     "Invited by: #{user&.full_name}"
   end
-
 end

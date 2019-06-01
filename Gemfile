@@ -64,35 +64,36 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 # Pretty UI things
 gem 'bootstrap', '~> 4.3.1'
-gem 'jquery-rails'
-gem 'simple_form'
-gem 'font-awesome-sass', '~> 5.8.1'
 gem 'effective_form_inputs'
-gem 'will_paginate'
+gem 'font-awesome-sass', '~> 5.8.1'
+gem 'jquery-rails'
 gem 'redcarpet'
 gem 'rouge'
+gem 'simple_form'
+gem 'will_paginate'
 
 # Authentication and Authorization
-gem 'cancancan', '~> 3.0'
 gem 'bcrypt'
+gem 'cancancan', '~> 3.0'
 
 # APIs
-gem 'rest-client'
 gem 'mailgun-ruby'
+gem 'rest-client'
 
 # Testing
 gem 'factory_bot_rails', groups: %i[development test]
-gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
+gem 'faker', git: 'https://github.com/stympy/faker.git', branch: 'master'
 gem 'simplecov', require: false, group: :test
 
 # Tools
-gem 'rubocop', groups: %i[development test]
-gem 'rubocop-performance', groups: %i[development test]
 gem 'annotate', group: :development
 gem 'bullet', groups: %i[development test]
-gem 'solargraph', group: :development
-gem 'fasterer', group: :development
 gem 'debride', group: :development
-gem 'reek', group: :development
 gem 'dokku-cli', group: :development
 gem 'dotenv-rails', groups: %i[development test]
+gem 'fasterer', group: :development
+gem 'reek', group: :development
+gem 'rubocop', groups: %i[development test]
+gem 'rubocop-performance', groups: %i[development test]
+gem 'rubocop-rails', groups: %i[development test]
+gem 'solargraph', group: :development
