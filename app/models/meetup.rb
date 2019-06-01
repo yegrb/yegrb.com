@@ -10,7 +10,7 @@ class Meetup
     end
 
     def time(id)
-      Time.at(get(id).time / 1000)
+      Time.zone.at(get(id).time / 1000)
     end
 
     def location(id)

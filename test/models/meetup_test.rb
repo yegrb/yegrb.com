@@ -10,7 +10,7 @@ class MeetupTest < ActiveSupport::TestCase
   end
 
   test 'returns a datetime when getting rsvp from api' do
-    assert_instance_of Time, Meetup.time(@id)
+    assert_instance_of ActiveSupport::TimeWithZone, Meetup.time(@id)
   end
 
   test 'returns a string when getting address from api' do

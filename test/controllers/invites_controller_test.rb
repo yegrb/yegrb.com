@@ -56,7 +56,8 @@ class InvitesControllerTest < ActionDispatch::IntegrationTest
 
   test "shouldn't create invite when not logged in" do
     assert_no_difference('Invite.count') do
-      post invites_url, params: { invite: { code: @invite.code, email: @invite.email, expiry: @invite.expiry, name: @invite.name, user_id: @invite.user_id } }
+      post invites_url, params: { invite: { code: @invite.code, email: @invite.email,
+                                            expiry: @invite.expiry, name: @invite.name, user_id: @invite.user_id } }
     end
 
     # assert_redirected_to invite_url(Invite.last)
@@ -66,7 +67,8 @@ class InvitesControllerTest < ActionDispatch::IntegrationTest
   test "shouldn't create invite when user" do
     log_in @user
     assert_no_difference('Invite.count') do
-      post invites_url, params: { invite: { code: @invite.code, email: @invite.email, expiry: @invite.expiry, name: @invite.name, user_id: @invite.user_id } }
+      post invites_url, params: { invite: { code: @invite.code, email: @invite.email,
+                                            expiry: @invite.expiry, name: @invite.name, user_id: @invite.user_id } }
     end
 
     # assert_redirected_to invite_url(Invite.last)
@@ -111,7 +113,8 @@ class InvitesControllerTest < ActionDispatch::IntegrationTest
   test 'should create invite when admin' do
     log_in @admin
     assert_difference('Invite.count') do
-      post invites_url, params: { invite: { email: Faker::Internet.unique.email, name: @invite.name, role: 'admin' } }
+      post invites_url, params: { invite: { email: Faker::Internet.unique.email,
+                                            name: @invite.name, role: 'admin' } }
     end
 
     last_invite = Invite.last
