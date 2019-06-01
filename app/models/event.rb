@@ -53,9 +53,7 @@ class Event < ApplicationRecord
   }
 
   def set_attributes
-    self.meetup_id ||= if url.present? && STARTUP_URL =~ url
-                         STARTUP_URL.match(url)[1]
-                       end
+    self.meetup_id ||= STARTUP_URL.match(url)[1] if url.present? && STARTUP_URL =~ url
     return if meetup_id.blank?
 
     self.time = Meetup.time(meetup_id)

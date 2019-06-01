@@ -7,9 +7,11 @@ class OpportunitiesController < ApplicationController
     @opportunities = if params[:collection] == 'open'
                        Opportunity.open.paginate(page: params[:page], per_page: 10).includes(:user)
                      elsif params[:collection] == 'closed'
-                       Opportunity.closed.paginate(page: params[:page], per_page: 10).includes(:user)
+                       Opportunity.closed.paginate(page: params[:page],
+                                                   per_page: 10).includes(:user)
                      else
-                       Opportunity.sorted.paginate(page: params[:page], per_page: 10).includes(:user)
+                       Opportunity.sorted.paginate(page: params[:page],
+                                                   per_page: 10).includes(:user)
                      end
     authorize! :read, Opportunity
   end
@@ -23,7 +25,7 @@ class OpportunitiesController < ApplicationController
   def new
     @opportunity = Opportunity.new
     @opportunity.user_id = current_user&.id
-    @opportunity.good_until = Time.now
+    @opportunity.good_until = Time.zone.now
     authorize! :edit, @opportunity
   end
 
@@ -86,6 +88,7 @@ class OpportunitiesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def opportunity_params
-    params.require(:opportunity).permit(:user_id, :title, :company, :contact, :email, :paid_position, :content, :good_until)
+    params.require(:opportunity).permit(:user_id, :title, :company, :contact, :email,
+                                        :paid_position, :content, :good_until)
   end
 end

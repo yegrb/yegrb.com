@@ -3,7 +3,7 @@ FactoryBot.define do
   end
 
   factory :video do
-    recorded_at { Time.now }
+    recorded_at { Time.zone.now }
     slides_url { Faker::Internet.url }
     speaker { Faker::Name.name }
     speaker_url { Faker::Internet.url }
