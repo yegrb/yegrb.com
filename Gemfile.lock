@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/stympy/faker.git
-  revision: cf52f4948a11c74f6d329bf8f55a84ff2fc91225
+  revision: a48340cb30afc2e9be43342b09662b831267a1c5
   branch: master
   specs:
     faker (1.9.3)
@@ -9,7 +9,7 @@ GIT
       thor (~> 0.20.0)
       tty-pager (~> 0.12.0)
       tty-screen (~> 0.6.5)
-      tty-tree (~> 0.2.0)
+      tty-tree (~> 0.3.0)
 
 GEM
   remote: https://rubygems.org/
@@ -339,7 +339,7 @@ GEM
       tty-screen (~> 0.6)
       tty-which (~> 0.4)
     tty-screen (0.6.5)
-    tty-tree (0.2.0)
+    tty-tree (0.3.0)
     tty-which (0.4.1)
     turbolinks (5.2.0)
       turbolinks-source (~> 5.2)
