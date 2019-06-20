@@ -1,3 +1,4 @@
+# typed: true
 class Ability
   include CanCan::Ability
 

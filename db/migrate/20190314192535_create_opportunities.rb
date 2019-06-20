@@ -1,3 +1,4 @@
+# typed: true
 class CreateOpportunities < ActiveRecord::Migration[5.2]
   def change
     create_table :opportunities do |t|

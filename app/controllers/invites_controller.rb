@@ -1,3 +1,4 @@
+# typed: false
 class InvitesController < ApplicationController
   before_action :set_invite, only: [:show, :edit, :update, :destroy]
 

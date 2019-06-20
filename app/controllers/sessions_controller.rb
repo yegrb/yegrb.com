@@ -1,3 +1,4 @@
+# typed: false
 class SessionsController < ApplicationController
   def new; end
 

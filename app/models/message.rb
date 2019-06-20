@@ -1,3 +1,4 @@
+# typed: true
 require 'mailgun-ruby'
 
 class Message

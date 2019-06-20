@@ -99,3 +99,5 @@ gem 'rubocop-performance', groups: %i[development test]
 gem 'rubocop-rails', groups: %i[development test]
 gem 'rubycritic', group: :development
 gem 'solargraph', group: :development
+gem 'sorbet', group: :development
+gem 'sorbet-runtime'
