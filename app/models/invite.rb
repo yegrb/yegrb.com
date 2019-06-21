@@ -15,16 +15,19 @@
 #
 
 class Invite < ApplicationRecord
+  extend T::Sig
+  
   belongs_to :user
-  before_save :set_attributes
 
   validates :name, presence: true, length: { maximum: 50 }
   validates :role, presence: true, inclusion: { in: User::ROLES }
   validates :user_id, presence: true
   validates :email, presence: true, length: { maximum: 255 },
-                    format: { with: User::VALID_EMAIL_REGEX },
-                    uniqueness: { case_sensitive: false }
+  format: { with: User::VALID_EMAIL_REGEX },
+  uniqueness: { case_sensitive: false }
   validate :only_admin_can_create_editors_and_admins
+
+  before_save :set_attributes
 
   def only_admin_can_create_editors_and_admins
     return unless ['editor', 'admin'].include? role
@@ -55,6 +58,6 @@ class Invite < ApplicationRecord
   def nice_user
     return 'Removed' unless user&.full_name
 
-    "Invited by: #{user&.full_name}"
+    "Invited by: #{T.must(user).full_name}"
   end
 end

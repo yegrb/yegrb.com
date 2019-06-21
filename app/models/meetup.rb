@@ -1,24 +1,33 @@
 # typed: true
+
 class Meetup
+  extend T::Sig
   require 'rest-client'
 
   URLNAME = 'startupedmonton'
   HOST = 'https://api.meetup.com/'
 
   class << self
+    extend T::Sig
+    sig { params(id: String).returns(Integer) }
     def attending(id)
       get(id).yes_rsvp_count
     end
 
+    sig { params(id: String).returns(Float) }
     def time(id)
-      Time.zone.at(get(id).time / 1000)
+      time = Time.zone.at(T.must(get(id).time) / 1000)
+      puts "TIME: #{time.inspect}"
+      time
     end
 
+    sig { params(id: String).returns(String) }
     def location(id)
       venue = get(id).venue
-      "#{venue.name}: #{venue.address_1}, #{venue.city}, #{venue.state}"
+      "#{T.must(venue).name}: #{T.must(venue).address_1}, #{T.must(venue).city}, #{T.must(venue).state}"
     end
 
+    sig { params(id: String).returns(OpenStruct) }
     def get(id)
       Rails.cache.fetch(
         "meetup_#{id}",

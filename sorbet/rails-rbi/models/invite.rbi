@@ -35,6 +35,9 @@ class Invite < ApplicationRecord
   sig { returns(T.nilable(DateTime)) }
   def expiry(); end
 
+  sig { returns(T::Boolean) }
+  def expired?(); end
+
   sig { params(value: T.nilable(DateTime)).void }
   def expiry=(value); end
 
@@ -49,6 +52,9 @@ class Invite < ApplicationRecord
 
   sig { params(value: T.nilable(String)).void }
   def name=(value); end
+
+  sig { returns(String) }
+  def nice_user(); end
 
   sig { returns(T.nilable(String)) }
   def role(); end

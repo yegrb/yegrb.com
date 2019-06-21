@@ -26,10 +26,10 @@ class User < ApplicationRecord
   sig { params(value: DateTime).void }
   def created_at=(value); end
 
-  sig { returns(T.nilable(String)) }
+  sig { returns(String) }
   def email(); end
 
-  sig { params(value: T.nilable(String)).void }
+  sig { params(value: String).void }
   def email=(value); end
 
   sig { returns(Event::Relation) }
@@ -38,10 +38,10 @@ class User < ApplicationRecord
   sig { params(value: T.any(T::Array[Event], Event::Relation)).void }
   def events=(value); end
 
-  sig { returns(T.nilable(String)) }
+  sig { returns(String) }
   def first_name(); end
 
-  sig { params(value: T.nilable(String)).void }
+  sig { params(value: String).void }
   def first_name=(value); end
 
   sig { returns(Integer) }
@@ -56,10 +56,10 @@ class User < ApplicationRecord
   sig { params(value: T.any(T::Array[Invite], Invite::Relation)).void }
   def invites=(value); end
 
-  sig { returns(T.nilable(String)) }
+  sig { returns(String) }
   def last_name(); end
 
-  sig { params(value: T.nilable(String)).void }
+  sig { params(value: String).void }
   def last_name=(value); end
 
   sig { returns(Opportunity::Relation) }
@@ -68,10 +68,10 @@ class User < ApplicationRecord
   sig { params(value: T.any(T::Array[Opportunity], Opportunity::Relation)).void }
   def opportunities=(value); end
 
-  sig { returns(T.nilable(String)) }
+  sig { returns(String) }
   def password_digest(); end
 
-  sig { params(value: T.nilable(String)).void }
+  sig { params(value: String).void }
   def password_digest=(value); end
 
   sig { returns(T.nilable(String)) }

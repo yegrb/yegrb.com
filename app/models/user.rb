@@ -1,4 +1,4 @@
-# typed: false
+# typed: true
 # == Schema Information
 #
 # Table name: users
@@ -16,6 +16,8 @@
 #
 
 class User < ApplicationRecord
+  extend T::Sig
+
   has_many :events
   has_many :opportunities
   has_many :invites
@@ -46,30 +48,37 @@ class User < ApplicationRecord
     self.email = email.downcase
   end
 
+  sig { returns(T::Boolean) }
   def password_required?
     password_digest.blank? || password.present?
   end
 
+  sig { returns(T::Boolean) }
   def user?
     role == 'user'
   end
 
+  sig { returns(T::Boolean) }
   def editor?
     role == 'editor'
   end
 
+  sig { returns(T::Boolean) }
   def admin?
     role == 'admin'
   end
 
+  sig { returns(String) }
   def to_s
     first_name
   end
 
+  sig { returns(String) }
   def full_name
     "#{first_name} #{last_name}"
   end
 
+  sig { void }
   def remember
     self.remember_token = User.new_token
     update(remember_digest: User.digest(remember_token))

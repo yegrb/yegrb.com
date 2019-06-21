@@ -17,6 +17,7 @@
 #
 
 class Opportunity < ApplicationRecord
+  extend T::Sig
 
   GOOD_UNTIL_MAX_DAYS = 90
   DATEPICKER_JS = {
@@ -49,27 +50,37 @@ class Opportunity < ApplicationRecord
   scope :open, -> { sorted.where('good_until > ?', Time.zone.now) }
   scope :closed, -> { sorted.where('good_until <= ?', Time.zone.now) }
 
-  before_save { self.email = email.downcase }
+  before_save :set_attributes
 
+  sig { returns(T::Boolean) }
   def good_until_within_time
     return true if Time.zone.now + GOOD_UNTIL_MAX_DAYS.days >= good_until
 
     errors.add(:good_until, "must be within #{GOOD_UNTIL_MAX_DAYS} days of today")
+    return false
   end
 
-
+  sig { returns(String) }
   def nice_created_at
     created_at.strftime('%d %b %Y')
   end
 
+  sig { returns(String) }
+  def set_attributes
+    self.email = T.must(email).downcase
+  end
+
+  sig { returns(String) }
   def nice_good_until
     T.must(good_until).strftime('%d %b %Y')
   end
 
+  sig { returns(T::Boolean) }
   def closed?
     Time.zone.now >= good_until
   end
 
+  sig { returns(T::Boolean) }
   def close!
     return false if closed?
 

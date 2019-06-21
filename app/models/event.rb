@@ -59,8 +59,8 @@ class Event < ApplicationRecord
     self.meetup_id ||= STARTUP_URL.match(url)[1] if url.present? && STARTUP_URL =~ url
     return if meetup_id.blank?
 
-    self.time = Meetup.time(meetup_id)
-    self.location = Meetup.location(meetup_id)
+    self.time = Meetup.time(T.must(meetup_id))
+    self.location = Meetup.location(T.must(meetup_id))
   end
 
   sig { returns(String) }
@@ -82,7 +82,7 @@ class Event < ApplicationRecord
   def attending
     return 'Unknown' if meetup_id.blank?
 
-    Meetup.attending(meetup_id)
+    Meetup.attending(T.must(meetup_id)).to_s
   end
 
   sig { returns(String) }
