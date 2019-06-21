@@ -1,4 +1,4 @@
-# typed: false
+# typed: true
 class OpportunitiesController < ApplicationController
   before_action :set_opportunity, only: %i[show edit update destroy close]
   before_action :authorize_edit, only: %i[edit update destroy close]

@@ -1,4 +1,4 @@
-# typed: false
+# typed: true
 # == Schema Information
 #
 # Table name: opportunities
@@ -17,6 +17,7 @@
 #
 
 class Opportunity < ApplicationRecord
+
   GOOD_UNTIL_MAX_DAYS = 90
   DATEPICKER_JS = {
     format: 'YYYY-MM-DD',
@@ -33,6 +34,7 @@ class Opportunity < ApplicationRecord
       close: 'fa fa-times'
     }
   }
+
   belongs_to :user
 
   validates :user_id, :title, :contact, :good_until, presence: true
@@ -55,12 +57,13 @@ class Opportunity < ApplicationRecord
     errors.add(:good_until, "must be within #{GOOD_UNTIL_MAX_DAYS} days of today")
   end
 
+
   def nice_created_at
     created_at.strftime('%d %b %Y')
   end
 
   def nice_good_until
-    good_until.strftime('%d %b %Y')
+    T.must(good_until).strftime('%d %b %Y')
   end
 
   def closed?

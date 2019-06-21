@@ -1,4 +1,4 @@
-# typed: false
+# typed: true
 # == Schema Information
 #
 # Table name: invites
@@ -29,7 +29,7 @@ class Invite < ApplicationRecord
   def only_admin_can_create_editors_and_admins
     return unless ['editor', 'admin'].include? role
 
-    errors.add(:role, 'must be Admin to grant') unless user.admin?
+    errors.add(:role, 'must be Admin to grant') unless T.must(user).admin?
   end
 
   def set_attributes
@@ -37,18 +37,21 @@ class Invite < ApplicationRecord
     self.expiry ||= Time.zone.now + 1.week
   end
 
+  sig { returns(T::Boolean) }
   def expired?
-    expiry < Time.zone.now
+    T.must(expiry) < Time.zone.now
   end
 
+  sig { returns(String) }
   def nice_expiry
     if expired?
-      "Expired: #{expiry.strftime('%d %b %Y')}"
+      "Expired: #{T.must(expiry).strftime('%d %b %Y')}"
     else
-      "Expires: #{expiry.strftime('%d %b %Y')}"
+      "Expires: #{T.must(expiry).strftime('%d %b %Y')}"
     end
   end
 
+  sig { returns(String) }
   def nice_user
     return 'Removed' unless user&.full_name
 

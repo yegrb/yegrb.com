@@ -17548,6 +17548,8 @@ module ActiveRecord::Querying
 
   def unscope(*args, &block); end
 
+  def scope(*args, &block); end
+
   def update_all(*args, &block); end
 
   def where(*args, &block); end

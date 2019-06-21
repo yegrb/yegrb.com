@@ -101,3 +101,4 @@ gem 'rubycritic', group: :development
 gem 'solargraph', group: :development
 gem 'sorbet', group: :development
 gem 'sorbet-runtime'
+gem 'sorbet-rails'
