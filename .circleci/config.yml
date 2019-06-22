@@ -1,12 +1,12 @@
 version: 2 # use CircleCI 2.0
 jobs: # a collection of steps
   build: # runs not using Workflows must have a `build` job as entry point
-    parallelism: 4 # run three instances of this job in parallel
+    parallelism: 3 # run three instances of this job in parallel
     docker: # run the steps with Docker
       - image: circleci/ruby:2.4.2-jessie-node # ...with this image as the primary container; this is where all `steps` will run
         environment: # environment variables for primary container
-          BUNDLE_JOBS: 4
-          BUNDLE_RETRY: 4
+          BUNDLE_JOBS: 3
+          BUNDLE_RETRY: 3
           BUNDLE_PATH: vendor/bundle
           PGHOST: 127.0.0.1
           PGUSER: circleci-demo-ruby
@@ -28,20 +28,22 @@ jobs: # a collection of steps
       # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
       - restore_cache:
           keys:
-            - yegrb-{{ checksum "Gemfile.lock" }}
-            - yegrb-
+            - rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+            - rails-demo-bundle-v2-
 
-      - run: # Install Bundler
-          name: Install Bundler
-          command: gem install bundler
+      - run:
+          name: install dependencies
+          command: |
+            gem update --system
+            gem install bundler
 
       - run: # Install Ruby dependencies
           name: Bundle Install
-          command: bundle #check --path vendor/bundle || bundle install --deployment
+          command: bundle check --path vendor/bundle || bundle install --deployment
 
       # Store bundle cache for Ruby dependencies
       - save_cache:
-          key: yegrb-{{ checksum "Gemfile.lock" }}
+          key: rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
 
