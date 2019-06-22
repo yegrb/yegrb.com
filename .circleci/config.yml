@@ -31,6 +31,10 @@ jobs: # a collection of steps
             - rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
             - rails-demo-bundle-v2-
 
+      - run: # Install Bundler
+          name: Install Bundler
+          command: gem install bundler
+
       - run: # Install Ruby dependencies
           name: Bundle Install
           command: bundle check --path vendor/bundle || bundle install --deployment
