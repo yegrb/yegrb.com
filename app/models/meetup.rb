@@ -14,11 +14,9 @@ class Meetup
       get(id).yes_rsvp_count
     end
 
-    sig { params(id: String).returns(Float) }
+    sig { params(id: String).returns(TimeWithZone) }
     def time(id)
-      time = Time.zone.at(T.must(get(id).time) / 1000)
-      puts "TIME: #{time.inspect}"
-      time
+      Time.zone.at(get(id).time / 1000)
     end
 
     sig { params(id: String).returns(String) }
@@ -34,7 +32,6 @@ class Meetup
         expires_in: rand(5).minutes,
         race_condition_ttl: 30.seconds
       ) do
-        print 'e'
         response = RestClient.get "#{HOST}#{URLNAME}/events/#{id}"
         JSON.parse(response, object_class: OpenStruct)
       end

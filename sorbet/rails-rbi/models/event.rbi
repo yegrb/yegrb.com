@@ -44,10 +44,10 @@ class Event < ApplicationRecord
   sig { params(value: T.nilable(String)).void }
   def meetup_id=(value); end
 
-  sig { returns(T.nilable(DateTime)) }
+  sig { returns(DateTime) }
   def time(); end
 
-  sig { params(value: T.nilable(DateTime)).void }
+  sig { params(value: DateTime).void }
   def time=(value); end
 
   sig { returns(T.nilable(String)) }

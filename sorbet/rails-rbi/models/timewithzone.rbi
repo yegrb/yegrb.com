@@ -1,10 +1,8 @@
 # typed: strong
 
-class Meetup < ApplicationRecord
+class TimeWithZone
   extend T::Sig
   extend T::Generic
   Elem = type_template(fixed: Meetup)
 
-  sig { returns(TimeWithZone) }
-  def time(); end
 end
