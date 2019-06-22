@@ -1,3 +1,4 @@
+# typed: strict
 Rails.application.routes.draw do
   resources :videos
   resources :invites, except: %i[edit update show]

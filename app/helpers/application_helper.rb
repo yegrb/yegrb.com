@@ -1,19 +1,15 @@
+# typed: false
 module ApplicationHelper
   include SessionsHelper
+  extend T::Sig
 
   require 'redcarpet'
   require 'rouge'
   require 'rouge/plugins/redcarpet'
 
-  class MarkdownRender < Redcarpet::Render::HTML
-    def initialize(extensions = {})
-      super extensions.merge(link_attributes: { target: '_blank' })
-    end
-    include Rouge::Plugins::Redcarpet
-  end
-
+  sig { params(text: String).returns(String) }
   def markdown_text(text)
-    Redcarpet::Markdown.new(MarkdownRender, fenced_code_blocks: true).render(text).html_safe
+    Redcarpet::Markdown.new(::MarkdownRender, fenced_code_blocks: true).render(text).html_safe
   end
 
   def nav_link(variable, titles)

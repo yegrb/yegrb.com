@@ -1,3 +1,4 @@
+# typed: true
 # == Schema Information
 #
 # Table name: videos
@@ -19,6 +20,8 @@
 #
 
 class Video < ApplicationRecord
+  extend T::Sig
+
   belongs_to :user
   belongs_to :event
 
@@ -47,19 +50,23 @@ class Video < ApplicationRecord
   validates :summary, presence: true, length: { within: 20..1000 }
   validates :title, presence: true, length: { maximum: 50 }
 
+  sig { returns(String) }
   def to_s
     "#{title}, #{speaker}"
   end
 
+  sig { returns(String) }
   def nice_created_at
     created_at.strftime('%d %b %Y')
   end
 
+  sig { returns(String) }
   def nice_recorded_at
-    recorded_at.strftime('%d %b %Y')
+    T.must(recorded_at).strftime('%d %b %Y')
   end
 
+  sig { returns(String) }
   def youtube_id
-    video_url.scan(/v=([^&]+)/).flatten.first
+    T.must(video_url).scan(/v=([^&]+)/).flatten.first || ''
   end
 end

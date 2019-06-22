@@ -1,3 +1,4 @@
+# typed: true
 # == Schema Information
 #
 # Table name: invites
@@ -14,8 +15,9 @@
 #
 
 class Invite < ApplicationRecord
+  extend T::Sig
+
   belongs_to :user
-  before_save :set_attributes
 
   validates :name, presence: true, length: { maximum: 50 }
   validates :role, presence: true, inclusion: { in: User::ROLES }
@@ -25,32 +27,39 @@ class Invite < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   validate :only_admin_can_create_editors_and_admins
 
+  before_save :set_attributes
+
+  sig { void }
   def only_admin_can_create_editors_and_admins
     return unless ['editor', 'admin'].include? role
 
-    errors.add(:role, 'must be Admin to grant') unless user.admin?
+    errors.add(:role, 'must be Admin to grant') unless T.must(user).admin?
   end
 
+  sig { void }
   def set_attributes
     self.code ||= Digest::SHA1.hexdigest(email)
     self.expiry ||= Time.zone.now + 1.week
   end
 
+  sig { returns(T::Boolean) }
   def expired?
-    expiry < Time.zone.now
+    T.must(expiry) < Time.zone.now
   end
 
+  sig { returns(String) }
   def nice_expiry
     if expired?
-      "Expired: #{expiry.strftime('%d %b %Y')}"
+      "Expired: #{T.must(expiry).strftime('%d %b %Y')}"
     else
-      "Expires: #{expiry.strftime('%d %b %Y')}"
+      "Expires: #{T.must(expiry).strftime('%d %b %Y')}"
     end
   end
 
+  sig { returns(String) }
   def nice_user
     return 'Removed' unless user&.full_name
 
-    "Invited by: #{user&.full_name}"
+    "Invited by: #{T.must(user).full_name}"
   end
 end

@@ -1,3 +1,4 @@
+# typed: true
 class InvitesController < ApplicationController
   before_action :set_invite, only: [:show, :edit, :update, :destroy]
 
@@ -17,7 +18,7 @@ class InvitesController < ApplicationController
   def create
     @invite = Invite.new(invite_params)
     authorize! :edit, @invite
-    @invite.user_id = current_user.id
+    @invite.user_id = current_user&.id
     if @invite.save
       flash[:success] = 'Invite was successfully created.'
       redirect_to @invite

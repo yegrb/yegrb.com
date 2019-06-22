@@ -1,3 +1,4 @@
+# typed: true
 # == Schema Information
 #
 # Table name: events
@@ -15,6 +16,8 @@
 #
 
 class Event < ApplicationRecord
+  extend T::Sig
+
   belongs_to :user
   has_many :videos
 
@@ -52,46 +55,55 @@ class Event < ApplicationRecord
     where('time < ?', Time.zone.now).order('time DESC')
   }
 
+  sig { void }
   def set_attributes
     self.meetup_id ||= STARTUP_URL.match(url)[1] if url.present? && STARTUP_URL =~ url
     return if meetup_id.blank?
 
-    self.time = Meetup.time(meetup_id)
-    self.location = Meetup.location(meetup_id)
+    self.time = Meetup.time(T.must(meetup_id))
+    self.location = Meetup.location(T.must(meetup_id))
   end
 
+  sig { returns(String) }
   def nice_created_at
     created_at.strftime('%d %b %Y')
   end
 
+  sig { returns(String) }
   def to_s
-    title
+    T.must(title)
   end
 
+  sig { returns(String) }
   def nice_time
-    time.strftime('%A, %d %b %Y %l:%M %p')
+    T.must(time).strftime('%A, %d %b %Y %l:%M %p')
   end
 
+  sig { returns(String) }
   def attending
     return 'Unknown' if meetup_id.blank?
 
-    Meetup.attending(meetup_id)
+    Meetup.attending(T.must(meetup_id)).to_s
   end
 
+  sig { returns(String) }
   def google_map
-    parameters = location.scan(/[a-zA-Z0-9]*/).reject(&:blank?).join('+')
+    parameters = T.must(location).scan(/[a-zA-Z0-9]*/).reject(&:blank?).join('+')
     'https://www.google.com/maps/search/?api=1&query=' + parameters
   end
 
+  sig { returns(T::Boolean) }
   def upcoming?
-    time > Time.zone.now
+    T.must(time) > Time.zone.now
   end
 
+  sig { returns(T::Boolean) }
   def can_rsvp?
     upcoming? && url.present?
   end
 
+  sig { returns(T::Boolean) }
   def past?
-    time <= Time.zone.now
+    T.must(time) <= Time.zone.now
   end
 end

@@ -1,3 +1,4 @@
+# typed: true
 # == Schema Information
 #
 # Table name: users
@@ -15,6 +16,8 @@
 #
 
 class User < ApplicationRecord
+  extend T::Sig
+
   has_many :events
   has_many :opportunities
   has_many :invites
@@ -41,53 +44,67 @@ class User < ApplicationRecord
 
   before_save :set_attributes
 
+  sig { void }
   def set_attributes
     self.email = email.downcase
   end
 
+  sig { returns(T::Boolean) }
   def password_required?
     password_digest.blank? || password.present?
   end
 
+  sig { returns(T::Boolean) }
   def user?
     role == 'user'
   end
 
+  sig { returns(T::Boolean) }
   def editor?
     role == 'editor'
   end
 
+  sig { returns(T::Boolean) }
   def admin?
     role == 'admin'
   end
 
+  sig { returns(String) }
   def to_s
     first_name
   end
 
+  sig { returns(String) }
   def full_name
     "#{first_name} #{last_name}"
   end
 
+  sig { void }
   def remember
     self.remember_token = User.new_token
     update(remember_digest: User.digest(remember_token))
   end
 
+  sig { void }
   def forget
     update(remember_digest: nil)
   end
 
+  sig { params(remember_token: String).returns(T::Boolean) }
   def authenticated?(remember_token)
     BCrypt::Password.new(remember_digest).is_password?(remember_token)
   end
 
   class << self
+    extend T::Sig
+
+    sig { returns(String) }
     def new_token
       SecureRandom.urlsafe_base64
     end
 
     # Returns the hash digest of the given string.
+    sig { params(string: String).returns(String) }
     def digest(string)
       cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
       BCrypt::Password.create(string, cost: cost)

@@ -1,3 +1,4 @@
+# typed: true
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
   before_action :authorize_edit, only: %i[edit update destroy]
