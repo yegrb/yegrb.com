@@ -16,25 +16,27 @@
 
 class Invite < ApplicationRecord
   extend T::Sig
-  
+
   belongs_to :user
 
   validates :name, presence: true, length: { maximum: 50 }
   validates :role, presence: true, inclusion: { in: User::ROLES }
   validates :user_id, presence: true
   validates :email, presence: true, length: { maximum: 255 },
-  format: { with: User::VALID_EMAIL_REGEX },
-  uniqueness: { case_sensitive: false }
+                    format: { with: User::VALID_EMAIL_REGEX },
+                    uniqueness: { case_sensitive: false }
   validate :only_admin_can_create_editors_and_admins
 
   before_save :set_attributes
 
+  sig { void }
   def only_admin_can_create_editors_and_admins
     return unless ['editor', 'admin'].include? role
 
     errors.add(:role, 'must be Admin to grant') unless T.must(user).admin?
   end
 
+  sig { void }
   def set_attributes
     self.code ||= Digest::SHA1.hexdigest(email)
     self.expiry ||= Time.zone.now + 1.week

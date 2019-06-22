@@ -57,7 +57,7 @@ class Opportunity < ApplicationRecord
     return true if Time.zone.now + GOOD_UNTIL_MAX_DAYS.days >= good_until
 
     errors.add(:good_until, "must be within #{GOOD_UNTIL_MAX_DAYS} days of today")
-    return false
+    false
   end
 
   sig { returns(String) }

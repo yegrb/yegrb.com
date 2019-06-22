@@ -55,6 +55,7 @@ class Event < ApplicationRecord
     where('time < ?', Time.zone.now).order('time DESC')
   }
 
+  sig { void }
   def set_attributes
     self.meetup_id ||= STARTUP_URL.match(url)[1] if url.present? && STARTUP_URL =~ url
     return if meetup_id.blank?

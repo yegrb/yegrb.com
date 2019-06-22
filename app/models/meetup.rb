@@ -8,6 +8,7 @@ class Meetup
 
   class << self
     extend T::Sig
+
     sig { params(id: String).returns(Integer) }
     def attending(id)
       get(id).yes_rsvp_count

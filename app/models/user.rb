@@ -44,6 +44,7 @@ class User < ApplicationRecord
 
   before_save :set_attributes
 
+  sig { void }
   def set_attributes
     self.email = email.downcase
   end
@@ -84,20 +85,26 @@ class User < ApplicationRecord
     update(remember_digest: User.digest(remember_token))
   end
 
+  sig { void }
   def forget
     update(remember_digest: nil)
   end
 
+  sig { params(remember_token: String).returns(T::Boolean) }
   def authenticated?(remember_token)
     BCrypt::Password.new(remember_digest).is_password?(remember_token)
   end
 
   class << self
+    extend T::Sig
+
+    sig { returns(String) }
     def new_token
       SecureRandom.urlsafe_base64
     end
 
     # Returns the hash digest of the given string.
+    sig { params(string: String).returns(String) }
     def digest(string)
       cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
       BCrypt::Password.create(string, cost: cost)
