@@ -1,11 +1,15 @@
-# typed: false
+# typed: true
 module SessionsHelper
+  extend T::Sig
+
   # Logs in the given user.
+  sig { params(user: User).void }
   def log_in(user)
     session[:user_id] = user.id
   end
 
   # Returns the current logged-in user (if any).
+  sig { returns(T.nilable(User)) }
   def current_user
     if (user_id = session[:user_id])
       @current_user ||= User.find_by(id: session[:user_id])
