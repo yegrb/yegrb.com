@@ -33,7 +33,7 @@ jobs: # a collection of steps
 
       - run: # Install Bundler
           name: Install Bundler
-          command: gem update --bundler
+          command: gem install bundler:2.0.2
 
       - run:
           name: Configure Bundler
