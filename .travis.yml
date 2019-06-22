@@ -8,4 +8,5 @@ before_script:
 language: ruby
 script:
   - bundle exec rails db:migrate RAILS_ENV=test
+  - bundle exec srb tc
   - bundle exec rails test

@@ -1,4 +1,4 @@
-# typed: true
+# typed: false
 
 class MarkdownRender < Redcarpet::Render::HTML
   include Rouge::Plugins::Redcarpet

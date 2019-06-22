@@ -1,4 +1,4 @@
-# typed: true
+# typed: false
 module ApplicationHelper
   include SessionsHelper
   extend T::Sig
@@ -9,7 +9,7 @@ module ApplicationHelper
 
   sig { params(text: String).returns(String) }
   def markdown_text(text)
-    Redcarpet::Markdown.new(MarkdownRender, fenced_code_blocks: true).render(text).html_safe
+    Redcarpet::Markdown.new(::MarkdownRender, fenced_code_blocks: true).render(text).html_safe
   end
 
   def nav_link(variable, titles)
