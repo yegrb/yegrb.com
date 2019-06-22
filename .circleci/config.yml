@@ -1,7 +1,7 @@
 version: 2 # use CircleCI 2.0
 jobs: # a collection of steps
   build: # runs not using Workflows must have a `build` job as entry point
-    parallelism: 3 # run three instances of this job in parallel
+    parallelism: 1 # run three instances of this job in parallel
     docker: # run the steps with Docker
       - image: circleci/ruby:2.6.3-stretch # ...with this image as the primary container; this is where all `steps` will run
         environment: # environment variables for primary container
@@ -31,7 +31,6 @@ jobs: # a collection of steps
       # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
       - restore_cache:
           keys:
-            - yegrb{{ checksum "Gemfile.lock" }}
             - yegrb
 
       - run: # Install Ruby dependencies
@@ -40,7 +39,7 @@ jobs: # a collection of steps
 
       # Store bundle cache for Ruby dependencies
       - save_cache:
-          key: yegrb{{ checksum "Gemfile.lock" }}
+          key: yegrb
           paths:
             - vendor/bundle
 
@@ -50,7 +49,7 @@ jobs: # a collection of steps
 
       - run:
           name: Database setup
-          command: bin/rails db:schema:load --trace
+          command: bundle exec rake db:setup
 
       - run:
           name: Run Minitest
