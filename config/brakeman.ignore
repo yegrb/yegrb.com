@@ -1,0 +1,26 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Mass Assignment",
+      "warning_code": 105,
+      "fingerprint": "3dbf94d184977387d117fc009f360032c6b485ac8507227ab7199229d76ced33",
+      "check_name": "PermitAttributes",
+      "message": "Potentially dangerous key allowed for mass assignment",
+      "file": "app/controllers/invites_controller.rb",
+      "line": 48,
+      "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
+      "code": "params.require(:invite).permit(:name, :email, :role)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "InvitesController",
+        "method": "invite_params"
+      },
+      "user_input": ":role",
+      "confidence": "Medium",
+      "note": ""
+    }
+  ],
+  "updated": "2019-06-22 16:48:32 -0600",
+  "brakeman_version": "4.5.1"
+}
