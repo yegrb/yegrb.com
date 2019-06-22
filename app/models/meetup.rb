@@ -1,7 +1,6 @@
 # typed: true
 
 class Meetup
-  extend T::Sig
   require 'rest-client'
 
   URLNAME = 'startupedmonton'
@@ -14,7 +13,7 @@ class Meetup
       get(id).yes_rsvp_count
     end
 
-    sig { params(id: String).returns(TimeWithZone) }
+    sig { params(id: String).returns(ActiveSupport::TimeWithZone) }
     def time(id)
       Time.zone.at(get(id).time / 1000)
     end

@@ -44,10 +44,10 @@ class Event < ApplicationRecord
   sig { params(value: T.nilable(String)).void }
   def meetup_id=(value); end
 
-  sig { returns(DateTime) }
+  sig { returns(ActiveSupport::TimeWithZone) }
   def time(); end
 
-  sig { params(value: DateTime).void }
+  sig { params(value: ActiveSupport::TimeWithZone).void }
   def time=(value); end
 
   sig { returns(T.nilable(String)) }
