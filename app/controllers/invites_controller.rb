@@ -11,14 +11,13 @@ class InvitesController < ApplicationController
   # GET /invites/new
   def new
     @invite = Invite.new
-    authorize! :edit, @invite
+    authorize! :new, @invite
   end
 
   # POST /invites
   def create
     @invite = Invite.new(invite_params)
     authorize! :edit, @invite
-    @invite.user_id = current_user&.id
     if @invite.save
       flash[:success] = 'Invite was successfully created.'
       redirect_to @invite
@@ -45,6 +44,7 @@ class InvitesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def invite_params
-    params.require(:invite).permit(:name, :email, :role)
+    invite = params.require(:invite).permit(:name, :email, :role)
+    current_user ? invite.merge(user_id: T.must(current_user).id) : invite
   end
 end
