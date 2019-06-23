@@ -5,12 +5,14 @@ class EventsController < ApplicationController
 
   # GET /events
   def index
-    @events = if params[:collection] == 'upcoming'
-                Event.upcoming.paginate(page: params[:page], per_page: 10).includes(:user)
-              elsif params[:collection] == 'past'
-                Event.past.paginate(page: params[:page], per_page: 10).includes(:user)
+    page = params[:page]
+    @events = case params[:collection]
+              when 'upcoming'
+                Event.upcoming.paginate(page: page, per_page: 10).includes(:user)
+              when 'past'
+                Event.past.paginate(page: page, per_page: 10).includes(:user)
               else
-                Event.sorted.paginate(page: params[:page], per_page: 10).includes(:user)
+                Event.sorted.paginate(page: page, per_page: 10).includes(:user)
               end
     authorize! :read, Event
   end
@@ -23,8 +25,7 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
-    @event.user_id = current_user&.id
-    authorize! :edit, @event
+    authorize! :new, @event
   end
 
   # GET /events/1/edit
@@ -33,7 +34,6 @@ class EventsController < ApplicationController
   # POST /events
   def create
     @event = Event.new(event_params)
-    @event.user_id = current_user&.id
     authorize! :create, @event
     if @event.save
       flash[:success] = 'Event was successfully created.'
@@ -75,6 +75,7 @@ class EventsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def event_params
-    params.require(:event).permit(:user_id, :title, :time, :location, :url, :content)
+    event = params.require(:event).permit(:user_id, :title, :time, :location, :url, :content)
+    current_user ? event.merge(user_id: T.must(current_user).id) : event
   end
 end

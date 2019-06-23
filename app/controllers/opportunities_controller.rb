@@ -5,14 +5,14 @@ class OpportunitiesController < ApplicationController
 
   # GET /opportunities
   def index
-    @opportunities = if params[:collection] == 'open'
-                       Opportunity.open.paginate(page: params[:page], per_page: 10).includes(:user)
-                     elsif params[:collection] == 'closed'
-                       Opportunity.closed.paginate(page: params[:page],
-                                                   per_page: 10).includes(:user)
+    page = params[:page]
+    @opportunities = case params[:collection]
+                     when 'open'
+                       Opportunity.open.paginate(page: page, per_page: 10).includes(:user)
+                     when 'closed'
+                       Opportunity.closed.paginate(page: page, per_page: 10).includes(:user)
                      else
-                       Opportunity.sorted.paginate(page: params[:page],
-                                                   per_page: 10).includes(:user)
+                       Opportunity.sorted.paginate(page: page, per_page: 10).includes(:user)
                      end
     authorize! :read, Opportunity
   end
@@ -25,9 +25,8 @@ class OpportunitiesController < ApplicationController
   # GET /opportunities/new
   def new
     @opportunity = Opportunity.new
-    @opportunity.user_id = current_user&.id
     @opportunity.good_until = Time.zone.now
-    authorize! :edit, @opportunity
+    authorize! :new, @opportunity
   end
 
   # GET /opportunities/1/edit
@@ -36,7 +35,6 @@ class OpportunitiesController < ApplicationController
   # POST /opportunities
   def create
     @opportunity = Opportunity.new(opportunity_params)
-    @opportunity.user_id = current_user&.id
     authorize! :edit, @opportunity
     if @opportunity.save
       flash[:success] = 'Opportunity was successfully created.'
@@ -89,7 +87,9 @@ class OpportunitiesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def opportunity_params
-    params.require(:opportunity).permit(:user_id, :title, :company, :contact, :email,
-                                        :paid_position, :content, :good_until)
+    opportunity = params.require(:opportunity).permit(
+      :user_id, :title, :company, :contact, :email, :paid_position, :content, :good_until
+    )
+    current_user ? opportunity.merge(user_id: T.must(current_user).id) : opportunity
   end
 end

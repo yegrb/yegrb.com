@@ -93,6 +93,7 @@ gem 'debride', group: :development
 gem 'dokku-cli', group: :development
 gem 'dotenv-rails', groups: %i[development test]
 gem 'fasterer', group: :development
+gem 'prettier', group: :development
 gem 'reek', group: :development
 gem 'rubocop', groups: %i[development test]
 gem 'rubocop-performance', groups: %i[development test]
