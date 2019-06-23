@@ -33,22 +33,26 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    @user = User.new(user_params)
-    @invite = Invite.find_by(code: params[:user][:code])
-    @user.email = @invite.email
-    @user.role = @invite.role
-    authorize! :use, @invite
-    authorize! :signup, @user
-    if @invite.expired?
-      flash.now[:danger] = 'Sorry, this invitation has expired.'
-      redirect_to root_path
-    elsif @invite && @user.save
-      @invite.destroy!
-      flash[:success] = 'User was successfully created.'
-      redirect_to @user
+    code = params.dig(:user, :code)
+
+    if code && (invite = Invite.find_by(code: code))
+      authorize! :use, invite
+
+      @user = build_user(user_params, invite)
+      authorize! :signup, @user
+
+      if invite.expired?
+        reject_to_root 'Sorry, this invitation has expired.'
+      elsif @user.save
+        invite.destroy!
+        flash[:success] = 'User was successfully created.'
+        redirect_to @user
+      else
+        flash.now[:danger] = 'Could not create user'
+        render :new
+      end
     else
-      flash.now[:danger] = 'Could not create user'
-      render :new
+      reject_to_root 'Invaid invitation'
     end
   end
 
@@ -71,6 +75,15 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def reject_to_root(text)
+    flash[:danger] = text
+    redirect_to root_path
+  end
+
+  def build_user(params, invite)
+    User.new(params.merge(email: invite.email, role: invite.role))
+  end
 
   def authorize_edit
     authorize! :edit, @user
