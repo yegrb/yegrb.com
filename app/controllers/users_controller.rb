@@ -52,7 +52,7 @@ class UsersController < ApplicationController
         render :new
       end
     else
-      reject_to_root 'Invaid invitation'
+      reject_to_root 'Invalid invitation'
     end
   end
 
