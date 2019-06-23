@@ -38,9 +38,12 @@ class Ability
     can :use, Invite
 
     if user.user?
-      can :read, User, id: user.id
-      can :edit, User, id: user.id
-      can :manage, Opportunity, user_id: user.id
+      id = user.id
+
+      can :read, User, id: id
+      can :edit, User, id: id
+      can :edit, Opportunity, user_id: id
+      can :new, Opportunity
       # cannot manage events
       # can :manage, Event, user_id: user.id
     end
