@@ -16,12 +16,8 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
-    @invite = Invite.find_by(code: params[:code])
-    if @invite
-      @user = User.new
-      @user.email = @invite.email
-      @user.role = @invite.role
-      @user.code = @invite.code
+    if (invite = Invite.find_by(code: params[:code]))
+      @user = User.new(email: invite.email, role: invite.role, code: invite.code)
     else
       flash.now[:danger] = 'Sorry, this code is invalid.'
       redirect_to root_path
@@ -38,7 +34,7 @@ class UsersController < ApplicationController
     if code && (invite = Invite.find_by(code: code))
       authorize! :use, invite
 
-      @user = build_user(user_params, invite)
+      @user = User.new(user_params.merge(email: invite.email, role: invite.role))
       authorize! :signup, @user
 
       if invite.expired?
@@ -79,10 +75,6 @@ class UsersController < ApplicationController
   def reject_to_root(text)
     flash[:danger] = text
     redirect_to root_path
-  end
-
-  def build_user(params, invite)
-    User.new(params.merge(email: invite.email, role: invite.role))
   end
 
   def authorize_edit
