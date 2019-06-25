@@ -19,6 +19,7 @@ class Invite < ApplicationRecord
 
   belongs_to :user
 
+  validates :code, :expiry, presence: true
   validates :name, presence: true, length: { maximum: 50 }
   validates :role, presence: true, inclusion: { in: User::ROLES }
   validates :user_id, presence: true
@@ -27,7 +28,7 @@ class Invite < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   validate :only_admin_can_create_editors_and_admins
 
-  before_save :set_attributes
+  before_validation :set_attributes
 
   sig { void }
   def only_admin_can_create_editors_and_admins
@@ -49,17 +50,14 @@ class Invite < ApplicationRecord
 
   sig { returns(String) }
   def nice_expiry
-    if expired?
-      "Expired: #{T.must(expiry).strftime('%d %b %Y')}"
-    else
-      "Expires: #{T.must(expiry).strftime('%d %b %Y')}"
-    end
+    tense = expired? ? 'Expired' : 'Expires'
+    tense + T.must(expiry).strftime('%d %b %Y')
   end
 
   sig { returns(String) }
   def nice_user
     return 'Removed' unless user&.full_name
 
-    "Invited by: #{T.must(user).full_name}"
+    "Invited by: #{user.full_name}"
   end
 end

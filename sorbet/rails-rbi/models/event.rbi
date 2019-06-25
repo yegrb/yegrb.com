@@ -50,10 +50,10 @@ class Event < ApplicationRecord
   sig { params(value: ActiveSupport::TimeWithZone).void }
   def time=(value); end
 
-  sig { returns(T.nilable(String)) }
+  sig { returns(String) }
   def title(); end
 
-  sig { params(value: T.nilable(String)).void }
+  sig { params(value: String).void }
   def title=(value); end
 
   sig { returns(DateTime) }
@@ -68,16 +68,16 @@ class Event < ApplicationRecord
   sig { params(value: T.nilable(String)).void }
   def url=(value); end
 
-  sig { returns(T.nilable(User)) }
+  sig { returns(User) }
   def user(); end
 
-  sig { params(value: T.nilable(User)).void }
+  sig { params(value: User).void }
   def user=(value); end
 
-  sig { returns(T.nilable(Integer)) }
+  sig { returns(Integer) }
   def user_id(); end
 
-  sig { params(value: T.nilable(Integer)).void }
+  sig { params(value: Integer).void }
   def user_id=(value); end
 
   sig { returns(Video::Relation) }

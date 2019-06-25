@@ -67,12 +67,12 @@ class Opportunity < ApplicationRecord
 
   sig { returns(String) }
   def set_attributes
-    self.email = T.must(email).downcase
+    self.email = email.downcase
   end
 
   sig { returns(String) }
   def nice_good_until
-    T.must(good_until).strftime('%d %b %Y')
+    good_until.strftime('%d %b %Y')
   end
 
   sig { returns(T::Boolean) }
