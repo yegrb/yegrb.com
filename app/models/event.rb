@@ -43,7 +43,7 @@ class Event < ApplicationRecord
   validates :title, presence: true, length: { maximum: 30 }
   validates :time, :location,
             presence: { message: 'needs to be present if no Meetup link is entered' },
-            unless: proc { |e| e.url.present? && STARTUP_URL =~ e.url }
+            unless: proc { |event| event.url.present? && STARTUP_URL =~ event.url }
 
   before_save :set_attributes
 
@@ -57,11 +57,15 @@ class Event < ApplicationRecord
 
   sig { void }
   def set_attributes
-    self.meetup_id ||= STARTUP_URL.match(url)[1] if url.present? && STARTUP_URL =~ url
+    self.meetup_id ||= STARTUP_URL.match(url)[1] if good_url?
     return if meetup_id.blank?
 
-    self.time = Meetup.time(T.must(meetup_id))
-    self.location = Meetup.location(T.must(meetup_id))
+    self.time = meetup.time
+    self.location = meetup.location
+  end
+
+  def meetup
+    @meetup ||= Meetup.new(meetup_id)
   end
 
   sig { returns(String) }
@@ -71,7 +75,7 @@ class Event < ApplicationRecord
 
   sig { returns(String) }
   def to_s
-    T.must(title)
+    title
   end
 
   sig { returns(String) }
@@ -79,11 +83,14 @@ class Event < ApplicationRecord
     T.must(time).strftime('%A, %d %b %Y %l:%M %p')
   end
 
+  sig { returns(T::Boolean) }
+  def good_url?
+    url.present? && STARTUP_URL.match?(url)
+  end
+
   sig { returns(String) }
   def attending
-    return 'Unknown' if meetup_id.blank?
-
-    Meetup.attending(T.must(meetup_id)).to_s
+    meetup.attending
   end
 
   sig { returns(String) }
