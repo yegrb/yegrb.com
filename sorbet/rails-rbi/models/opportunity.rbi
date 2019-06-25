@@ -38,16 +38,16 @@ class Opportunity < ApplicationRecord
   sig { params(value: DateTime).void }
   def created_at=(value); end
 
-  sig { returns(T.nilable(String)) }
+  sig { returns(String) }
   def email(); end
 
-  sig { params(value: T.nilable(String)).void }
+  sig { params(value: String).void }
   def email=(value); end
 
-  sig { returns(T.nilable(DateTime)) }
+  sig { returns(DateTime) }
   def good_until(); end
 
-  sig { params(value: T.nilable(DateTime)).void }
+  sig { params(value: DateTime).void }
   def good_until=(value); end
 
   sig { returns(Integer) }
@@ -88,9 +88,7 @@ class Opportunity < ApplicationRecord
 
   sig { params(value: T.nilable(Integer)).void }
   def user_id=(value); end
-
 end
-
 
 module Opportunity::NamedScope
   extend T::Sig
@@ -187,6 +185,4 @@ module Opportunity::NamedScope
 
   sig { params(args: T.untyped, block: T.nilable(T.proc.void)).returns(Opportunity::Relation) }
   def except(*args, block); end
-
 end
-

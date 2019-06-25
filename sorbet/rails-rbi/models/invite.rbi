@@ -68,16 +68,16 @@ class Invite < ApplicationRecord
   sig { params(value: DateTime).void }
   def updated_at=(value); end
 
-  sig { returns(T.nilable(User)) }
+  sig { returns(User) }
   def user(); end
 
-  sig { params(value: T.nilable(User)).void }
+  sig { params(value: User).void }
   def user=(value); end
 
-  sig { returns(T.nilable(Integer)) }
+  sig { returns(Integer) }
   def user_id(); end
 
-  sig { params(value: T.nilable(Integer)).void }
+  sig { params(value: Integer).void }
   def user_id=(value); end
 
 end
