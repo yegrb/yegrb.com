@@ -1,6 +1,5 @@
 version: 1
 update_configs:
-  # required properties omitted ...
   - package_manager: "ruby:bundler"
     directory: "/"
     update_schedule: "live"
