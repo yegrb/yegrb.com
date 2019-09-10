@@ -204,7 +204,7 @@ GEM
     parlour (0.6.1)
       rainbow (~> 3.0.0)
       sorbet-runtime
-    parser (2.6.3.0)
+    parser (2.6.4.0)
       ast (~> 2.4.0)
     path_expander (1.0.4)
     pg (1.1.4)
@@ -263,7 +263,7 @@ GEM
     reverse_markdown (1.2.0)
       nokogiri
     rouge (3.10.0)
-    rubocop (0.71.0)
+    rubocop (0.74.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
       parser (>= 2.6)
