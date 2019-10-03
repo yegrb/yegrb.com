@@ -96,11 +96,11 @@ gem 'fasterer', group: :development
 gem 'prettier', group: :development
 gem 'reek', group: :development
 gem 'rubocop', groups: %i[development test]
+gem 'rubocop-faker', groups: %i[development test]
 gem 'rubocop-performance', groups: %i[development test]
 gem 'rubocop-rails', groups: %i[development test]
-gem 'rubocop-faker', groups: %i[development test]
 gem 'rubycritic', group: :development
 gem 'solargraph', group: :development
 gem 'sorbet', group: :development
-gem 'sorbet-runtime'
 gem 'sorbet-rails'
+gem 'sorbet-runtime'
