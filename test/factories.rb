@@ -34,7 +34,7 @@ FactoryBot.define do
     last_name  { Faker::Name.last_name }
     role  { 'user' }
     email { Faker::Internet.unique.email }
-    password { Faker::Internet.password(10, 20) }
+    password { Faker::Internet.password(min_length: 10, max_length: 20) }
     password_confirmation { password }
     password_digest { User.digest(password) }
   end

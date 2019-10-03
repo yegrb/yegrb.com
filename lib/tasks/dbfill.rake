@@ -43,31 +43,31 @@ namespace :db do
 
     puts '=== Creating Actual Events ==='
     Event.create!(
-      content: Faker::Hipster.paragraph(5),
+      content: Faker::Hipster.paragraph(sentence_count: 5),
       url: 'https://www.meetup.com/startupedmonton/events/dgjjmqyzcbhb/',
       title: 'January Meetup',
       user_id: userid
     )
     Event.create!(
-      content: Faker::Hipster.paragraph(5),
+      content: Faker::Hipster.paragraph(sentence_count: 5),
       url: 'https://www.meetup.com/startupedmonton/events/dgjjmqyzdbdb/',
       title: 'February Meetup',
       user_id: userid
     )
     Event.create!(
-      content: Faker::Hipster.paragraph(5),
+      content: Faker::Hipster.paragraph(sentence_count: 5),
       url: 'https://www.meetup.com/startupedmonton/events/dgjjmqyzfbdb/',
       title: 'March Meetup',
       user_id: userid
     )
     Event.create!(
-      content: Faker::Hipster.paragraph(5),
+      content: Faker::Hipster.paragraph(sentence_count: 5),
       url: 'https://www.meetup.com/startupedmonton/events/dgjjmqyzgbjb/',
       title: 'April Meetup',
       user_id: userid
     )
     Event.create!(
-      content: Faker::Hipster.paragraph(5),
+      content: Faker::Hipster.paragraph(sentence_count: 5),
       url: 'https://www.meetup.com/startupedmonton/events/dgjjmqyzhbgb/',
       title: 'May Meetup',
       user_id: userid
@@ -79,11 +79,11 @@ namespace :db do
       # role = (x % 10).zero? ? 'editor' : 'user'
 
       Opportunity.create!(
-        content: Faker::Hipster.paragraph(5),
+        content: Faker::Hipster.paragraph(sentence_count: 5),
         company: Faker::Company.name,
         contact: Faker::Name.name,
         email: Faker::Internet.email,
-        good_until: Faker::Time.forward(x, :afternoon),
+        good_until: Faker::Time.forward(days: x, period: :afternoon),
         paid_position: true,
         title: Faker::ChuckNorris.fact,
         user_id: userid
