@@ -22,5 +22,8 @@ Rails.application.routes.draw do
   get '/getinvolved', to: 'pages#getinvolved'
   get '/resources', to: 'pages#resources'
 
+  # redirects
+  get '/slack', to: redirect('https://devedmonton-invite.herokuapp.com/')
+
   get '/check.txt', to: proc { [200, {}, ['it_works']] }
 end
