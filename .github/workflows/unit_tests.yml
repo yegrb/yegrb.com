@@ -1,12 +1,13 @@
 name: Rails Unit Tests
 
-on: [push]
+on:
+  push:
+    branches:
+      - develop
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     services:
       db:
         image: postgres:11
@@ -16,7 +17,6 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-
     steps:
     - uses: actions/checkout@v1
     - name: Set up Ruby 2.6
