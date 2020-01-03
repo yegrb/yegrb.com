@@ -43,7 +43,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: dokku-github-action
-        uses: vitalyliber/dokku-github-action@v3
+        uses: vitalyliber/dokku-github-action@v3.0
         env:
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
           PUBLIC_KEY: ${{ secrets.PUBLIC_KEY }}
