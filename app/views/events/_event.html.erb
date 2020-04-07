@@ -23,7 +23,11 @@
     </tr>
     <tr>
       <td class="pr-3"><strong><%= icon('fas', 'map-marked', title: 'Location') %> </strong></td>
-      <td><%= link_to event.location, event.google_map, target: '_blank' %></td>
+      <% if event.alt_location_url %>
+        <td><%= link_to event.location, event.alt_location_url, targer: '_blank' %></td>
+      <% else %>
+        <td><%= link_to event.location, event.google_map, target: '_blank' %></td>
+      <% end %>
     </tr>
     <% if !index %>
       <tr>

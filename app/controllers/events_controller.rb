@@ -75,7 +75,7 @@ class EventsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def event_params
-    event = params.require(:event).permit(:user_id, :title, :time, :location, :url, :content)
+    event = params.require(:event).permit(:user_id, :title, :time, :location, :url, :content, :alt_location_url)
     current_user ? event.merge(user_id: T.must(current_user).id) : event
   end
 end

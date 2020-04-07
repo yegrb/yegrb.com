@@ -13,6 +13,7 @@
 #  updated_at :datetime         not null
 #  meetup_id  :string
 #  user_id    :integer
+#  alt_location_url :string
 #
 
 class Event < ApplicationRecord
