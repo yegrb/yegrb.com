@@ -1,10 +1,10 @@
 GIT
   remote: https://github.com/stympy/faker.git
-  revision: dd1fe96509e18316a4398c15836516b2053f88c5
+  revision: 793476bf5299550ac9020b98c76a5111aabcd2a3
   branch: master
   specs:
-    faker (2.10.0)
-      i18n (>= 1.6, < 1.8)
+    faker (2.11.0)
+      i18n (>= 1.6, < 2)
 
 GEM
   remote: https://rubygems.org/
@@ -112,7 +112,7 @@ GEM
     colorize (0.8.1)
     commander (4.4.7)
       highline (~> 2.0.0)
-    concurrent-ruby (1.1.5)
+    concurrent-ruby (1.1.6)
     crass (1.0.5)
     debride (1.8.2)
       path_expander (~> 1.0)
@@ -162,7 +162,7 @@ GEM
     http-accept (1.7.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
-    i18n (1.7.0)
+    i18n (1.8.2)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
     jaro_winkler (1.5.4)
