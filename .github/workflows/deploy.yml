@@ -60,4 +60,3 @@ jobs:
           PUBLIC_KEY: ${{ secrets.PUBLIC_KEY }}
           HOST: yegrb.com
           PROJECT: yegrb
-          FORCE_DEPLOY: true

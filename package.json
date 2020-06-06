@@ -23,6 +23,6 @@
   },
   "homepage": "https://github.com/yegrb/yegrb.com#readme",
   "devDependencies": {
-    "eslint": "^5.15.1"
+    "eslint": "^7.2.0"
   }
 }
