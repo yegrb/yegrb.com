@@ -346,7 +346,7 @@ GEM
       parser (>= 2.7)
       sorbet-coerce (>= 0.2.6)
       sorbet-runtime (>= 0.5)
-    sorbet-runtime (0.5.5786)
+    sorbet-runtime (0.5.5846)
     sorbet-static (0.5.5786-universal-darwin-14)
     spring (2.1.0)
     spring-watcher-listen (2.0.1)
