@@ -4,6 +4,6 @@ Add links to any outstanding issues this PR addresses, or N/A.
 Describe what you did and why.
 #### Checklist
 - [ ] Added tests for new, testable code (if any)
-- [ ] Ran and passed existing tests
+- [ ] Ran and passed existing tests (`$ bin/rails test`)
 - [ ] Ran `rubocop` on any files I changed and fixed any offenses
 - [ ] Added screenshots of any new visual elements or design
