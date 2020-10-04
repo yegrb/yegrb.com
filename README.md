@@ -53,4 +53,4 @@ Create Database
 
 ## Contact
 
-Drop me a line at: alan@alanvardy.com
+Drop us a line at: contact@mail.yegrb.com
