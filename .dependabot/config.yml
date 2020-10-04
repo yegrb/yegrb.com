@@ -3,7 +3,7 @@ update_configs:
   - package_manager: "ruby:bundler"
     directory: "/"
     default_assignees:
-    - "thewillgabriel"
+    - "blerg-rush"
     update_schedule: "live"
     automerged_updates:
     - match: {dependency_type: "all", update_type: "all"}
