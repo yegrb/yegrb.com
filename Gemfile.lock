@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/stympy/faker.git
-  revision: a1ba45c7c79bac3ad9da5a3018f9f91bfd8ff707
+  revision: e706f34eaaa8b906bddcf6fd50f5f7e462757ae8
   branch: master
   specs:
     faker (2.15.1)
@@ -160,7 +160,7 @@ GEM
     http-accept (1.7.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
-    i18n (1.8.5)
+    i18n (1.8.7)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
     jaro_winkler (1.5.4)
