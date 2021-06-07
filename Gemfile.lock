@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/stympy/faker.git
-  revision: f3a2653bc396fdb87b2664adb7cce05e60bbf8b3
+  revision: 8e8ae220eadaa0c036999b7711106b1a84c372d9
   branch: master
   specs:
     faker (2.18.0)
@@ -110,7 +110,7 @@ GEM
     colorize (0.8.1)
     commander (4.6.0)
       highline (~> 2.0.0)
-    concurrent-ruby (1.1.8)
+    concurrent-ruby (1.1.9)
     crass (1.0.6)
     debride (1.8.2)
       path_expander (~> 1.0)
