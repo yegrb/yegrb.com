@@ -74,7 +74,7 @@ gem 'will_paginate'
 
 # Authentication and Authorization
 gem 'bcrypt'
-gem 'cancancan', '~> 3.2'
+gem 'cancancan', '~> 3.3'
 
 # APIs
 gem 'mailgun-ruby'
